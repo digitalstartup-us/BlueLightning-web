@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowDown, Shield, Award, Clock } from "lucide-react";
 
@@ -156,24 +157,26 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 1.3 }}
           className="flex flex-col sm:flex-row items-center justify-center gap-4"
         >
-          <motion.button
-            whileHover={{ scale: 1.04 }}
-            whileTap={{ scale: 0.97 }}
-            onClick={() => document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" })}
-            className="btn-gold px-10 py-4 rounded-xl text-sm w-full sm:w-auto"
-            style={{ fontSize: "12px", letterSpacing: "0.18em", minWidth: "240px" }}
-          >
-            Schedule Free Consultation
-          </motion.button>
-          <motion.button
-            whileHover={{ scale: 1.04 }}
-            whileTap={{ scale: 0.97 }}
-            onClick={() => document.querySelector("#portfolio")?.scrollIntoView({ behavior: "smooth" })}
-            className="btn-outline-gold px-10 py-4 rounded-xl text-sm w-full sm:w-auto"
-            style={{ fontSize: "12px", letterSpacing: "0.18em", minWidth: "200px" }}
-          >
-            See Our Work
-          </motion.button>
+          <Link href="/contact">
+            <motion.div
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.97 }}
+              className="btn-gold px-10 py-4 rounded-xl text-sm w-full sm:w-auto cursor-pointer"
+              style={{ fontSize: "12px", letterSpacing: "0.18em", minWidth: "240px", textAlign: "center" }}
+            >
+              Schedule Free Consultation
+            </motion.div>
+          </Link>
+          <Link href="/portfolio">
+            <motion.div
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.97 }}
+              className="btn-outline-gold px-10 py-4 rounded-xl text-sm w-full sm:w-auto cursor-pointer"
+              style={{ fontSize: "12px", letterSpacing: "0.18em", minWidth: "200px", textAlign: "center" }}
+            >
+              See Our Work
+            </motion.div>
+          </Link>
         </motion.div>
 
         {/* Social proof numbers */}
@@ -218,7 +221,7 @@ export default function Hero() {
         animate={{ opacity: 1 }}
         transition={{ delay: 2 }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 cursor-pointer"
-        onClick={() => document.querySelector("#services")?.scrollIntoView({ behavior: "smooth" })}
+        onClick={() => window.scrollBy({ top: window.innerHeight, behavior: "smooth" })}
       >
         <span
           className="text-xs tracking-[0.3em] uppercase"

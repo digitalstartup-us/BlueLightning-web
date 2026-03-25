@@ -1,13 +1,13 @@
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
 import TrustBar from "@/components/TrustBar";
-import Services from "@/components/Services";
-import Portfolio from "@/components/Portfolio";
+import ServicesPreview from "@/components/ServicesPreview";
+import PortfolioPreview from "@/components/PortfolioPreview";
 import Stats from "@/components/Stats";
-import Process from "@/components/Process";
-import About from "@/components/About";
+import ProcessPreview from "@/components/ProcessPreview";
 import Testimonials from "@/components/Testimonials";
-import Contact from "@/components/Contact";
+import AboutSnippet from "@/components/AboutSnippet";
+import ContactCTA from "@/components/ContactCTA";
 import Footer from "@/components/Footer";
 import FloatingCTA from "@/components/FloatingCTA";
 
@@ -17,13 +17,13 @@ export default function Home() {
       <Navigation />
       <Hero />
       <TrustBar />
-      <Services />
-      <Portfolio />
+      <ServicesPreview />
+      <PortfolioPreview />
       <Stats />
-      <Process />
-      <About />
+      <ProcessPreview />
       <Testimonials />
-      <Contact />
+      <AboutSnippet />
+      <ContactCTA />
       <Footer />
       <FloatingCTA />
     </main>

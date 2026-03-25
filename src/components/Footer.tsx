@@ -6,24 +6,25 @@ import { Instagram, Phone, Mail, MapPin } from "lucide-react";
 const footerLinks = {
   Services: [
     { label: "Custom Decks", href: "/custom-decks" },
+    { label: "Pool Decks", href: "/pool-decks" },
     { label: "Patios & Hardscaping", href: "/patios" },
-    { label: "Pergolas & Pavilions", href: "#services" },
-    { label: "Outdoor Kitchens", href: "#services" },
-    { label: "Full Outdoor Living", href: "#services" },
+    { label: "Pergolas & Structures", href: "/pergolas" },
+    { label: "Outdoor Kitchens", href: "/outdoor-kitchens" },
+    { label: "Full Outdoor Living", href: "/services" },
   ],
   Company: [
-    { label: "Our Process", href: "#process" },
-    { label: "Portfolio", href: "#portfolio" },
-    { label: "About Us", href: "#about" },
+    { label: "About Us", href: "/about" },
+    { label: "Portfolio", href: "/portfolio" },
+    { label: "All Services", href: "/services" },
     { label: "FAQ", href: "/faq" },
-    { label: "Pool Decks", href: "/pool-decks" },
+    { label: "Contact", href: "/contact" },
   ],
   "Service Areas": [
-    { label: "Ashburn, VA", href: "#contact" },
-    { label: "McLean, VA", href: "#contact" },
-    { label: "Loudoun County", href: "#contact" },
-    { label: "Fairfax County", href: "#contact" },
-    { label: "Herndon & Sterling, VA", href: "#contact" },
+    { label: "Ashburn, VA", href: "/contact" },
+    { label: "McLean, VA", href: "/contact" },
+    { label: "Loudoun County", href: "/contact" },
+    { label: "Fairfax County", href: "/contact" },
+    { label: "Herndon & Sterling, VA", href: "/contact" },
   ],
 };
 
@@ -164,7 +165,7 @@ export default function Footer() {
         {/* Bottom */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           <p style={{ color: "#8A8A8A", fontSize: "12px" }}>
-            © 2025 Blue Lightning Custom Decks LLC · Virginia Entity ID: S8535819 · All rights reserved.
+            © 2026 Blue Lightning Custom Decks LLC · Virginia Entity ID: S8535819 · All rights reserved.
           </p>
           <div className="flex items-center gap-6">
             {[

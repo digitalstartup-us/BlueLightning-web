@@ -1,12 +1,14 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { MessageCircle, X, Phone, Calendar } from "lucide-react";
 
 export default function FloatingCTA() {
   const [visible, setVisible] = useState(false);
   const [open, setOpen] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     const timer = setTimeout(() => setVisible(true), 3000);
@@ -63,7 +65,7 @@ export default function FloatingCTA() {
                   <button
                     onClick={() => {
                       setOpen(false);
-                      document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" });
+                      router.push("/contact");
                     }}
                     className="flex items-center gap-3 p-3 rounded-xl w-full transition-all duration-200 hover:scale-[1.02]"
                     style={{ background: "rgba(201,168,76,0.06)", border: "1px solid rgba(201,168,76,0.15)" }}

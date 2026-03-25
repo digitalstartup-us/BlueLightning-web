@@ -1,22 +1,33 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useState, useEffect, useRef } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Phone } from "lucide-react";
+import { Menu, X, Phone, ChevronDown } from "lucide-react";
+
+const services = [
+  { label: "Custom Decks", href: "/custom-decks", desc: "Multi-level, covered, rooftop" },
+  { label: "Pool Decks", href: "/pool-decks", desc: "Waterfront & pool surrounds" },
+  { label: "Patios & Hardscaping", href: "/patios", desc: "Pavers, stone, stamped concrete" },
+  { label: "Pergolas & Structures", href: "/pergolas", desc: "Louvered pergolas, pavilions" },
+  { label: "Outdoor Kitchens", href: "/outdoor-kitchens", desc: "Full outdoor kitchen systems" },
+  { label: "Full Outdoor Living", href: "/services", desc: "Complete backyard transformation" },
+];
 
 const navLinks = [
-  { label: "Services", href: "#services" },
-  { label: "Portfolio", href: "#portfolio" },
-  { label: "Process", href: "#process" },
-  { label: "About", href: "#about" },
-  { label: "FAQ", href: "/faq", isPage: true },
+  { label: "Services", href: "/services", hasDropdown: true },
+  { label: "Portfolio", href: "/portfolio" },
+  { label: "About", href: "/about" },
+  { label: "FAQ", href: "/faq" },
 ];
 
 export default function Navigation() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const router = useRouter();
+  const [servicesOpen, setServicesOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 60);
@@ -24,15 +35,22 @@ export default function Navigation() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleNavClick = (href: string, isPage?: boolean) => {
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+        setServicesOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  useEffect(() => {
     setMenuOpen(false);
-    if (isPage) {
-      router.push(href);
-      return;
-    }
-    const el = document.querySelector(href);
-    if (el) el.scrollIntoView({ behavior: "smooth" });
-  };
+    setServicesOpen(false);
+  }, [pathname]);
+
+  const isActive = (href: string) => pathname === href || pathname.startsWith(href + "/");
 
   return (
     <>
@@ -42,88 +60,145 @@ export default function Navigation() {
         transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
         className="fixed top-0 left-0 right-0 z-50 px-6 md:px-12 lg:px-20"
       >
-        <div
-          className="mx-auto max-w-7xl"
-          style={{ transition: "all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)" }}
-        >
+        <div className="mx-auto max-w-7xl">
           <div
             className={`flex items-center justify-between transition-all duration-500 ${
               scrolled ? "mt-3 px-6 py-4 rounded-2xl glass-dark" : "mt-6 py-4"
             }`}
           >
             {/* Logo */}
-            <motion.a
-              href="#"
-              onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }); }}
-              className="flex items-center gap-3 group cursor-pointer"
-              whileHover={{ scale: 1.02 }}
-            >
-              <div className="relative w-10 h-10 flex items-center justify-center">
-                <div
-                  className="absolute inset-0 rounded-lg"
-                  style={{ background: "linear-gradient(135deg, #1A3A6B, #2563EB)" }}
-                />
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" className="relative z-10">
-                  <path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13L13 2Z" fill="#F5F0E8" strokeLinejoin="round" />
-                </svg>
-              </div>
-              <div>
-                <div
-                  className="text-base font-semibold tracking-wide leading-none"
-                  style={{ fontFamily: "var(--font-display)", color: "#F5F0E8" }}
-                >
-                  Blue Lightning
+            <Link href="/" className="flex items-center gap-3 group cursor-pointer">
+              <motion.div whileHover={{ scale: 1.02 }} className="flex items-center gap-3">
+                <div className="relative w-10 h-10 flex items-center justify-center">
+                  <div className="absolute inset-0 rounded-lg" style={{ background: "linear-gradient(135deg, #1A3A6B, #2563EB)" }} />
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" className="relative z-10">
+                    <path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13L13 2Z" fill="#F5F0E8" />
+                  </svg>
                 </div>
-                <div className="text-xs tracking-[0.2em] uppercase" style={{ color: "#C9A84C", fontSize: "9px" }}>
-                  Custom Decks · Northern Virginia
+                <div>
+                  <div className="text-base font-semibold tracking-wide leading-none" style={{ fontFamily: "var(--font-display)", color: "#F5F0E8" }}>
+                    Blue Lightning
+                  </div>
+                  <div className="text-xs tracking-[0.2em] uppercase" style={{ color: "#C9A84C", fontSize: "9px" }}>
+                    Custom Decks · Northern Virginia
+                  </div>
                 </div>
-              </div>
-            </motion.a>
+              </motion.div>
+            </Link>
 
             {/* Desktop Links */}
             <div className="hidden md:flex items-center gap-8">
-              {navLinks.map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  onClick={(e) => { e.preventDefault(); handleNavClick(link.href, link.isPage); }}
-                  className="relative text-sm tracking-widest uppercase font-medium group cursor-pointer"
-                  style={{ color: "#8A8A8A", fontSize: "11px", letterSpacing: "0.15em" }}
-                >
-                  <span
-                    style={{ transition: "color 0.3s ease" }}
+              {navLinks.map((link) =>
+                link.hasDropdown ? (
+                  <div key={link.label} ref={dropdownRef} className="relative">
+                    <button
+                      className="flex items-center gap-1 text-sm tracking-widest uppercase font-medium group cursor-pointer relative"
+                      style={{
+                        color: isActive(link.href) ? "#F5F0E8" : "#8A8A8A",
+                        fontSize: "11px",
+                        letterSpacing: "0.15em",
+                      }}
+                      onClick={() => setServicesOpen(!servicesOpen)}
+                      onMouseEnter={(e) => (e.currentTarget.style.color = "#F5F0E8")}
+                      onMouseLeave={(e) => {
+                        if (!isActive(link.href)) e.currentTarget.style.color = "#8A8A8A";
+                      }}
+                    >
+                      {link.label}
+                      <motion.span animate={{ rotate: servicesOpen ? 180 : 0 }} transition={{ duration: 0.2 }}>
+                        <ChevronDown size={12} />
+                      </motion.span>
+                      {isActive(link.href) && (
+                        <span className="absolute -bottom-1 left-0 right-0 h-px" style={{ background: "#C9A84C" }} />
+                      )}
+                    </button>
+
+                    <AnimatePresence>
+                      {servicesOpen && (
+                        <motion.div
+                          initial={{ opacity: 0, y: 10, scale: 0.97 }}
+                          animate={{ opacity: 1, y: 0, scale: 1 }}
+                          exit={{ opacity: 0, y: 8, scale: 0.97 }}
+                          transition={{ duration: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
+                          className="absolute top-8 left-1/2 -translate-x-1/2 w-72 rounded-2xl p-2 shadow-2xl"
+                          style={{
+                            background: "#141414",
+                            border: "1px solid rgba(201,168,76,0.2)",
+                            backdropFilter: "blur(20px)",
+                          }}
+                        >
+                          {services.map((svc) => (
+                            <Link
+                              key={svc.href}
+                              href={svc.href}
+                              className="flex flex-col px-4 py-3 rounded-xl transition-all duration-200 group/svc"
+                              style={{ borderBottom: "none" }}
+                              onMouseEnter={(e) => { e.currentTarget.style.background = "rgba(201,168,76,0.06)"; }}
+                              onMouseLeave={(e) => { e.currentTarget.style.background = "transparent"; }}
+                            >
+                              <span className="text-sm font-medium" style={{ color: "#F5F0E8", fontSize: "13px" }}>
+                                {svc.label}
+                              </span>
+                              <span className="text-xs mt-0.5" style={{ color: "#8A8A8A", fontSize: "11px" }}>
+                                {svc.desc}
+                              </span>
+                            </Link>
+                          ))}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                ) : (
+                  <Link
+                    key={link.label}
+                    href={link.href}
+                    className="relative text-sm tracking-widest uppercase font-medium group cursor-pointer"
+                    style={{
+                      color: isActive(link.href) ? "#F5F0E8" : "#8A8A8A",
+                      fontSize: "11px",
+                      letterSpacing: "0.15em",
+                    }}
                     onMouseEnter={(e) => (e.currentTarget.style.color = "#F5F0E8")}
-                    onMouseLeave={(e) => (e.currentTarget.style.color = "#8A8A8A")}
+                    onMouseLeave={(e) => {
+                      if (!isActive(link.href)) e.currentTarget.style.color = "#8A8A8A";
+                    }}
                   >
                     {link.label}
-                  </span>
-                  <span
-                    className="absolute -bottom-1 left-0 w-0 h-px group-hover:w-full transition-all duration-300"
-                    style={{ background: "#C9A84C" }}
-                  />
-                </a>
-              ))}
+                    <span
+                      className="absolute -bottom-1 left-0 right-0 h-px transition-all duration-300"
+                      style={{
+                        background: "#C9A84C",
+                        transform: isActive(link.href) ? "scaleX(1)" : "scaleX(0)",
+                        transformOrigin: "left",
+                      }}
+                    />
+                  </Link>
+                )
+              )}
             </div>
 
             {/* CTA */}
             <div className="hidden md:flex items-center gap-4">
               <a
                 href="tel:+17034239965"
-                className="flex items-center gap-2 text-xs tracking-widest uppercase"
+                className="flex items-center gap-2 text-xs tracking-widest uppercase transition-colors duration-300"
                 style={{ color: "#C9A84C" }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = "#E8C96A")}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "#C9A84C")}
               >
                 <Phone size={13} />
                 <span>(703) 423-9965</span>
               </a>
-              <motion.button
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.97 }}
-                onClick={() => handleNavClick("#contact")}
-                className="btn-gold px-6 py-3 text-xs rounded-lg"
-                style={{ fontSize: "11px", letterSpacing: "0.15em" }}
-              >
-                Free Consultation
-              </motion.button>
+              <Link href="/contact">
+                <motion.div
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.97 }}
+                  className="btn-gold px-6 py-3 text-xs rounded-lg cursor-pointer"
+                  style={{ fontSize: "11px", letterSpacing: "0.15em" }}
+                >
+                  Free Consultation
+                </motion.div>
+              </Link>
             </div>
 
             {/* Mobile Menu Button */}
@@ -143,48 +218,80 @@ export default function Navigation() {
       <AnimatePresence>
         {menuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-40 flex flex-col pt-24 px-6"
-            style={{ background: "rgba(13,13,13,0.98)", backdropFilter: "blur(20px)" }}
+            initial={{ opacity: 0, x: "100%" }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: "100%" }}
+            transition={{ duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
+            className="fixed inset-0 z-40 flex flex-col overflow-y-auto"
+            style={{ background: "#0D0D0D", paddingTop: "80px" }}
           >
-            <div className="flex flex-col gap-6 mt-8">
-              {navLinks.map((link, i) => (
-                <motion.a
+            <div className="flex flex-col px-8 py-8 gap-1">
+              {/* Services section */}
+              <div className="mb-4">
+                <div className="text-xs tracking-[0.3em] uppercase mb-4" style={{ color: "#C9A84C", fontSize: "10px" }}>
+                  Services
+                </div>
+                {services.map((svc, i) => (
+                  <motion.div
+                    key={svc.href}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: i * 0.06 }}
+                  >
+                    <Link
+                      href={svc.href}
+                      className="flex items-center justify-between py-3 border-b"
+                      style={{ borderColor: "rgba(201,168,76,0.08)" }}
+                    >
+                      <span className="text-lg font-light" style={{ fontFamily: "var(--font-display)", color: "#F5F0E8" }}>
+                        {svc.label}
+                      </span>
+                      <span className="text-xs" style={{ color: "#8A8A8A" }}>{svc.desc}</span>
+                    </Link>
+                  </motion.div>
+                ))}
+              </div>
+
+              {/* Other links */}
+              {navLinks.filter(l => !l.hasDropdown).map((link, i) => (
+                <motion.div
                   key={link.label}
-                  href={link.href}
-                  onClick={(e) => { e.preventDefault(); handleNavClick(link.href, link.isPage); }}
-                  initial={{ opacity: 0, x: -30 }}
+                  initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.08 }}
-                  className="text-4xl font-light cursor-pointer"
-                  style={{ fontFamily: "var(--font-display)", color: "#F5F0E8" }}
+                  transition={{ delay: 0.4 + i * 0.07 }}
                 >
-                  {link.label}
-                </motion.a>
+                  <Link
+                    href={link.href}
+                    className="block py-4 text-3xl font-light border-b"
+                    style={{
+                      fontFamily: "var(--font-display)",
+                      color: "#F5F0E8",
+                      borderColor: "rgba(201,168,76,0.08)",
+                    }}
+                  >
+                    {link.label}
+                  </Link>
+                </motion.div>
               ))}
+
+              {/* Mobile CTA */}
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ delay: 0.5 }}
-                className="mt-4 space-y-3"
+                transition={{ delay: 0.7 }}
+                className="mt-8 space-y-4"
               >
                 <a
                   href="tel:+17034239965"
-                  className="flex items-center gap-3 text-lg"
+                  className="flex items-center gap-3 text-xl"
                   style={{ color: "#C9A84C" }}
                 >
-                  <Phone size={18} />
+                  <Phone size={20} />
                   <span>(703) 423-9965</span>
                 </a>
-                <button
-                  onClick={() => handleNavClick("#contact")}
-                  className="btn-gold px-8 py-4 text-sm rounded-xl w-full text-left"
-                >
+                <Link href="/contact" className="btn-gold block px-8 py-4 text-sm rounded-xl text-center">
                   Schedule Free Consultation
-                </button>
+                </Link>
               </motion.div>
             </div>
           </motion.div>

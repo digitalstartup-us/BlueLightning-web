@@ -11,7 +11,7 @@ const testimonials = [
     location: "Beverly Hills, CA",
     project: "Signature Deck + Pergola",
     quote:
-      "Luxury Decks transformed our backyard into something from a magazine. Every single detail was executed with such precision and care. Our friends and family are absolutely speechless every time they visit.",
+      "BlueLightning transformed our backyard into something from a magazine. Every single detail was executed with such precision and care. Our friends and family are absolutely speechless every time they visit.",
     avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=120&q=80&auto=format",
     rating: 5,
   },

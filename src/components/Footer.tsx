@@ -37,24 +37,24 @@ export default function Footer() {
               </div>
               <div>
                 <div className="text-base font-semibold" style={{ fontFamily: "var(--font-display)", color: "#F5F0E8" }}>
-                  Luxury Decks
+                  BlueLightning
                 </div>
                 <div className="text-xs tracking-[0.2em] uppercase" style={{ color: "#C9A84C", fontSize: "9px" }}>
-                  & Outdoor Living
+                  Luxury Decks
                 </div>
               </div>
             </div>
 
             <p className="leading-relaxed mb-8" style={{ color: "#8A8A8A", fontSize: "0.875rem", fontWeight: 300, maxWidth: "300px" }}>
-              Crafting extraordinary outdoor living experiences for discerning homeowners since 2007.
+              Building extraordinary luxury decks and outdoor living spaces for discerning homeowners since 2007.
             </p>
 
             {/* Contact */}
             <div className="space-y-3 mb-8">
               {[
-                { icon: <Phone size={13} />, text: "(555) 123-4567" },
-                { icon: <Mail size={13} />, text: "hello@luxurydecks.com" },
-                { icon: <MapPin size={13} />, text: "Beverly Hills, CA 90210" },
+                { icon: <Phone size={13} />, text: "(555) 900-DECK" },
+                { icon: <Mail size={13} />, text: "hello@bluelightning.com" },
+                { icon: <MapPin size={13} />, text: "Los Angeles, CA 90001" },
               ].map((item) => (
                 <div key={item.text} className="flex items-center gap-3">
                   <span style={{ color: "#C9A84C" }}>{item.icon}</span>
@@ -133,7 +133,7 @@ export default function Footer() {
         {/* Bottom */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           <p style={{ color: "#8A8A8A", fontSize: "12px" }}>
-            © 2026 Luxury Decks & Outdoor Living. All rights reserved.
+            © 2026 BlueLightning Luxury Decks. All rights reserved.
           </p>
           <div className="flex items-center gap-6">
             {["Privacy Policy", "Terms of Service", "License #C-27841"].map((item) => (

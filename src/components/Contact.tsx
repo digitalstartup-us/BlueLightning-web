@@ -80,9 +80,9 @@ export default function Contact() {
             {/* Contact details */}
             <div className="space-y-6">
               {[
-                { icon: <Phone size={16} />, label: "Call Us", value: "(555) 123-4567" },
-                { icon: <Mail size={16} />, label: "Email Us", value: "hello@luxurydecks.com" },
-                { icon: <MapPin size={16} />, label: "Visit Us", value: "Beverly Hills, CA 90210" },
+                { icon: <Phone size={16} />, label: "Call Us", value: "(555) 900-DECK" },
+                { icon: <Mail size={16} />, label: "Email Us", value: "hello@bluelightning.com" },
+                { icon: <MapPin size={16} />, label: "Visit Us", value: "Los Angeles, CA 90001" },
               ].map((item) => (
                 <div key={item.label} className="flex items-center gap-4">
                   <div

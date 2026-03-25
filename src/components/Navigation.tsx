@@ -70,10 +70,10 @@ export default function Navigation() {
                   className="text-base font-semibold tracking-wide leading-none"
                   style={{ fontFamily: "var(--font-display)", color: "#F5F0E8" }}
                 >
-                  Luxury Decks
+                  BlueLightning
                 </div>
                 <div className="text-xs tracking-[0.2em] uppercase" style={{ color: "#C9A84C", fontSize: "9px" }}>
-                  & Outdoor Living
+                  Luxury Decks
                 </div>
               </div>
             </motion.a>
@@ -107,12 +107,12 @@ export default function Navigation() {
             {/* CTA */}
             <div className="hidden md:flex items-center gap-4">
               <a
-                href="tel:+15551234567"
+                href="tel:+15559006325"
                 className="flex items-center gap-2 text-xs tracking-widest uppercase"
                 style={{ color: "#C9A84C" }}
               >
                 <Phone size={13} />
-                <span>(555) 123-4567</span>
+                <span>(555) 900-DECK</span>
               </a>
               <motion.button
                 whileHover={{ scale: 1.03 }}

@@ -84,7 +84,7 @@ export default function Hero() {
             className="text-xs tracking-widest uppercase"
             style={{ color: "#C9A84C", letterSpacing: "0.2em" }}
           >
-            Rated #1 Premium Deck Builder
+            BlueLightning — Rated #1 Luxury Deck Builder
           </span>
         </motion.div>
 

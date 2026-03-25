@@ -1,0 +1,5 @@
+# Exclude large video files — host via CDN for production
+public/video
+*.mp4
+*.mov
+*.webm

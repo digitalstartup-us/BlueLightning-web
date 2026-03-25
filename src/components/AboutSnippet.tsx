@@ -84,8 +84,8 @@ export default function AboutSnippet() {
           >
             <div className="relative rounded-3xl overflow-hidden" style={{ aspectRatio: "4/3" }}>
               <img
-                src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=900&q=85&auto=format"
-                alt="Blue Lightning Custom Decks — Northern Virginia"
+                src="/images/DJI_20241106165447_0068_D.JPG"
+                alt="Blue Lightning Custom Decks — Loudoun County VA project"
                 className="w-full h-full object-cover"
               />
               <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, transparent 40%, rgba(13,13,13,0.85) 100%)" }} />

@@ -14,7 +14,7 @@ const services = [
     title: "Custom Decks",
     tagline: "Highest Revenue Driver — ~40% of Business",
     href: "/custom-decks",
-    image: "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=900&q=80&auto=format",
+    image: "/images/DSC01228.jpg",
     description: "From multi-level masterpieces to intimate covered retreats — we engineer and build custom decks that become the centerpiece of your home's outdoor experience.",
     includes: [
       "Multi-level decks",
@@ -34,7 +34,7 @@ const services = [
     title: "Patios & Hardscaping",
     tagline: "~30% of Business",
     href: "/patios",
-    image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=900&q=80&auto=format",
+    image: "/images/IMG_0969.jpg",
     description: "Ground-level transformation through precision hardscaping — pavers, natural stone, and engineered systems built for Northern Virginia's demanding climate.",
     includes: [
       "Paver patios",
@@ -54,7 +54,7 @@ const services = [
     title: "Pool Decks",
     tagline: "Specialty Service",
     href: "/pool-decks",
-    image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=900&q=80&auto=format",
+    image: "/images/DJI_20241106170106_0080_D.JPG",
     description: "Waterfront precision. Pool decks require specialist knowledge of drainage, anti-slip treatment, and material compatibility with pool chemistry — we've built over 30.",
     includes: [
       "Pool surrounds & coping",
@@ -74,7 +74,7 @@ const services = [
     title: "Pergolas & Structures",
     tagline: "High-Margin Add-On",
     href: "/pergolas",
-    image: "https://images.unsplash.com/photo-1600607686527-6fb886090705?w=900&q=80&auto=format",
+    image: "/images/IMG_1109.JPG",
     description: "Extend your outdoor living season by months with a structure built to handle Virginia's winters, summers, and everything in between. Fully customizable and integrated.",
     includes: [
       "Motorized louvered pergolas",
@@ -94,7 +94,7 @@ const services = [
     title: "Outdoor Kitchens",
     tagline: "Premium Bundled Service",
     href: "/outdoor-kitchens",
-    image: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=900&q=80&auto=format",
+    image: "/images/DJI_20241106165447_0068_D.JPG",
     description: "A complete outdoor kitchen is the ultimate ROI project — it anchors the entire outdoor living system and adds immediate measurable value to your property.",
     includes: [
       "Professional grill stations",
@@ -114,7 +114,7 @@ const services = [
     title: "Full Outdoor Living Systems",
     tagline: "Highest Margin — Bundled Projects",
     href: "/services",
-    image: "https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=900&q=80&auto=format",
+    image: "/images/DJI_20241106165447_0068_D.JPG",
     description: "The complete transformation: Deck + patio + pergola + kitchen + lighting = a backyard that becomes the most-used room in your home. These are our signature projects.",
     includes: [
       "Full scope design + build",

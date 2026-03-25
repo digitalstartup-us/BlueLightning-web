@@ -38,12 +38,12 @@ const T = {
 };
 
 const IMGS = {
-  hero:     "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=1920&q=90&auto=format",
-  multilevel: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1920&q=90&auto=format",
-  covered:  "https://images.unsplash.com/photo-1600607686527-6fb886090705?w=1920&q=90&auto=format",
-  railing:  "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1920&q=90&auto=format",
-  lifestyle:"https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=1920&q=90&auto=format",
-  night:    "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1920&q=90&auto=format",
+  hero:     "/images/DSC01228.jpg",
+  multilevel: "/images/DJI_20241106165447_0068_D.JPG",
+  covered:  "/images/IMG_0988.JPG",
+  railing:  "/images/IMG_1102.JPG",
+  lifestyle:"/images/IMG_1042.JPG",
+  night:    "/images/DJI_20241106170106_0080_D.JPG",
 };
 
 function ScrollProgress({ p }: { p: MotionValue<number> }) {
@@ -463,7 +463,7 @@ function PostScrollSection() {
 
           <motion.div initial={{ opacity: 0, x: 40 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.9, delay: 0.2 }}>
             <div className="relative rounded-3xl overflow-hidden" style={{ aspectRatio: "4/5" }}>
-              <img src="https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=900&q=85&auto=format" alt="Custom deck Northern Virginia" className="w-full h-full object-cover" />
+              <img src="/images/DSC01228.jpg" alt="Custom deck Northern Virginia — Blue Lightning" className="w-full h-full object-cover" />
               <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(13,13,13,0.7) 0%, transparent 60%)" }} />
               <div className="absolute bottom-6 left-6 right-6 p-5 rounded-2xl" style={{ background: "rgba(13,13,13,0.85)", backdropFilter: "blur(16px)", border: "1px solid rgba(201,168,76,0.2)" }}>
                 <div style={{ color: "#C9A84C", fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: "6px" }}>Featured Project</div>

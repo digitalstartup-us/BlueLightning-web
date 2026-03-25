@@ -12,7 +12,6 @@ export default function Hero() {
     offset: ["start start", "end start"],
   });
 
-  const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
   const textY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
   const opacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
 
@@ -22,38 +21,46 @@ export default function Hero() {
       id="hero"
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
-      {/* Parallax Background */}
-      <motion.div style={{ y: bgY }} className="absolute inset-0 z-0">
-        <img
-          src="https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=1920&q=85&auto=format"
-          alt="Luxury custom deck Northern Virginia"
+      {/* Video Background */}
+      <div className="absolute inset-0 z-0">
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          poster="/images/DJI_20241106170106_0080_D.JPG"
           className="w-full h-full object-cover"
-          style={{ height: "130%" }}
-        />
+          style={{ height: "100%", width: "100%" }}
+        >
+          <source src="/video/blue-lightning-brand.mp4" type="video/mp4" />
+          {/* Fallback image if video doesn't load */}
+          <img
+            src="/images/DJI_20241106170106_0080_D.JPG"
+            alt="Blue Lightning Custom Decks — Northern Virginia"
+            className="w-full h-full object-cover"
+          />
+        </video>
+        {/* Overlays */}
         <div
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(to bottom, rgba(13,13,13,0.7) 0%, rgba(13,13,13,0.3) 40%, rgba(13,13,13,0.6) 70%, rgba(13,13,13,0.95) 100%)",
+              "linear-gradient(to bottom, rgba(9,9,9,0.65) 0%, rgba(9,9,9,0.2) 40%, rgba(9,9,9,0.55) 70%, rgba(9,9,9,0.95) 100%)",
           }}
         />
         <div
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(to right, rgba(13,13,13,0.5) 0%, transparent 60%)",
+              "linear-gradient(to right, rgba(9,9,9,0.5) 0%, transparent 60%)",
           }}
         />
-      </motion.div>
+      </div>
 
-      {/* Floating ambient orbs */}
+      {/* Floating ambient orb */}
       <div
         className="absolute top-1/4 right-1/4 w-96 h-96 rounded-full blur-3xl pointer-events-none"
-        style={{ background: "radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 70%)" }}
-      />
-      <div
-        className="absolute bottom-1/3 left-1/4 w-64 h-64 rounded-full blur-3xl pointer-events-none"
-        style={{ background: "radial-gradient(circle, rgba(37,99,235,0.06) 0%, transparent 70%)" }}
+        style={{ background: "radial-gradient(circle, rgba(201,168,76,0.06) 0%, transparent 70%)" }}
       />
 
       {/* Content */}
@@ -70,6 +77,7 @@ export default function Hero() {
           style={{
             border: "1px solid rgba(201,168,76,0.3)",
             background: "rgba(201,168,76,0.06)",
+            backdropFilter: "blur(10px)",
           }}
         >
           <Shield size={11} style={{ color: "#C9A84C" }} />
@@ -123,7 +131,7 @@ export default function Hero() {
           </h1>
         </motion.div>
 
-        {/* Divider line */}
+        {/* Divider */}
         <motion.div
           initial={{ scaleX: 0 }}
           animate={{ scaleX: 1 }}
@@ -139,7 +147,7 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 1.1 }}
           className="max-w-xl mx-auto mb-12 leading-relaxed"
           style={{
-            color: "#8A8A8A",
+            color: "rgba(245,240,232,0.75)",
             fontSize: "clamp(0.9rem, 2vw, 1.1rem)",
             fontFamily: "var(--font-body)",
             fontWeight: 300,
@@ -192,22 +200,13 @@ export default function Hero() {
             { value: "$100K+", label: "Average Project Value", icon: <Shield size={14} /> },
           ].map((stat, i) => (
             <div key={i} className="text-center">
-              <div
-                className="flex items-center justify-center gap-1 mb-1"
-                style={{ color: "#C9A84C" }}
-              >
+              <div className="flex items-center justify-center gap-1 mb-1" style={{ color: "#C9A84C" }}>
                 {stat.icon}
               </div>
-              <div
-                className="text-2xl font-light"
-                style={{ fontFamily: "var(--font-display)", color: "#C9A84C" }}
-              >
+              <div className="text-2xl font-light" style={{ fontFamily: "var(--font-display)", color: "#C9A84C" }}>
                 {stat.value}
               </div>
-              <div
-                className="text-xs tracking-widest uppercase mt-1"
-                style={{ color: "#8A8A8A", fontSize: "10px", letterSpacing: "0.15em" }}
-              >
+              <div className="text-xs tracking-widest uppercase mt-1" style={{ color: "rgba(245,240,232,0.5)", fontSize: "10px", letterSpacing: "0.15em" }}>
                 {stat.label}
               </div>
             </div>
@@ -223,10 +222,7 @@ export default function Hero() {
         className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 cursor-pointer"
         onClick={() => window.scrollBy({ top: window.innerHeight, behavior: "smooth" })}
       >
-        <span
-          className="text-xs tracking-[0.3em] uppercase"
-          style={{ color: "#8A8A8A", fontSize: "9px" }}
-        >
+        <span className="text-xs tracking-[0.3em] uppercase" style={{ color: "rgba(245,240,232,0.4)", fontSize: "9px" }}>
           Discover
         </span>
         <motion.div

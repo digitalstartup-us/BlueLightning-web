@@ -48,8 +48,8 @@ export default function Stats() {
       {/* Full-bleed background image */}
       <div className="absolute inset-0">
         <img
-          src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=1920&q=80&auto=format"
-          alt="Blue Lightning Custom Decks — Northern Virginia"
+          src="/images/DJI_20241106170106_0080_D.JPG"
+          alt="Blue Lightning Custom Decks — Ashburn VA project aerial"
           className="w-full h-full object-cover"
         />
         <div

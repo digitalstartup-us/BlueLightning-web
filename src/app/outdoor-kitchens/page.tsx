@@ -31,7 +31,7 @@ export default function OutdoorKitchensPage() {
         {/* Hero */}
         <section className="relative h-screen flex items-end overflow-hidden">
           <motion.div className="absolute inset-0" style={{ y }}>
-            <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1920&q=80&auto=format" alt="Outdoor kitchen Northern Virginia" className="w-full h-full object-cover" />
+            <img src="/images/DJI_20241106165447_0068_D.JPG" alt="Outdoor kitchen Northern Virginia — Blue Lightning" className="w-full h-full object-cover" />
             <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, rgba(13,13,13,0.3) 0%, rgba(13,13,13,0.88) 100%)" }} />
           </motion.div>
 
@@ -108,7 +108,7 @@ export default function OutdoorKitchensPage() {
                 className="overflow-hidden rounded-3xl"
                 style={{ aspectRatio: "4/3" }}
               >
-                <img src="https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=900&q=80&auto=format" alt="Outdoor kitchen design" className="w-full h-full object-cover" />
+                <img src="/images/DJI_20241106170106_0080_D.JPG" alt="Outdoor kitchen design — Blue Lightning" className="w-full h-full object-cover" />
               </motion.div>
             </div>
           </div>
@@ -170,7 +170,7 @@ export default function OutdoorKitchensPage() {
                 className="overflow-hidden rounded-3xl order-2 lg:order-1"
                 style={{ aspectRatio: "4/3" }}
               >
-                <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=900&q=80&auto=format" alt="Outdoor audio JBL integration" className="w-full h-full object-cover" />
+                <img src="/images/IMG_0969.jpg" alt="Outdoor living integration — Blue Lightning" className="w-full h-full object-cover" />
               </motion.div>
               <motion.div
                 initial={{ opacity: 0, x: -40 }}

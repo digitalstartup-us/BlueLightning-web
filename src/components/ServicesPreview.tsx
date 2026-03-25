@@ -11,7 +11,7 @@ const services = [
     title: "Custom Decks",
     description: "Multi-level, pool, covered, and rooftop decks. Trex & TimberTech certified. Projects that last 25–50 years.",
     href: "/custom-decks",
-    image: "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=700&q=80&auto=format",
+    image: "/images/DSC01228.jpg",
     tags: ["Trex", "TimberTech", "AZEK"],
   },
   {
@@ -19,7 +19,7 @@ const services = [
     title: "Patios & Hardscaping",
     description: "Premium paver patios, natural stone, stamped concrete, and retaining walls engineered for Northern Virginia.",
     href: "/patios",
-    image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=700&q=80&auto=format",
+    image: "/images/IMG_0969.jpg",
     tags: ["Techo-Bloc", "Unilock", "Natural Stone"],
   },
   {
@@ -27,7 +27,7 @@ const services = [
     title: "Pergolas & Structures",
     description: "Louvered pergolas, screened porches, pavilions, and sunrooms that extend your living space year-round.",
     href: "/pergolas",
-    image: "https://images.unsplash.com/photo-1600607686527-6fb886090705?w=700&q=80&auto=format",
+    image: "/images/IMG_1109.JPG",
     tags: ["Louvered", "Screened", "Pavilions"],
   },
   {
@@ -35,7 +35,7 @@ const services = [
     title: "Outdoor Kitchens",
     description: "Professional-grade outdoor kitchens with JBL audio, Jandy pool systems, and custom lighting integration.",
     href: "/outdoor-kitchens",
-    image: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=700&q=80&auto=format",
+    image: "/images/DJI_20241106165447_0068_D.JPG",
     tags: ["JBL Audio", "Outdoor Kitchen", "LED Lighting"],
   },
   {
@@ -43,7 +43,7 @@ const services = [
     title: "Pool Decks",
     description: "Waterfront and pool surrounds designed for safety, beauty, and durability — fully integrated with your pool.",
     href: "/pool-decks",
-    image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=700&q=80&auto=format",
+    image: "/images/DJI_20241106170106_0080_D.JPG",
     tags: ["Anti-Slip", "Integrated Drainage", "LED Perimeter"],
   },
   {
@@ -51,7 +51,7 @@ const services = [
     title: "Full Outdoor Living",
     description: "Our highest-margin service: complete backyard transformation from concept to installation. One team, one vision.",
     href: "/services",
-    image: "https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=700&q=80&auto=format",
+    image: "/images/DJI_20241106165447_0068_D.JPG",
     tags: ["Design + Build", "Permits Included", "3D Preview"],
   },
 ];

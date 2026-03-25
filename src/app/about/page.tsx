@@ -68,8 +68,8 @@ export default function AboutPage() {
         <section className="relative min-h-[60vh] flex items-end overflow-hidden" style={{ paddingTop: "120px" }}>
           <div className="absolute inset-0">
             <img
-              src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=1920&q=75&auto=format"
-              alt="Blue Lightning Custom Decks team"
+              src="/images/DJI_20241106165447_0068_D.JPG"
+              alt="Blue Lightning Custom Decks — Loudoun County project"
               className="w-full h-full object-cover"
             />
             <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, rgba(13,13,13,0.6) 0%, rgba(13,13,13,0.92) 100%)" }} />
@@ -252,13 +252,92 @@ export default function AboutPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.3, duration: 0.7 }}
-              className="text-center mt-8 p-6 rounded-2xl max-w-2xl mx-auto"
-              style={{ background: "rgba(201,168,76,0.03)", border: "1px solid rgba(201,168,76,0.08)" }}
+              className="mt-8 max-w-4xl mx-auto"
             >
-              <p style={{ color: "#8A8A8A", fontSize: "0.9rem", fontWeight: 300, lineHeight: 1.8 }}>
-                Our field crews are <strong style={{ color: "#F5F0E8", fontWeight: 500 }}>certified, uniformed, and arrive in branded Blue Lightning trucks</strong> on every job site.
-                Every technician is trained to the same high standard that Mauricio demands for his own projects.
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+                <div className="relative overflow-hidden rounded-2xl" style={{ aspectRatio: "4/3" }}>
+                  <img
+                    src="/images/IMG_1061.JPG"
+                    alt="Blue Lightning Custom Decks crew at work"
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(9,9,9,0.7) 0%, transparent 50%)" }} />
+                  <div className="absolute bottom-4 left-4">
+                    <span className="text-xs tracking-widest uppercase px-3 py-1 rounded-full" style={{ background: "rgba(201,168,76,0.15)", border: "1px solid rgba(201,168,76,0.3)", color: "#C9A84C", fontSize: "10px" }}>
+                      Certified Crew
+                    </span>
+                  </div>
+                </div>
+                <div className="p-6 rounded-2xl" style={{ background: "rgba(201,168,76,0.03)", border: "1px solid rgba(201,168,76,0.08)" }}>
+                  <p style={{ color: "#8A8A8A", fontSize: "0.9rem", fontWeight: 300, lineHeight: 1.9 }}>
+                    Our field crews are <strong style={{ color: "#F5F0E8", fontWeight: 500 }}>certified, uniformed, and arrive in branded Blue Lightning trucks</strong> on every job site. Every technician is trained to the same high standard that Mauricio demands for his own projects.
+                  </p>
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    {["Trex Certified", "TimberTech Certified", "AZEK Approved", "Class A Licensed"].map(tag => (
+                      <span key={tag} className="text-xs px-3 py-1 rounded-full" style={{ background: "#1A1A1A", color: "#C9A84C", border: "1px solid rgba(201,168,76,0.15)", fontSize: "10px", letterSpacing: "0.05em" }}>{tag}</span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* Mauricio Video Section */}
+        <section className="relative py-24 md:py-32 overflow-hidden" style={{ background: "#060606" }}>
+          <div className="absolute top-0 left-0 right-0 h-px" style={{ background: "linear-gradient(to right, transparent, rgba(201,168,76,0.2), transparent)" }} />
+          <div className="px-6 md:px-12 lg:px-20 max-w-6xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="text-center mb-12"
+            >
+              <div className="flex items-center justify-center gap-4 mb-6">
+                <div className="h-px w-12" style={{ background: "#C9A84C" }} />
+                <span className="text-xs tracking-[0.3em] uppercase" style={{ color: "#C9A84C", fontSize: "11px" }}>Meet the Owner</span>
+                <div className="h-px w-12" style={{ background: "#C9A84C" }} />
+              </div>
+              <h2 className="font-light" style={{ fontFamily: "var(--font-display)", fontSize: "clamp(2rem, 5vw, 4rem)", color: "#F5F0E8" }}>
+                Mauricio, In His Own Words.
+              </h2>
+              <p className="mt-4 max-w-xl mx-auto" style={{ color: "#8A8A8A", fontSize: "1rem", fontWeight: 300, lineHeight: 1.8 }}>
+                20+ years of expertise. The same person who designs your project is the one who builds it.
               </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.9, delay: 0.2 }}
+              className="relative overflow-hidden rounded-2xl"
+              style={{ border: "1px solid rgba(201,168,76,0.12)" }}
+            >
+              <video
+                controls
+                poster="/mauricio.png"
+                className="w-full"
+                style={{ maxHeight: "680px", background: "#000", display: "block" }}
+                preload="none"
+              >
+                <source src="/video/mauricio-intro.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+              <div className="p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4" style={{ background: "#0E0E0E", borderTop: "1px solid rgba(201,168,76,0.08)" }}>
+                <div>
+                  <div style={{ color: "#F5F0E8", fontWeight: 500, fontSize: "0.95rem" }}>Mauricio Caballero</div>
+                  <div style={{ color: "#8A8A8A", fontSize: "0.8rem", fontWeight: 300, marginTop: "2px" }}>Owner & Lead Designer — Blue Lightning Custom Decks</div>
+                </div>
+                <a
+                  href="/contact"
+                  className="btn-gold px-8 py-3 rounded-xl text-xs"
+                  style={{ letterSpacing: "0.15em", whiteSpace: "nowrap" }}
+                >
+                  Schedule with Mauricio
+                </a>
+              </div>
             </motion.div>
           </div>
         </section>

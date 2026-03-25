@@ -88,7 +88,7 @@ export default function ContactPage() {
         <section className="relative overflow-hidden" style={{ paddingTop: "100px" }}>
           <div className="absolute inset-0">
             <img
-              src="https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=1920&q=70&auto=format"
+              src="/images/DJI_20241106170106_0080_D.JPG"
               className="w-full h-full object-cover"
               alt="Schedule consultation Blue Lightning"
             />

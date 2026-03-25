@@ -50,12 +50,12 @@ const T = {
 };
 
 const IMGS = {
-  pool:      "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1920&q=90&auto=format",
-  wood:      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1920&q=90&auto=format",
-  overhead:  "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=1920&q=90&auto=format",
-  details:   "https://images.unsplash.com/photo-1600607686527-6fb886090705?w=1920&q=90&auto=format",
-  lifestyle: "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=1920&q=90&auto=format",
-  dark:      "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1920&q=90&auto=format",
+  pool:      "/images/DJI_20241106170106_0080_D.JPG",
+  wood:      "/images/DSC01228.jpg",
+  overhead:  "/images/DJI_20241106165447_0068_D.JPG",
+  details:   "/images/IMG_1102.JPG",
+  lifestyle: "/images/IMG_0969.jpg",
+  dark:      "/images/IMG_0988.JPG",
 };
 
 /* ─────────────────────────────────────────
@@ -786,7 +786,7 @@ function PostScrollSection() {
           >
             <div className="relative rounded-3xl overflow-hidden" style={{ aspectRatio: "4/5" }}>
               <img
-                src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=900&q=85&auto=format"
+                src="/images/DJI_20241106165447_0068_D.JPG"
                 alt="Pool deck craftsmanship"
                 className="w-full h-full object-cover"
               />

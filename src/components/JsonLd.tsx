@@ -11,7 +11,7 @@ export default function JsonLd() {
     logo: `${siteUrl}/logo.png`,
     image: `${siteUrl}/og-image.jpg`,
     telephone: "+17034239965",
-    email: "contact@bluelightningcustomdecks.com",
+    email: "info@bluelightning.us",
     foundingDate: "2019",
     legalName: "Blue Lightning Custom Decks LLC",
     address: {
@@ -80,7 +80,8 @@ export default function JsonLd() {
       { "@type": "City", name: "Arlington", addressRegion: "VA" },
     ],
     sameAs: [
-      "https://www.instagram.com/bluelightningcustomdecks",
+      "https://www.instagram.com/bluelightningcustomdeckllc/",
+      "https://www.facebook.com/BLUELIGHTNINGCUSTOMDECKSLLC",
     ],
     knowsAbout: [
       "Custom Deck Building",

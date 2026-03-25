@@ -247,7 +247,7 @@ export default function FAQPage() {
               (703) 423-9965
             </a>
             <Link
-              href="/#contact"
+              href="/contact"
               className="btn-gold px-8 py-4 rounded-xl text-xs"
               style={{ fontSize: "12px", letterSpacing: "0.15em" }}
             >

@@ -73,15 +73,16 @@ export default function ContactPage() {
                         <div style={{ color: "#F5F0E8", fontSize: "1.1rem" }}>(703) 423-9965</div>
                       </div>
                     </a>
-                    <a href="mailto:contact@bluelightningcustomdecks.com" className="flex items-center gap-4">
-                      <div className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: "rgba(201,168,76,0.08)", border: "1px solid rgba(201,168,76,0.2)" }}>
+                    <div className="flex items-start gap-4">
+                      <div className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 mt-0.5" style={{ background: "rgba(201,168,76,0.08)", border: "1px solid rgba(201,168,76,0.2)" }}>
                         <Mail size={18} style={{ color: "#C9A84C" }} />
                       </div>
                       <div>
-                        <div style={{ color: "#8A8A8A", fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: "2px" }}>Email</div>
-                        <div style={{ color: "#F5F0E8", fontSize: "0.9rem" }}>contact@bluelightningcustomdecks.com</div>
+                        <div style={{ color: "#8A8A8A", fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: "4px" }}>Email</div>
+                        <a href="mailto:mc@bluelightning.us" style={{ color: "#F5F0E8", fontSize: "0.9rem", display: "block" }}>mc@bluelightning.us</a>
+                        <a href="mailto:info@bluelightning.us" style={{ color: "#8A8A8A", fontSize: "0.8rem", display: "block", marginTop: "2px" }}>info@bluelightning.us</a>
                       </div>
-                    </a>
+                    </div>
                     <div className="flex items-start gap-4">
                       <div className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 mt-0.5" style={{ background: "rgba(201,168,76,0.08)", border: "1px solid rgba(201,168,76,0.2)" }}>
                         <MapPin size={18} style={{ color: "#C9A84C" }} />

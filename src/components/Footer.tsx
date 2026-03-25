@@ -1,7 +1,8 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "framer-motion";
-import { Instagram, Phone, Mail, MapPin } from "lucide-react";
+import { Instagram, Facebook, Phone, Mail, MapPin } from "lucide-react";
 
 const footerLinks = {
   Services: [
@@ -44,24 +45,17 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-16">
           {/* Brand */}
           <div className="lg:col-span-2">
-            <div className="flex items-center gap-3 mb-6">
-              <div
-                className="w-10 h-10 rounded-lg flex items-center justify-center"
-                style={{ background: "linear-gradient(135deg, #1A3A6B, #2563EB)" }}
-              >
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                  <path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13L13 2Z" fill="#F5F0E8" />
-                </svg>
-              </div>
+            <Link href="/" className="flex items-center gap-3 mb-6 group inline-flex">
+              <img src="/logo.png" alt="Blue Lightning Custom Decks" className="w-12 h-12 object-contain" />
               <div>
-                <div className="text-base font-semibold" style={{ fontFamily: "var(--font-display)", color: "#F5F0E8" }}>
-                  Blue Lightning Custom Decks
+                <div className="text-base font-semibold leading-tight" style={{ fontFamily: "var(--font-display)", color: "#F5F0E8" }}>
+                  Blue Lightning
                 </div>
-                <div className="text-xs tracking-[0.2em] uppercase" style={{ color: "#C9A84C", fontSize: "9px" }}>
-                  Northern Virginia · LLC · Est. 2019
+                <div className="text-xs tracking-[0.2em] uppercase leading-tight" style={{ color: "#C9A84C", fontSize: "9px" }}>
+                  Custom Decks · LLC · Est. 2019
                 </div>
               </div>
-            </div>
+            </Link>
 
             <p className="leading-relaxed mb-4" style={{ color: "#8A8A8A", fontSize: "0.875rem", fontWeight: 300, maxWidth: "320px" }}>
               Design + build firm serving high-income homeowners across Northern Virginia.
@@ -85,10 +79,10 @@ export default function Footer() {
                   (703) 423-9965
                 </span>
               </a>
-              <a href="mailto:contact@bluelightningcustomdecks.com" className="flex items-center gap-3">
+              <a href="mailto:info@bluelightning.us" className="flex items-center gap-3">
                 <Mail size={13} style={{ color: "#C9A84C" }} />
                 <span style={{ color: "#8A8A8A", fontSize: "0.75rem" }}>
-                  contact@bluelightningcustomdecks.com
+                  info@bluelightning.us
                 </span>
               </a>
               <div className="flex items-start gap-3">
@@ -102,29 +96,33 @@ export default function Footer() {
 
             {/* Social */}
             <div className="flex gap-3">
-              <motion.a
-                href="https://www.instagram.com/bluelightningcustomdecks"
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.1, y: -2 }}
-                className="w-9 h-9 rounded-lg flex items-center justify-center transition-all duration-300"
-                style={{
-                  border: "1px solid rgba(201,168,76,0.2)",
-                  color: "#8A8A8A",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.color = "#C9A84C";
-                  e.currentTarget.style.borderColor = "rgba(201,168,76,0.5)";
-                  e.currentTarget.style.background = "rgba(201,168,76,0.08)";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.color = "#8A8A8A";
-                  e.currentTarget.style.borderColor = "rgba(201,168,76,0.2)";
-                  e.currentTarget.style.background = "transparent";
-                }}
-              >
-                <Instagram size={15} />
-              </motion.a>
+              {[
+                { href: "https://www.instagram.com/bluelightningcustomdeckllc/", icon: <Instagram size={15} />, label: "Instagram" },
+                { href: "https://www.facebook.com/BLUELIGHTNINGCUSTOMDECKSLLC", icon: <Facebook size={15} />, label: "Facebook" },
+              ].map((social) => (
+                <motion.a
+                  key={social.label}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.1, y: -2 }}
+                  aria-label={social.label}
+                  className="w-9 h-9 rounded-lg flex items-center justify-center transition-all duration-300"
+                  style={{ border: "1px solid rgba(201,168,76,0.2)", color: "#8A8A8A" }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.color = "#C9A84C";
+                    e.currentTarget.style.borderColor = "rgba(201,168,76,0.5)";
+                    e.currentTarget.style.background = "rgba(201,168,76,0.08)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.color = "#8A8A8A";
+                    e.currentTarget.style.borderColor = "rgba(201,168,76,0.2)";
+                    e.currentTarget.style.background = "transparent";
+                  }}
+                >
+                  {social.icon}
+                </motion.a>
+              ))}
             </div>
           </div>
 
@@ -140,7 +138,7 @@ export default function Footer() {
               <ul className="space-y-3">
                 {links.map((link) => (
                   <li key={link.label}>
-                    <a
+                    <Link
                       href={link.href}
                       className="text-sm transition-colors duration-300"
                       style={{ color: "#8A8A8A", fontSize: "0.8rem", fontWeight: 300 }}
@@ -148,7 +146,7 @@ export default function Footer() {
                       onMouseLeave={(e) => (e.currentTarget.style.color = "#8A8A8A")}
                     >
                       {link.label}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>

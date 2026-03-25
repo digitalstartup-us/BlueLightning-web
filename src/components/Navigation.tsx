@@ -69,18 +69,17 @@ export default function Navigation() {
             {/* Logo */}
             <Link href="/" className="flex items-center gap-3 group cursor-pointer">
               <motion.div whileHover={{ scale: 1.02 }} className="flex items-center gap-3">
-                <div className="relative w-10 h-10 flex items-center justify-center">
-                  <div className="absolute inset-0 rounded-lg" style={{ background: "linear-gradient(135deg, #1A3A6B, #2563EB)" }} />
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" className="relative z-10">
-                    <path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13L13 2Z" fill="#F5F0E8" />
-                  </svg>
-                </div>
+                <img
+                  src="/logo.png"
+                  alt="Blue Lightning Custom Decks"
+                  className="w-10 h-10 object-contain"
+                />
                 <div>
-                  <div className="text-base font-semibold tracking-wide leading-none" style={{ fontFamily: "var(--font-display)", color: "#F5F0E8" }}>
+                  <div className="text-base font-semibold tracking-wide leading-tight" style={{ fontFamily: "var(--font-display)", color: "#F5F0E8" }}>
                     Blue Lightning
                   </div>
-                  <div className="text-xs tracking-[0.2em] uppercase" style={{ color: "#C9A84C", fontSize: "9px" }}>
-                    Custom Decks · Northern Virginia
+                  <div className="text-xs tracking-[0.2em] uppercase leading-tight" style={{ color: "#C9A84C", fontSize: "9px" }}>
+                    Custom Decks
                   </div>
                 </div>
               </motion.div>

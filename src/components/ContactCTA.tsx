@@ -81,8 +81,8 @@ export default function ContactCTA() {
             </div>
             <div className="flex items-center gap-2" style={{ color: "#8A8A8A" }}>
               <Mail size={13} style={{ color: "#C9A84C" }} />
-              <a href="mailto:contact@bluelightningcustomdecks.com" style={{ fontSize: "12px", fontWeight: 300 }}>
-                contact@bluelightningcustomdecks.com
+              <a href="mailto:info@bluelightning.us" style={{ fontSize: "12px", fontWeight: 300 }}>
+                info@bluelightning.us
               </a>
             </div>
             <div style={{ color: "#8A8A8A", fontSize: "12px", fontWeight: 300 }}>

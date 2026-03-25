@@ -171,15 +171,16 @@ export default function Process() {
           <p className="mb-8" style={{ color: "#8A8A8A", fontSize: "1.1rem", fontWeight: 300 }}>
             Ready to start your transformation?
           </p>
-          <motion.button
-            whileHover={{ scale: 1.04 }}
-            whileTap={{ scale: 0.97 }}
-            onClick={() => document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" })}
-            className="btn-gold px-12 py-4 rounded-xl text-sm inline-flex"
-            style={{ fontSize: "12px", letterSpacing: "0.18em" }}
-          >
-            Schedule Your Free Consultation
-          </motion.button>
+          <a href="/contact">
+            <motion.div
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.97 }}
+              className="btn-gold px-12 py-4 rounded-xl text-sm inline-flex cursor-pointer"
+              style={{ fontSize: "12px", letterSpacing: "0.18em" }}
+            >
+              Schedule Your Free Consultation
+            </motion.div>
+          </a>
         </motion.div>
       </div>
     </section>

@@ -119,7 +119,7 @@ export default function Contact() {
               </a>
 
               <a
-                href="mailto:contact@bluelightningcustomdecks.com"
+                href="mailto:info@bluelightning.us"
                 className="flex items-center gap-4 group"
               >
                 <div
@@ -137,7 +137,7 @@ export default function Contact() {
                     Email Us
                   </div>
                   <div className="text-sm group-hover:text-amber-400 transition-colors duration-300" style={{ color: "#F5F0E8", wordBreak: "break-all" }}>
-                    contact@bluelightningcustomdecks.com
+                    info@bluelightning.us
                   </div>
                 </div>
               </a>

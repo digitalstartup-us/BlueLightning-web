@@ -50,14 +50,14 @@ export default function FloatingCTA() {
                 </div>
                 <div className="p-4 space-y-2">
                   <a
-                    href="tel:+15551234567"
+                    href="tel:+17034239965"
                     className="flex items-center gap-3 p-3 rounded-xl transition-all duration-200 hover:scale-[1.02]"
                     style={{ background: "rgba(201,168,76,0.06)", border: "1px solid rgba(201,168,76,0.15)" }}
                   >
                     <Phone size={16} style={{ color: "#C9A84C" }} />
                     <div>
                       <div className="text-xs font-medium" style={{ color: "#F5F0E8" }}>Call Now</div>
-                      <div className="text-xs" style={{ color: "#8A8A8A" }}>(555) 123-4567</div>
+                      <div className="text-xs" style={{ color: "#8A8A8A" }}>(703) 423-9965</div>
                     </div>
                   </a>
                   <button

@@ -8,41 +8,43 @@ import { ArrowRight } from "lucide-react";
 const services = [
   {
     number: "01",
-    title: "Signature Decks",
-    subtitle: "Masterfully Crafted",
+    title: "Custom Decks",
+    subtitle: "Our Highest Revenue Service",
     description:
-      "Custom-designed decks built with exotic hardwoods, composite materials, and precision joinery that elevate your outdoor experience to new heights.",
-    image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80&auto=format",
-    features: ["Exotic Hardwoods", "Custom Design", "Premium Hardware"],
-    href: "/pool-decks",
-    cta: "Explore Pool Decks",
+      "Multi-level decks, pool decks, covered decks, rooftop decks, and underdeck systems — all built with premium composite and PVC materials from Trex, TimberTech, and AZEK. IRC code compliant with structural expertise as a core strength.",
+    image: "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=800&q=80&auto=format",
+    features: ["Multi-Level Decks", "Cable & Glass Railings", "Trex / TimberTech / AZEK", "Underdeck Systems"],
+    href: "/custom-decks",
+    cta: "Explore Custom Decks",
   },
   {
     number: "02",
-    title: "Pergolas & Pavilions",
-    subtitle: "Architectural Elegance",
+    title: "Patios & Hardscaping",
+    subtitle: "Transforming Outdoor Spaces",
     description:
-      "Stunning overhead structures that create defined outdoor rooms — from intimate pergolas to grand pavilions with integrated lighting and fans.",
-    image: "https://images.unsplash.com/photo-1600607686527-6fb886090705?w=800&q=80&auto=format",
-    features: ["Integrated Lighting", "Climate Control", "Custom Roofing"],
+      "Paver patios, stamped concrete, natural stone, and porcelain tile that turn your backyard into a living masterpiece. Includes retaining walls, built-in fire pits, and outdoor kitchen integration using premium Techo-Bloc and Unilock pavers.",
+    image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80&auto=format",
+    features: ["Techo-Bloc & Unilock Pavers", "Natural Stone", "Retaining Walls", "Built-In Fire Pits"],
+    href: "/patios",
+    cta: "Explore Patios",
   },
   {
     number: "03",
-    title: "Outdoor Kitchens",
-    subtitle: "Culinary Excellence",
+    title: "Structures & Covered Spaces",
+    subtitle: "Architectural Elegance",
     description:
-      "Professional-grade outdoor kitchens with premium appliances, natural stone countertops, and custom cabinetry for the ultimate alfresco dining.",
-    image: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&q=80&auto=format",
-    features: ["Pro Appliances", "Stone Countertops", "Custom Cabinetry"],
+      "Covered porches, screened porches, louvered pergolas, pavilions, and sunrooms — fully customizable and integrated with your deck or patio. Every structure is designed to extend your living space year-round.",
+    image: "https://images.unsplash.com/photo-1600607686527-6fb886090705?w=800&q=80&auto=format",
+    features: ["Louvered Pergolas", "Screened Porches", "Pavilions", "Sunrooms"],
   },
   {
     number: "04",
-    title: "Fire & Water Features",
-    subtitle: "Sensory Luxury",
+    title: "Full Outdoor Living Systems",
+    subtitle: "Complete Backyard Transformation",
     description:
-      "Custom fire pits, fireplaces, fountains, and water walls that transform your outdoor space into a multi-sensory luxury retreat.",
-    image: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=800&q=80&auto=format",
-    features: ["Fire Features", "Water Elements", "Ambient Lighting"],
+      "Our highest-margin service: deck + patio + pergola + outdoor kitchen + integrated lighting + audio — a full backyard transformation from one team. Includes JBL outdoor audio, Jandy pool equipment, custom LED systems, and outdoor entertainment.",
+    image: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&q=80&auto=format",
+    features: ["JBL Outdoor Audio", "Outdoor Kitchens", "Custom LED Lighting", "Jandy Pool Equipment"],
   },
 ];
 
@@ -79,22 +81,36 @@ export default function Services() {
               className="text-xs tracking-[0.3em] uppercase"
               style={{ color: "#C9A84C", fontSize: "11px" }}
             >
-              What We Create
+              What We Build
             </span>
           </div>
-          <h2
-            className="font-light leading-tight"
-            style={{
-              fontFamily: "var(--font-display)",
-              fontSize: "clamp(2.5rem, 5vw, 5rem)",
-              color: "#F5F0E8",
-              maxWidth: "600px",
-            }}
-          >
-            Spaces That
-            <br />
-            <em style={{ color: "#C9A84C" }}>Inspire</em>
-          </h2>
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+            <h2
+              className="font-light leading-tight"
+              style={{
+                fontFamily: "var(--font-display)",
+                fontSize: "clamp(2.5rem, 5vw, 5rem)",
+                color: "#F5F0E8",
+                maxWidth: "600px",
+              }}
+            >
+              Design + Build.
+              <br />
+              <em style={{ color: "#C9A84C" }}>One Team. One Vision.</em>
+            </h2>
+            <p
+              style={{
+                color: "#8A8A8A",
+                fontSize: "0.9rem",
+                fontWeight: 300,
+                maxWidth: "320px",
+                lineHeight: 1.7,
+              }}
+            >
+              Every project includes full design, 3D visualization, permits,
+              HOA approvals, and expert installation — no subcontracting.
+            </p>
+          </div>
         </motion.div>
 
         {/* Services Grid */}
@@ -148,7 +164,6 @@ function ServiceCard({
               "linear-gradient(to bottom, rgba(13,13,13,0.2) 0%, rgba(13,13,13,0.8) 100%)",
           }}
         />
-        {/* Number */}
         <div
           className="absolute top-4 right-4 text-5xl font-light"
           style={{
@@ -162,10 +177,7 @@ function ServiceCard({
       </div>
 
       {/* Content */}
-      <div
-        className="p-8"
-        style={{ background: "#141414" }}
-      >
+      <div className="p-8" style={{ background: "#141414" }}>
         <div
           className="text-xs tracking-[0.25em] uppercase mb-2"
           style={{ color: "#C9A84C", fontSize: "10px" }}
@@ -208,21 +220,25 @@ function ServiceCard({
           ))}
         </div>
 
-        {/* CTA Link for Pool Decks */}
         {service.href && (
-          <Link href={service.href}
+          <Link
+            href={service.href}
             className="mt-6 inline-flex items-center gap-2 group/cta"
           >
-            <span className="text-xs tracking-widest uppercase transition-colors duration-300"
-              style={{ color: "#C9A84C", fontSize: "10px", letterSpacing: "0.18em" }}>
+            <span
+              className="text-xs tracking-widest uppercase transition-colors duration-300"
+              style={{ color: "#C9A84C", fontSize: "10px", letterSpacing: "0.18em" }}
+            >
               {service.cta}
             </span>
-            <ArrowRight size={12} style={{ color: "#C9A84C" }}
-              className="transition-transform duration-300 group-hover/cta:translate-x-1" />
+            <ArrowRight
+              size={12}
+              style={{ color: "#C9A84C" }}
+              className="transition-transform duration-300 group-hover/cta:translate-x-1"
+            />
           </Link>
         )}
 
-        {/* Hover line */}
         <motion.div
           className="mt-4 h-px"
           initial={{ scaleX: 0 }}

@@ -1,0 +1,11 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "FAQ | Deck Builder Northern Virginia — Blue Lightning Custom Decks",
+  description:
+    "Answers to the most common questions about custom deck and patio projects in Northern Virginia: cost, timeline, permits, materials, HOA, and more. Blue Lightning Custom Decks.",
+};
+
+export default function FAQLayout({ children }: { children: React.ReactNode }) {
+  return children;
+}

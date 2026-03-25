@@ -4,10 +4,10 @@ import { useRef, useEffect, useState } from "react";
 import { motion, useInView } from "framer-motion";
 
 const stats = [
-  { value: 500, suffix: "+", label: "Dream Spaces Built", description: "From intimate patios to grand estates" },
-  { value: 18, suffix: "yr", label: "Years of Mastery", description: "Decades of perfecting our craft" },
-  { value: 98, suffix: "%", label: "Client Satisfaction", description: "Rated exceptional by our clients" },
-  { value: 47, suffix: "", label: "Design Awards", description: "Industry recognition for excellence" },
+  { value: 100, suffix: "+", label: "Projects Completed", description: "Across Northern Virginia" },
+  { value: 20, suffix: "yr", label: "Combined Experience", description: "Structural & outdoor living experts" },
+  { value: 100, suffix: "%", label: "Turnkey Service", description: "Permits, HOA, inspections handled" },
+  { value: 3, suffix: "D", label: "Design Preview", description: "See your project before we build" },
 ];
 
 function AnimatedNumber({ target, suffix, inView }: { target: number; suffix: string; inView: boolean }) {
@@ -49,7 +49,7 @@ export default function Stats() {
       <div className="absolute inset-0">
         <img
           src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=1920&q=80&auto=format"
-          alt="Luxury outdoor living"
+          alt="Blue Lightning Custom Decks — Northern Virginia"
           className="w-full h-full object-cover"
         />
         <div
@@ -89,11 +89,16 @@ export default function Stats() {
               fontStyle: "italic",
             }}
           >
-            &ldquo;Your outdoor space is not just an extension of your home —
-            it is{" "}
-            <span style={{ color: "#C9A84C" }}>the stage where life&apos;s finest moments unfold.</span>
-            &rdquo;
+            &ldquo;We transform your outdoor space with a seamless experience —
+            on time, within budget,{" "}
+            <span style={{ color: "#C9A84C" }}>exactly as you imagined.&rdquo;</span>
           </blockquote>
+          <p
+            className="mt-6 text-sm tracking-widest uppercase"
+            style={{ color: "#8A8A8A", fontSize: "11px", letterSpacing: "0.2em" }}
+          >
+            — Mauricio Caballero, Owner · Blue Lightning Custom Decks LLC
+          </p>
         </motion.div>
 
         {/* Stats Grid */}
@@ -124,10 +129,7 @@ export default function Stats() {
               >
                 {stat.label}
               </div>
-              <div
-                className="text-xs"
-                style={{ color: "#8A8A8A", fontSize: "11px" }}
-              >
+              <div className="text-xs" style={{ color: "#8A8A8A", fontSize: "11px" }}>
                 {stat.description}
               </div>
             </motion.div>

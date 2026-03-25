@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowDown, Star } from "lucide-react";
+import { ArrowDown, Shield, Award, Clock } from "lucide-react";
 
 export default function Hero() {
   const ref = useRef<HTMLDivElement>(null);
@@ -22,17 +22,13 @@ export default function Hero() {
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
       {/* Parallax Background */}
-      <motion.div
-        style={{ y: bgY }}
-        className="absolute inset-0 z-0"
-      >
+      <motion.div style={{ y: bgY }} className="absolute inset-0 z-0">
         <img
           src="https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=1920&q=85&auto=format"
-          alt="Luxury outdoor deck"
+          alt="Luxury custom deck Northern Virginia"
           className="w-full h-full object-cover"
           style={{ height: "130%" }}
         />
-        {/* Layered overlays for depth */}
         <div
           className="absolute inset-0"
           style={{
@@ -56,7 +52,7 @@ export default function Hero() {
       />
       <div
         className="absolute bottom-1/3 left-1/4 w-64 h-64 rounded-full blur-3xl pointer-events-none"
-        style={{ background: "radial-gradient(circle, rgba(201,168,76,0.05) 0%, transparent 70%)" }}
+        style={{ background: "radial-gradient(circle, rgba(37,99,235,0.06) 0%, transparent 70%)" }}
       />
 
       {/* Content */}
@@ -75,16 +71,12 @@ export default function Hero() {
             background: "rgba(201,168,76,0.06)",
           }}
         >
-          <div className="flex">
-            {[...Array(5)].map((_, i) => (
-              <Star key={i} size={11} fill="#C9A84C" stroke="none" />
-            ))}
-          </div>
+          <Shield size={11} style={{ color: "#C9A84C" }} />
           <span
             className="text-xs tracking-widest uppercase"
             style={{ color: "#C9A84C", letterSpacing: "0.2em" }}
           >
-            BlueLightning — Rated #1 Luxury Deck Builder
+            Class A Contractor · Trex & TimberTech Certified · Northern Virginia
           </span>
         </motion.div>
 
@@ -98,35 +90,35 @@ export default function Hero() {
             className="font-light leading-none mb-2"
             style={{
               fontFamily: "var(--font-display)",
-              fontSize: "clamp(3.5rem, 10vw, 9rem)",
+              fontSize: "clamp(3rem, 9vw, 8rem)",
               color: "#F5F0E8",
               letterSpacing: "-0.02em",
             }}
           >
-            Crafted for
+            Built Fast.
           </h1>
           <h1
-            className="leading-none mb-8"
+            className="leading-none mb-2"
             style={{
               fontFamily: "var(--font-display)",
-              fontSize: "clamp(3.5rem, 10vw, 9rem)",
+              fontSize: "clamp(3rem, 9vw, 8rem)",
               letterSpacing: "-0.02em",
               fontStyle: "italic",
               fontWeight: 300,
             }}
           >
-            <span className="shimmer">Extraordinary</span>
+            <span className="shimmer">Built Right.</span>
           </h1>
           <h1
             className="font-light leading-none"
             style={{
               fontFamily: "var(--font-display)",
-              fontSize: "clamp(3.5rem, 10vw, 9rem)",
+              fontSize: "clamp(3rem, 9vw, 8rem)",
               color: "#F5F0E8",
               letterSpacing: "-0.02em",
             }}
           >
-            Living
+            Built to Impress.
           </h1>
         </motion.div>
 
@@ -153,8 +145,8 @@ export default function Hero() {
             letterSpacing: "0.02em",
           }}
         >
-          We design and build exquisite outdoor spaces that become the heart of
-          your home — where luxury meets nature in perfect harmony.
+          We design and build extraordinary outdoor living spaces for homeowners
+          across Northern Virginia — from concept to completion, permits included.
         </motion.p>
 
         {/* CTAs */}
@@ -169,18 +161,18 @@ export default function Hero() {
             whileTap={{ scale: 0.97 }}
             onClick={() => document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" })}
             className="btn-gold px-10 py-4 rounded-xl text-sm w-full sm:w-auto"
-            style={{ fontSize: "12px", letterSpacing: "0.18em", minWidth: "220px" }}
+            style={{ fontSize: "12px", letterSpacing: "0.18em", minWidth: "240px" }}
           >
-            Transform Your Space
+            Schedule Free Consultation
           </motion.button>
           <motion.button
             whileHover={{ scale: 1.04 }}
             whileTap={{ scale: 0.97 }}
             onClick={() => document.querySelector("#portfolio")?.scrollIntoView({ behavior: "smooth" })}
             className="btn-outline-gold px-10 py-4 rounded-xl text-sm w-full sm:w-auto"
-            style={{ fontSize: "12px", letterSpacing: "0.18em", minWidth: "220px" }}
+            style={{ fontSize: "12px", letterSpacing: "0.18em", minWidth: "200px" }}
           >
-            View Our Work
+            See Our Work
           </motion.button>
         </motion.div>
 
@@ -189,14 +181,20 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 1.6 }}
-          className="flex items-center justify-center gap-8 mt-16"
+          className="flex items-center justify-center gap-8 mt-16 flex-wrap"
         >
           {[
-            { value: "500+", label: "Projects Completed" },
-            { value: "18yr", label: "Of Excellence" },
-            { value: "100%", label: "Client Satisfaction" },
+            { value: "100+", label: "Projects Completed", icon: <Award size={14} /> },
+            { value: "20yr", label: "Combined Experience", icon: <Clock size={14} /> },
+            { value: "$100K+", label: "Average Project Value", icon: <Shield size={14} /> },
           ].map((stat, i) => (
             <div key={i} className="text-center">
+              <div
+                className="flex items-center justify-center gap-1 mb-1"
+                style={{ color: "#C9A84C" }}
+              >
+                {stat.icon}
+              </div>
               <div
                 className="text-2xl font-light"
                 style={{ fontFamily: "var(--font-display)", color: "#C9A84C" }}

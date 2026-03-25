@@ -7,33 +7,33 @@ import { Star, ChevronLeft, ChevronRight } from "lucide-react";
 const testimonials = [
   {
     id: 1,
-    name: "Victoria & James Hartwell",
-    location: "Beverly Hills, CA",
-    project: "Signature Deck + Pergola",
+    name: "Jennifer & Michael Torres",
+    location: "Ashburn, VA",
+    project: "Multi-Level Deck + Pergola + Outdoor Kitchen",
     quote:
-      "BlueLightning transformed our backyard into something from a magazine. Every single detail was executed with such precision and care. Our friends and family are absolutely speechless every time they visit.",
-    avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=120&q=80&auto=format",
+      "Blue Lightning transformed our entire backyard. Mauricio walked us through every decision, the 3D design was spot on, and the crew finished on time. Our neighbors can't believe it's the same house. Worth every penny — and we've already seen our home value go up.",
     rating: 5,
+    avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=120&q=80&auto=format",
   },
   {
     id: 2,
-    name: "Marcus Chen",
-    location: "Malibu, CA",
-    project: "Outdoor Kitchen & Fire Feature",
+    name: "David & Patricia Nguyen",
+    location: "McLean, VA",
+    project: "TimberTech Pool Deck + Louvered Pergola",
     quote:
-      "Worth every penny. The craftsmanship is extraordinary — the kind of quality you can only find from true artisans who are passionate about what they do. Our outdoor kitchen is a masterpiece.",
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=120&q=80&auto=format",
+      "We'd been burned by a contractor before and were nervous. Blue Lightning was completely different — professional, bilingual (which helped my parents communicate), and they handled every permit and HOA approval without us lifting a finger. The pool deck is stunning.",
     rating: 5,
+    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=120&q=80&auto=format",
   },
   {
     id: 3,
-    name: "Sophia & Robert Whitfield",
-    location: "Aspen, CO",
-    project: "Grand Pavilion & Deck",
+    name: "Robert & Sarah Pemberton",
+    location: "Loudoun County, VA",
+    project: "Full Outdoor Living System — $280K Project",
     quote:
-      "The process from consultation to completion was seamless and genuinely enjoyable. They listened to our vision and elevated it beyond what we imagined. This is now our favorite place in the world.",
-    avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=120&q=80&auto=format",
+      "We gave Blue Lightning an ambitious vision: deck, patio, pavilion, outdoor kitchen, fire pit, and integrated audio. They delivered everything flawlessly. Mauricio and his team are true craftsmen. I'd hire them again tomorrow for our vacation property.",
     rating: 5,
+    avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=120&q=80&auto=format",
   },
 ];
 
@@ -47,7 +47,7 @@ export default function Testimonials() {
     const timer = setInterval(() => {
       setDirection(1);
       setCurrent((prev) => (prev + 1) % testimonials.length);
-    }, 6000);
+    }, 7000);
     return () => clearInterval(timer);
   }, []);
 
@@ -58,16 +58,12 @@ export default function Testimonials() {
 
   return (
     <section className="relative py-32 md:py-40 overflow-hidden">
-      <div
-        className="absolute inset-0"
-        style={{ background: "#0D0D0D" }}
-      />
+      <div className="absolute inset-0" style={{ background: "#0D0D0D" }} />
       <div
         className="absolute top-0 left-0 right-0 h-px"
         style={{ background: "linear-gradient(to right, transparent, rgba(201,168,76,0.2), transparent)" }}
       />
 
-      {/* Ambient decoration */}
       <div
         className="absolute right-0 top-1/2 -translate-y-1/2 w-96 h-96 rounded-full blur-3xl pointer-events-none"
         style={{ background: "radial-gradient(circle, rgba(201,168,76,0.05) 0%, transparent 70%)" }}
@@ -96,8 +92,8 @@ export default function Testimonials() {
               color: "#F5F0E8",
             }}
           >
-            Words From Our{" "}
-            <em style={{ color: "#C9A84C" }}>Clients</em>
+            Northern Virginia Homeowners{" "}
+            <em style={{ color: "#C9A84C" }}>Trust Us</em>
           </h2>
         </motion.div>
 
@@ -108,7 +104,6 @@ export default function Testimonials() {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="relative"
         >
-          {/* Large quote mark */}
           <div
             className="absolute -top-8 left-0 text-9xl font-light leading-none select-none pointer-events-none"
             style={{
@@ -162,10 +157,7 @@ export default function Testimonials() {
                   style={{ border: "2px solid rgba(201,168,76,0.4)" }}
                 />
                 <div>
-                  <div
-                    className="font-medium text-sm"
-                    style={{ color: "#F5F0E8", letterSpacing: "0.05em" }}
-                  >
+                  <div className="font-medium text-sm" style={{ color: "#F5F0E8", letterSpacing: "0.05em" }}>
                     {testimonials[current].name}
                   </div>
                   <div className="text-xs mt-0.5" style={{ color: "#C9A84C", fontSize: "11px" }}>
@@ -181,7 +173,6 @@ export default function Testimonials() {
 
           {/* Navigation */}
           <div className="flex items-center justify-between mt-8">
-            {/* Dots */}
             <div className="flex gap-2">
               {testimonials.map((_, i) => (
                 <button
@@ -197,7 +188,6 @@ export default function Testimonials() {
               ))}
             </div>
 
-            {/* Arrows */}
             <div className="flex gap-2">
               {[{ dir: -1, Icon: ChevronLeft }, { dir: 1, Icon: ChevronRight }].map(({ dir, Icon }) => (
                 <motion.button
@@ -211,12 +201,8 @@ export default function Testimonials() {
                     color: "#C9A84C",
                     background: "transparent",
                   }}
-                  onMouseEnter={(e) => {
-                    (e.currentTarget as HTMLButtonElement).style.background = "rgba(201,168,76,0.1)";
-                  }}
-                  onMouseLeave={(e) => {
-                    (e.currentTarget as HTMLButtonElement).style.background = "transparent";
-                  }}
+                  onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(201,168,76,0.1)"; }}
+                  onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "transparent"; }}
                 >
                   <Icon size={16} />
                 </motion.button>

@@ -4,62 +4,68 @@ import { useState, useRef } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { X, ZoomIn } from "lucide-react";
 
-const categories = ["All", "Decks", "Pergolas", "Outdoor Kitchens", "Fire Features"];
+const categories = ["All", "Custom Decks", "Patios", "Pergolas", "Outdoor Kitchens", "Full Outdoor"];
 
 const projects = [
   {
     id: 1,
-    title: "The Summit Estate",
-    category: "Decks",
-    location: "Beverly Hills, CA",
-    size: "2,400 sq ft",
+    title: "The Ashburn Estate",
+    category: "Full Outdoor",
+    location: "Ashburn, VA",
+    size: "2,800 sq ft",
     image: "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=900&q=85&auto=format",
     span: "col-span-1 md:col-span-2",
+    detail: "Multi-level Trex composite deck + paver patio + pergola + outdoor kitchen",
   },
   {
     id: 2,
-    title: "Coastal Retreat",
-    category: "Pergolas",
-    location: "Malibu, CA",
-    size: "1,800 sq ft",
-    image: "https://images.unsplash.com/photo-1600607686527-6fb886090705?w=600&q=85&auto=format",
+    title: "McLean Poolside Retreat",
+    category: "Custom Decks",
+    location: "McLean, VA",
+    size: "1,600 sq ft",
+    image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&q=85&auto=format",
     span: "col-span-1",
+    detail: "TimberTech pool deck with integrated cable railings and LED lighting",
   },
   {
     id: 3,
-    title: "Woodland Sanctuary",
-    category: "Decks",
-    location: "Aspen, CO",
-    size: "3,100 sq ft",
+    title: "Loudoun County Farmhouse",
+    category: "Patios",
+    location: "Loudoun County, VA",
+    size: "2,400 sq ft",
     image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=85&auto=format",
     span: "col-span-1",
+    detail: "Techo-Bloc paver patio with natural stone retaining walls and fire pit",
   },
   {
     id: 4,
-    title: "Chef's Garden",
+    title: "Fairfax Outdoor Kitchen",
     category: "Outdoor Kitchens",
-    location: "Scottsdale, AZ",
-    size: "900 sq ft",
+    location: "Fairfax, VA",
+    size: "800 sq ft",
     image: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=600&q=85&auto=format",
     span: "col-span-1",
+    detail: "Full outdoor kitchen with JBL audio, refrigerator, grill station, and bar seating",
   },
   {
     id: 5,
-    title: "Fire & Ice Lounge",
-    category: "Fire Features",
-    location: "Park City, UT",
-    size: "1,200 sq ft",
-    image: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=600&q=85&auto=format",
+    title: "Sterling Covered Pergola",
+    category: "Pergolas",
+    location: "Sterling, VA",
+    size: "1,100 sq ft",
+    image: "https://images.unsplash.com/photo-1600607686527-6fb886090705?w=600&q=85&auto=format",
     span: "col-span-1",
+    detail: "Louvered aluminum pergola with automated louvers, LED downlights, and outdoor heaters",
   },
   {
     id: 6,
-    title: "The Grand Pavilion",
-    category: "Pergolas",
-    location: "Naples, FL",
-    size: "2,600 sq ft",
+    title: "Herndon Backyard Transformation",
+    category: "Full Outdoor",
+    location: "Herndon, VA",
+    size: "3,200 sq ft",
     image: "https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=900&q=85&auto=format",
     span: "col-span-1 md:col-span-2",
+    detail: "AZEK deck + Unilock patio + pavilion + full outdoor kitchen — complete backyard redesign",
   },
 ];
 
@@ -78,10 +84,7 @@ export default function Portfolio() {
 
   return (
     <section id="portfolio" className="relative py-32 md:py-40 overflow-hidden">
-      <div
-        className="absolute inset-0"
-        style={{ background: "#0A0A0A" }}
-      />
+      <div className="absolute inset-0" style={{ background: "#0A0A0A" }} />
       <div
         className="absolute top-0 left-0 right-0 h-px"
         style={{ background: "linear-gradient(to right, transparent, rgba(201,168,76,0.25), transparent)" }}
@@ -111,9 +114,9 @@ export default function Portfolio() {
                 color: "#F5F0E8",
               }}
             >
-              Living Art,
+              Real Projects.
               <br />
-              <em style={{ color: "#C9A84C" }}>Built Outdoors</em>
+              <em style={{ color: "#C9A84C" }}>Northern Virginia Homes.</em>
             </h2>
           </div>
 
@@ -141,10 +144,7 @@ export default function Portfolio() {
         </motion.div>
 
         {/* Grid */}
-        <motion.div
-          layout
-          className="grid grid-cols-1 md:grid-cols-3 gap-4"
-        >
+        <motion.div layout className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <AnimatePresence mode="popLayout">
             {filtered.map((project, i) => (
               <motion.div
@@ -175,14 +175,12 @@ export default function Portfolio() {
                   className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-400"
                   style={{ background: "rgba(13,13,13,0.3)" }}
                 >
-                  <motion.div
-                    initial={{ scale: 0.8 }}
-                    whileHover={{ scale: 1.1 }}
+                  <div
                     className="w-12 h-12 rounded-full flex items-center justify-center"
                     style={{ background: "rgba(201,168,76,0.9)", color: "#0D0D0D" }}
                   >
                     <ZoomIn size={20} />
-                  </motion.div>
+                  </div>
                 </div>
 
                 {/* Info */}
@@ -232,10 +230,10 @@ export default function Portfolio() {
                 src={selectedProject.image}
                 alt={selectedProject.title}
                 className="w-full object-cover"
-                style={{ maxHeight: "75vh" }}
+                style={{ maxHeight: "65vh" }}
               />
               <div
-                className="p-6 flex items-center justify-between"
+                className="p-6 flex items-start justify-between gap-4"
                 style={{ background: "#141414", borderTop: "1px solid rgba(201,168,76,0.15)" }}
               >
                 <div>
@@ -245,13 +243,16 @@ export default function Portfolio() {
                   >
                     {selectedProject.title}
                   </h3>
-                  <p className="text-sm mt-1" style={{ color: "#8A8A8A" }}>
+                  <p className="text-sm mt-1" style={{ color: "#C9A84C", fontSize: "11px" }}>
                     {selectedProject.location} · {selectedProject.size}
+                  </p>
+                  <p className="text-sm mt-2" style={{ color: "#8A8A8A", fontSize: "13px", fontWeight: 300 }}>
+                    {selectedProject.detail}
                   </p>
                 </div>
                 <button
                   onClick={() => setSelectedProject(null)}
-                  className="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110"
+                  className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 transition-all duration-300 hover:scale-110"
                   style={{ border: "1px solid rgba(201,168,76,0.3)", color: "#C9A84C" }}
                 >
                   <X size={16} />

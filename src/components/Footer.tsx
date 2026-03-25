@@ -1,12 +1,30 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Instagram, Facebook, Youtube, Phone, Mail, MapPin } from "lucide-react";
+import { Instagram, Phone, Mail, MapPin } from "lucide-react";
 
 const footerLinks = {
-  Services: ["Signature Decks", "Pergolas & Pavilions", "Outdoor Kitchens", "Fire & Water Features", "Full Design-Build"],
-  Company: ["Our Story", "Our Process", "Portfolio", "Awards & Press", "Careers"],
-  Support: ["Free Consultation", "Project Financing", "Maintenance Plans", "Warranty", "FAQ"],
+  Services: [
+    { label: "Custom Decks", href: "/custom-decks" },
+    { label: "Patios & Hardscaping", href: "/patios" },
+    { label: "Pergolas & Pavilions", href: "#services" },
+    { label: "Outdoor Kitchens", href: "#services" },
+    { label: "Full Outdoor Living", href: "#services" },
+  ],
+  Company: [
+    { label: "Our Process", href: "#process" },
+    { label: "Portfolio", href: "#portfolio" },
+    { label: "About Us", href: "#about" },
+    { label: "FAQ", href: "/faq" },
+    { label: "Pool Decks", href: "/pool-decks" },
+  ],
+  "Service Areas": [
+    { label: "Ashburn, VA", href: "#contact" },
+    { label: "McLean, VA", href: "#contact" },
+    { label: "Loudoun County", href: "#contact" },
+    { label: "Fairfax County", href: "#contact" },
+    { label: "Herndon & Sterling, VA", href: "#contact" },
+  ],
 };
 
 export default function Footer() {
@@ -28,71 +46,84 @@ export default function Footer() {
             <div className="flex items-center gap-3 mb-6">
               <div
                 className="w-10 h-10 rounded-lg flex items-center justify-center"
-                style={{ background: "linear-gradient(135deg, #9E7A2E, #C9A84C)" }}
+                style={{ background: "linear-gradient(135deg, #1A3A6B, #2563EB)" }}
               >
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                  <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" stroke="#0D0D0D" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                  <polyline points="9 22 9 12 15 12 15 22" stroke="#0D0D0D" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  <path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13L13 2Z" fill="#F5F0E8" />
                 </svg>
               </div>
               <div>
                 <div className="text-base font-semibold" style={{ fontFamily: "var(--font-display)", color: "#F5F0E8" }}>
-                  BlueLightning
+                  Blue Lightning Custom Decks
                 </div>
                 <div className="text-xs tracking-[0.2em] uppercase" style={{ color: "#C9A84C", fontSize: "9px" }}>
-                  Luxury Decks
+                  Northern Virginia · LLC · Est. 2019
                 </div>
               </div>
             </div>
 
-            <p className="leading-relaxed mb-8" style={{ color: "#8A8A8A", fontSize: "0.875rem", fontWeight: 300, maxWidth: "300px" }}>
-              Building extraordinary luxury decks and outdoor living spaces for discerning homeowners since 2007.
+            <p className="leading-relaxed mb-4" style={{ color: "#8A8A8A", fontSize: "0.875rem", fontWeight: 300, maxWidth: "320px" }}>
+              Design + build firm serving high-income homeowners across Northern Virginia.
+              Trex Certified · TimberTech Certified · Class A Contractor.
+            </p>
+
+            <p className="leading-relaxed mb-8" style={{ color: "#8A8A8A", fontSize: "0.8rem", fontWeight: 300, maxWidth: "320px", fontStyle: "italic" }}>
+              &ldquo;Built Fast. Built Right. Built to Impress.&rdquo;
             </p>
 
             {/* Contact */}
             <div className="space-y-3 mb-8">
-              {[
-                { icon: <Phone size={13} />, text: "(555) 900-DECK" },
-                { icon: <Mail size={13} />, text: "hello@bluelightning.com" },
-                { icon: <MapPin size={13} />, text: "Los Angeles, CA 90001" },
-              ].map((item) => (
-                <div key={item.text} className="flex items-center gap-3">
-                  <span style={{ color: "#C9A84C" }}>{item.icon}</span>
-                  <span style={{ color: "#8A8A8A", fontSize: "0.8rem" }}>{item.text}</span>
-                </div>
-              ))}
+              <a href="tel:+17034239965" className="flex items-center gap-3 group">
+                <Phone size={13} style={{ color: "#C9A84C" }} />
+                <span
+                  className="transition-colors duration-300"
+                  style={{ color: "#8A8A8A", fontSize: "0.8rem" }}
+                  onMouseEnter={(e) => (e.currentTarget.style.color = "#C9A84C")}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = "#8A8A8A")}
+                >
+                  (703) 423-9965
+                </span>
+              </a>
+              <a href="mailto:contact@bluelightningcustomdecks.com" className="flex items-center gap-3">
+                <Mail size={13} style={{ color: "#C9A84C" }} />
+                <span style={{ color: "#8A8A8A", fontSize: "0.75rem" }}>
+                  contact@bluelightningcustomdecks.com
+                </span>
+              </a>
+              <div className="flex items-start gap-3">
+                <MapPin size={13} style={{ color: "#C9A84C", marginTop: "2px", flexShrink: 0 }} />
+                <span style={{ color: "#8A8A8A", fontSize: "0.75rem", lineHeight: 1.5 }}>
+                  13800 Coppermine Rd, 3rd Floor, Unit 351<br />
+                  Herndon, VA 20171
+                </span>
+              </div>
             </div>
 
             {/* Social */}
             <div className="flex gap-3">
-              {[
-                { Icon: Instagram, href: "#" },
-                { Icon: Facebook, href: "#" },
-                { Icon: Youtube, href: "#" },
-              ].map(({ Icon, href }, i) => (
-                <motion.a
-                  key={i}
-                  href={href}
-                  whileHover={{ scale: 1.1, y: -2 }}
-                  className="w-9 h-9 rounded-lg flex items-center justify-center transition-all duration-300"
-                  style={{
-                    border: "1px solid rgba(201,168,76,0.2)",
-                    color: "#8A8A8A",
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.color = "#C9A84C";
-                    e.currentTarget.style.borderColor = "rgba(201,168,76,0.5)";
-                    e.currentTarget.style.background = "rgba(201,168,76,0.08)";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.color = "#8A8A8A";
-                    e.currentTarget.style.borderColor = "rgba(201,168,76,0.2)";
-                    e.currentTarget.style.background = "transparent";
-                  }}
-                >
-                  <Icon size={15} />
-                </motion.a>
-              ))}
+              <motion.a
+                href="https://www.instagram.com/bluelightningcustomdecks"
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.1, y: -2 }}
+                className="w-9 h-9 rounded-lg flex items-center justify-center transition-all duration-300"
+                style={{
+                  border: "1px solid rgba(201,168,76,0.2)",
+                  color: "#8A8A8A",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.color = "#C9A84C";
+                  e.currentTarget.style.borderColor = "rgba(201,168,76,0.5)";
+                  e.currentTarget.style.background = "rgba(201,168,76,0.08)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.color = "#8A8A8A";
+                  e.currentTarget.style.borderColor = "rgba(201,168,76,0.2)";
+                  e.currentTarget.style.background = "transparent";
+                }}
+              >
+                <Instagram size={15} />
+              </motion.a>
             </div>
           </div>
 
@@ -107,15 +138,15 @@ export default function Footer() {
               </h4>
               <ul className="space-y-3">
                 {links.map((link) => (
-                  <li key={link}>
+                  <li key={link.label}>
                     <a
-                      href="#"
-                      className="text-sm transition-colors duration-300 hover:text-cream"
+                      href={link.href}
+                      className="text-sm transition-colors duration-300"
                       style={{ color: "#8A8A8A", fontSize: "0.8rem", fontWeight: 300 }}
                       onMouseEnter={(e) => (e.currentTarget.style.color = "#F5F0E8")}
                       onMouseLeave={(e) => (e.currentTarget.style.color = "#8A8A8A")}
                     >
-                      {link}
+                      {link.label}
                     </a>
                   </li>
                 ))}
@@ -133,19 +164,23 @@ export default function Footer() {
         {/* Bottom */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           <p style={{ color: "#8A8A8A", fontSize: "12px" }}>
-            © 2026 BlueLightning Luxury Decks. All rights reserved.
+            © 2025 Blue Lightning Custom Decks LLC · Virginia Entity ID: S8535819 · All rights reserved.
           </p>
           <div className="flex items-center gap-6">
-            {["Privacy Policy", "Terms of Service", "License #C-27841"].map((item) => (
+            {[
+              { label: "Privacy Policy", href: "#" },
+              { label: "Terms of Service", href: "#" },
+              { label: "Class A License", href: "#" },
+            ].map((item) => (
               <a
-                key={item}
-                href="#"
+                key={item.label}
+                href={item.href}
                 style={{ color: "#8A8A8A", fontSize: "12px" }}
                 onMouseEnter={(e) => (e.currentTarget.style.color = "#C9A84C")}
                 onMouseLeave={(e) => (e.currentTarget.style.color = "#8A8A8A")}
                 className="transition-colors duration-300"
               >
-                {item}
+                {item.label}
               </a>
             ))}
           </div>

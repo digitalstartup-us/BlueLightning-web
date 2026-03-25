@@ -1,29 +1,31 @@
 export default function JsonLd() {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://bluelightning.com";
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://bluelightning.us";
 
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": ["LocalBusiness", "HomeAndConstructionBusiness"],
-    name: "BlueLightning Luxury Decks",
+    name: "Blue Lightning Custom Decks LLC",
     description:
-      "BlueLightning builds extraordinary luxury decks, pergolas, outdoor kitchens, and custom outdoor living spaces with premium craftsmanship and world-class design.",
+      "Blue Lightning Custom Decks is a Class A licensed, Trex and TimberTech certified design + build firm specializing in custom decks, patios, pergolas, and full outdoor living systems across Northern Virginia.",
     url: siteUrl,
     logo: `${siteUrl}/logo.png`,
     image: `${siteUrl}/og-image.jpg`,
-    telephone: "+15559006325",
-    email: "hello@bluelightning.com",
+    telephone: "+17034239965",
+    email: "contact@bluelightningcustomdecks.com",
+    foundingDate: "2019",
+    legalName: "Blue Lightning Custom Decks LLC",
     address: {
       "@type": "PostalAddress",
-      streetAddress: "123 Sunset Blvd",
-      addressLocality: "Los Angeles",
-      addressRegion: "CA",
-      postalCode: "90001",
+      streetAddress: "13800 Coppermine Road, 3rd Floor, Unit 351",
+      addressLocality: "Herndon",
+      addressRegion: "VA",
+      postalCode: "20171",
       addressCountry: "US",
     },
     geo: {
       "@type": "GeoCoordinates",
-      latitude: 34.0522,
-      longitude: -118.2437,
+      latitude: 38.9696,
+      longitude: -77.3861,
     },
     openingHoursSpecification: [
       {
@@ -32,47 +34,65 @@ export default function JsonLd() {
         opens: "08:00",
         closes: "18:00",
       },
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: ["Saturday"],
+        opens: "09:00",
+        closes: "14:00",
+      },
     ],
-    priceRange: "$$$",
+    priceRange: "$$$$",
     aggregateRating: {
       "@type": "AggregateRating",
-      ratingValue: "4.9",
-      reviewCount: "127",
+      ratingValue: "5.0",
+      reviewCount: "24",
     },
     hasOfferCatalog: {
       "@type": "OfferCatalog",
-      name: "Outdoor Living Services",
+      name: "Outdoor Living Services — Northern Virginia",
       itemListElement: [
         {
           "@type": "Offer",
-          itemOffered: { "@type": "Service", name: "Signature Decks", description: "Custom luxury decks built with exotic hardwoods and premium composite materials." },
+          itemOffered: { "@type": "Service", name: "Custom Decks", description: "Multi-level, pool, covered, and rooftop decks built with Trex, TimberTech, and AZEK." },
         },
         {
           "@type": "Offer",
-          itemOffered: { "@type": "Service", name: "Pergolas & Pavilions", description: "Architectural overhead structures creating defined outdoor rooms." },
+          itemOffered: { "@type": "Service", name: "Patios & Hardscaping", description: "Paver patios, natural stone, stamped concrete, and retaining walls using Techo-Bloc and Unilock." },
         },
         {
           "@type": "Offer",
-          itemOffered: { "@type": "Service", name: "Outdoor Kitchens", description: "Professional-grade outdoor kitchens with premium appliances and stone countertops." },
+          itemOffered: { "@type": "Service", name: "Pergolas & Pavilions", description: "Louvered pergolas, screened porches, pavilions, and sunrooms." },
         },
         {
           "@type": "Offer",
-          itemOffered: { "@type": "Service", name: "Fire & Water Features", description: "Custom fire pits, fireplaces, fountains, and water walls." },
+          itemOffered: { "@type": "Service", name: "Full Outdoor Living Systems", description: "Complete backyard transformation: deck + patio + pergola + outdoor kitchen + lighting + audio." },
         },
       ],
     },
-    areaServed: {
-      "@type": "GeoCircle",
-      geoMidpoint: {
-        "@type": "GeoCoordinates",
-        latitude: 34.0522,
-        longitude: -118.2437,
-      },
-      geoRadius: "160000",
-    },
+    areaServed: [
+      { "@type": "City", name: "Ashburn", addressRegion: "VA" },
+      { "@type": "City", name: "McLean", addressRegion: "VA" },
+      { "@type": "City", name: "Herndon", addressRegion: "VA" },
+      { "@type": "City", name: "Sterling", addressRegion: "VA" },
+      { "@type": "County", name: "Loudoun County", addressRegion: "VA" },
+      { "@type": "County", name: "Fairfax County", addressRegion: "VA" },
+      { "@type": "County", name: "Prince William County", addressRegion: "VA" },
+      { "@type": "City", name: "Arlington", addressRegion: "VA" },
+    ],
     sameAs: [
-      "https://www.instagram.com/bluelightningdecks",
-      "https://www.facebook.com/bluelightningdecks",
+      "https://www.instagram.com/bluelightningcustomdecks",
+    ],
+    knowsAbout: [
+      "Custom Deck Building",
+      "Trex Composite Decking",
+      "TimberTech Composite Decking",
+      "AZEK PVC Decking",
+      "Paver Patio Installation",
+      "Techo-Bloc Pavers",
+      "Outdoor Kitchen Construction",
+      "Pergola Construction",
+      "Building Permits Virginia",
+      "HOA Approval",
     ],
   };
 

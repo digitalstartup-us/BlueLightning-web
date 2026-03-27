@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowDown, Shield, Award, Clock } from "lucide-react";
+import { ArrowDown, Shield, Award, Clock, Phone, ChevronRight } from "lucide-react";
 
 export default function Hero() {
   const ref = useRef<HTMLDivElement>(null);
@@ -33,10 +33,9 @@ export default function Hero() {
           style={{ height: "100%", width: "100%" }}
         >
           <source src="/video/blue-lightning-brand.mp4" type="video/mp4" />
-          {/* Fallback image if video doesn't load */}
           <img
             src="/images/DJI_20241106170106_0080_D.JPG"
-            alt="Blue Lightning Custom Decks — Northern Virginia"
+            alt="Blue Lightning Decks & Patios — Northern Virginia"
             className="w-full h-full object-cover"
           />
         </video>
@@ -45,7 +44,7 @@ export default function Hero() {
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(to bottom, rgba(9,9,9,0.65) 0%, rgba(9,9,9,0.2) 40%, rgba(9,9,9,0.55) 70%, rgba(9,9,9,0.95) 100%)",
+              "linear-gradient(to bottom, rgba(9,9,9,0.65) 0%, rgba(9,9,9,0.2) 40%, rgba(9,9,9,0.6) 70%, rgba(9,9,9,0.97) 100%)",
           }}
         />
         <div
@@ -57,16 +56,10 @@ export default function Hero() {
         />
       </div>
 
-      {/* Floating ambient orb */}
-      <div
-        className="absolute top-1/4 right-1/4 w-96 h-96 rounded-full blur-3xl pointer-events-none"
-        style={{ background: "radial-gradient(circle, rgba(201,168,76,0.06) 0%, transparent 70%)" }}
-      />
-
       {/* Content */}
       <motion.div
         style={{ y: textY, opacity }}
-        className="relative z-10 text-center px-6 md:px-12 max-w-6xl mx-auto"
+        className="relative z-10 text-center px-6 md:px-12 max-w-6xl mx-auto w-full"
       >
         {/* Trust badge */}
         <motion.div
@@ -85,7 +78,7 @@ export default function Hero() {
             className="text-xs tracking-widest uppercase"
             style={{ color: "#C9A84C", letterSpacing: "0.2em" }}
           >
-            Class A Contractor · Trex & TimberTech Certified · Northern Virginia
+            Class A Contractor · Est. 2011 · 850+ Projects · Northern Virginia
           </span>
         </motion.div>
 
@@ -136,7 +129,7 @@ export default function Hero() {
           initial={{ scaleX: 0 }}
           animate={{ scaleX: 1 }}
           transition={{ duration: 1.2, delay: 1, ease: [0.25, 0.46, 0.45, 0.94] }}
-          className="mx-auto my-10 h-px w-32"
+          className="mx-auto my-8 h-px w-32"
           style={{ background: "linear-gradient(to right, transparent, #C9A84C, transparent)" }}
         />
 
@@ -145,7 +138,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.1 }}
-          className="max-w-xl mx-auto mb-12 leading-relaxed"
+          className="max-w-xl mx-auto mb-10 leading-relaxed"
           style={{
             color: "rgba(245,240,232,0.75)",
             fontSize: "clamp(0.9rem, 2vw, 1.1rem)",
@@ -154,33 +147,65 @@ export default function Hero() {
             letterSpacing: "0.02em",
           }}
         >
-          We design and build extraordinary outdoor living spaces for homeowners
-          across Northern Virginia — from concept to completion, permits included.
+          We design and build extraordinary outdoor living spaces across Northern Virginia —
+          decks, patios, pergolas, and full backyard transformations, permits included.
         </motion.p>
 
-        {/* CTAs */}
+        {/* PRIMARY CTA — Phone (dominant) */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1.3 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4"
+          transition={{ duration: 0.8, delay: 1.25 }}
+          className="mb-4"
+        >
+          <a href="tel:+17034239965" className="inline-block">
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.97 }}
+              animate={{ boxShadow: ["0 0 0 0 rgba(201,168,76,0.4)", "0 0 0 14px rgba(201,168,76,0)", "0 0 0 0 rgba(201,168,76,0)"] }}
+              transition={{ boxShadow: { duration: 2.2, repeat: Infinity, ease: "easeInOut" }, scale: { duration: 0.2 } }}
+              className="flex items-center justify-center gap-3 px-10 py-5 rounded-2xl cursor-pointer"
+              style={{
+                background: "#C9A84C",
+                color: "#0D0D0D",
+                fontSize: "15px",
+                fontWeight: 700,
+                letterSpacing: "0.08em",
+                minWidth: "320px",
+              }}
+            >
+              <Phone size={18} strokeWidth={2.5} />
+              Call Now — (703) 423-9965
+            </motion.div>
+          </a>
+          <p className="mt-3 text-xs" style={{ color: "rgba(201,168,76,0.7)", letterSpacing: "0.1em" }}>
+            Call today to see if your project qualifies for a free 3D design
+          </p>
+        </motion.div>
+
+        {/* Secondary CTAs */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 1.4 }}
+          className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-14"
         >
           <Link href="/contact">
             <motion.div
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.97 }}
-              className="btn-gold px-10 py-4 rounded-xl text-sm w-full sm:w-auto cursor-pointer"
-              style={{ fontSize: "12px", letterSpacing: "0.18em", minWidth: "240px", textAlign: "center" }}
+              className="btn-gold px-8 py-3.5 rounded-xl text-sm cursor-pointer flex items-center gap-2"
+              style={{ fontSize: "12px", letterSpacing: "0.15em" }}
             >
-              Schedule Free Consultation
+              Free Consultation <ChevronRight size={13} />
             </motion.div>
           </Link>
           <Link href="/portfolio">
             <motion.div
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.97 }}
-              className="btn-outline-gold px-10 py-4 rounded-xl text-sm w-full sm:w-auto cursor-pointer"
-              style={{ fontSize: "12px", letterSpacing: "0.18em", minWidth: "200px", textAlign: "center" }}
+              className="btn-outline-gold px-8 py-3.5 rounded-xl text-sm cursor-pointer"
+              style={{ fontSize: "12px", letterSpacing: "0.15em" }}
             >
               See Our Work
             </motion.div>
@@ -192,12 +217,12 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 1.6 }}
-          className="flex items-center justify-center gap-8 mt-16 flex-wrap"
+          className="flex items-center justify-center gap-8 flex-wrap"
         >
           {[
-            { value: "100+", label: "Projects Completed", icon: <Award size={14} /> },
-            { value: "20yr", label: "Combined Experience", icon: <Clock size={14} /> },
-            { value: "$100K+", label: "Average Project Value", icon: <Shield size={14} /> },
+            { value: "850+", label: "Projects Completed", icon: <Award size={14} /> },
+            { value: "14yr", label: "In Business", icon: <Clock size={14} /> },
+            { value: "20yr", label: "Combined Experience", icon: <Shield size={14} /> },
           ].map((stat, i) => (
             <div key={i} className="text-center">
               <div className="flex items-center justify-center gap-1 mb-1" style={{ color: "#C9A84C" }}>

@@ -4,7 +4,7 @@ import { useRef, useEffect, useState } from "react";
 import { motion, useInView } from "framer-motion";
 
 const stats = [
-  { value: 100, suffix: "+", label: "Projects Completed", description: "Across Northern Virginia" },
+  { value: 850, suffix: "+", label: "Projects Completed", description: "Across Northern Virginia" },
   { value: 20, suffix: "yr", label: "Combined Experience", description: "Structural & outdoor living experts" },
   { value: 100, suffix: "%", label: "Turnkey Service", description: "Permits, HOA, inspections handled" },
   { value: 3, suffix: "D", label: "Design Preview", description: "See your project before we build" },
@@ -49,7 +49,7 @@ export default function Stats() {
       <div className="absolute inset-0">
         <img
           src="/images/DJI_20241106170106_0080_D.JPG"
-          alt="Blue Lightning Custom Decks — Ashburn VA project aerial"
+          alt="Blue Lightning Decks & Patios — Ashburn VA project aerial"
           className="w-full h-full object-cover"
         />
         <div
@@ -97,7 +97,7 @@ export default function Stats() {
             className="mt-6 text-sm tracking-widest uppercase"
             style={{ color: "#8A8A8A", fontSize: "11px", letterSpacing: "0.2em" }}
           >
-            — Mauricio Caballero, Owner · Blue Lightning Custom Decks LLC
+            — Mauricio Caballero, Owner · Blue Lightning Decks & Patios LLC
           </p>
         </motion.div>
 

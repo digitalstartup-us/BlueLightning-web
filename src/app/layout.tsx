@@ -22,11 +22,11 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://bluelightning.us";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Blue Lightning Custom Decks | Deck Builder Northern Virginia",
-    template: "%s | Blue Lightning Custom Decks",
+    default: "Blue Lightning Decks & Patios | Deck Builder Northern Virginia",
+    template: "%s | Blue Lightning Decks & Patios",
   },
   description:
-    "Blue Lightning Custom Decks — Class A Contractor, Trex & TimberTech Certified. Custom decks, patios, pergolas & full outdoor living systems in Ashburn, McLean, Loudoun County & Fairfax, VA. Projects start at $100K. Free 3D design consultation.",
+    "Blue Lightning Decks & Patios — Family-founded 2011, Class A Contractor, Trex & TimberTech Certified. Custom decks, patios, pergolas, driveways & full backyard transformations in Ashburn, McLean, Loudoun County & Fairfax, VA. 850+ projects. Call for a free consultation.",
   keywords: [
     "deck builder Northern Virginia",
     "custom deck contractor Ashburn VA",
@@ -40,19 +40,19 @@ export const metadata: Metadata = {
     "outdoor kitchen contractor DMV",
     "luxury deck builder Washington DC",
     "covered deck contractor Virginia",
-    "Blue Lightning Custom Decks",
+    "Blue Lightning Decks & Patios",
     "Herndon deck builder",
     "Sterling VA deck contractor",
   ],
-  authors: [{ name: "Blue Lightning Custom Decks LLC" }],
-  creator: "Blue Lightning Custom Decks LLC",
-  publisher: "Blue Lightning Custom Decks LLC",
+  authors: [{ name: "Blue Lightning Decks & Patios LLC" }],
+  creator: "Blue Lightning Decks & Patios LLC",
+  publisher: "Blue Lightning Decks & Patios LLC",
   openGraph: {
     type: "website",
     locale: "en_US",
     url: siteUrl,
-    siteName: "Blue Lightning Custom Decks",
-    title: "Blue Lightning Custom Decks | Northern Virginia Deck Builder",
+    siteName: "Blue Lightning Decks & Patios",
+    title: "Blue Lightning Decks & Patios | Northern Virginia Deck Builder",
     description:
       "Class A Licensed · Trex & TimberTech Certified · Custom decks, patios, and full outdoor living systems across Northern Virginia.",
     images: [
@@ -60,13 +60,13 @@ export const metadata: Metadata = {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Blue Lightning Custom Decks — Northern Virginia",
+        alt: "Blue Lightning Decks & Patios — Northern Virginia",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Blue Lightning Custom Decks | Northern Virginia",
+    title: "Blue Lightning Decks & Patios | Northern Virginia",
     description:
       "Custom decks, patios, pergolas & full outdoor living systems. Class A Contractor. Ashburn, McLean, Loudoun County, Fairfax VA.",
     images: ["/og-image.jpg"],

@@ -352,7 +352,7 @@ function Scene6({ p }: { p: MotionValue<number> }) {
         </blockquote>
         <div className="mt-10 flex items-center justify-center flex-wrap">
           {[
-            { value: "100+", label: "Patios Built" },
+            { value: "850+", label: "Patios Built" },
             { value: "20yr", label: "Experience" },
             { value: "5★", label: "Client Rating" },
           ].map((s, i) => (
@@ -459,7 +459,7 @@ function PostScrollSection() {
           onMouseLeave={(e) => (e.currentTarget.style.color = "#8A8A8A")}
         >
           <ArrowLeft size={12} />
-          Back to Blue Lightning Custom Decks
+          Back to Blue Lightning Decks & Patios
         </Link>
       </div>
     </div>

@@ -10,9 +10,10 @@ const services = [
   { label: "Custom Decks", href: "/custom-decks", desc: "Multi-level, covered, rooftop" },
   { label: "Pool Decks", href: "/pool-decks", desc: "Waterfront & pool surrounds" },
   { label: "Patios & Hardscaping", href: "/patios", desc: "Pavers, stone, stamped concrete" },
+  { label: "Driveways", href: "/patios", desc: "Premium paver & concrete driveways" },
   { label: "Pergolas & Structures", href: "/pergolas", desc: "Louvered pergolas, pavilions" },
   { label: "Outdoor Kitchens", href: "/outdoor-kitchens", desc: "Full outdoor kitchen systems" },
-  { label: "Full Outdoor Living", href: "/services", desc: "Complete backyard transformation" },
+  { label: "Backyard Transformations", href: "/services", desc: "Complete outdoor living system" },
 ];
 
 const navLinks = [
@@ -71,7 +72,7 @@ export default function Navigation() {
               <motion.div whileHover={{ scale: 1.02 }} className="flex items-center gap-3">
                 <img
                   src="/logo.png"
-                  alt="Blue Lightning Custom Decks"
+                  alt="Blue Lightning Decks & Patios"
                   className="w-10 h-10 object-contain"
                 />
                 <div>
@@ -79,7 +80,7 @@ export default function Navigation() {
                     Blue Lightning
                   </div>
                   <div className="text-xs tracking-[0.2em] uppercase leading-tight" style={{ color: "#C9A84C", fontSize: "9px" }}>
-                    Custom Decks
+                    Decks &amp; Patios
                   </div>
                 </div>
               </motion.div>

@@ -132,7 +132,7 @@ export default function PortfolioPreview() {
               onMouseEnter={(e) => { e.currentTarget.style.background = "rgba(201,168,76,0.06)"; }}
               onMouseLeave={(e) => { e.currentTarget.style.background = "transparent"; }}
             >
-              View Full Portfolio — 100+ Projects
+              View Full Portfolio — 850+ Projects
               <ArrowRight size={14} />
             </motion.div>
           </Link>

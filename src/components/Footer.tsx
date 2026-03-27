@@ -9,9 +9,10 @@ const footerLinks = {
     { label: "Custom Decks", href: "/custom-decks" },
     { label: "Pool Decks", href: "/pool-decks" },
     { label: "Patios & Hardscaping", href: "/patios" },
+    { label: "Driveways", href: "/patios" },
     { label: "Pergolas & Structures", href: "/pergolas" },
     { label: "Outdoor Kitchens", href: "/outdoor-kitchens" },
-    { label: "Full Outdoor Living", href: "/services" },
+    { label: "Backyard Transformations", href: "/services" },
   ],
   Company: [
     { label: "About Us", href: "/about" },
@@ -46,13 +47,13 @@ export default function Footer() {
           {/* Brand */}
           <div className="lg:col-span-2">
             <Link href="/" className="flex items-center gap-3 mb-6 group inline-flex">
-              <img src="/logo.png" alt="Blue Lightning Custom Decks" className="w-12 h-12 object-contain" />
+              <img src="/logo.png" alt="Blue Lightning Decks & Patios" className="w-12 h-12 object-contain" />
               <div>
                 <div className="text-base font-semibold leading-tight" style={{ fontFamily: "var(--font-display)", color: "#F5F0E8" }}>
                   Blue Lightning
                 </div>
                 <div className="text-xs tracking-[0.2em] uppercase leading-tight" style={{ color: "#C9A84C", fontSize: "9px" }}>
-                  Custom Decks · LLC · Est. 2019
+                  Decks &amp; Patios · LLC · Est. 2011
                 </div>
               </div>
             </Link>
@@ -163,7 +164,7 @@ export default function Footer() {
         {/* Bottom */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           <p style={{ color: "#8A8A8A", fontSize: "12px" }}>
-            © 2026 Blue Lightning Custom Decks LLC · Virginia Entity ID: S8535819 · All rights reserved.
+            © 2026 Blue Lightning Decks & Patios LLC · Virginia Entity ID: S8535819 · All rights reserved.
           </p>
           <div className="flex items-center gap-6">
             {[

@@ -60,10 +60,10 @@ export default function About() {
 
             <div className="space-y-5" style={{ color: "#8A8A8A", fontSize: "0.95rem", fontWeight: 300, lineHeight: 1.8 }}>
               <p>
-                Blue Lightning Custom Decks is a family-owned design + build firm founded by
-                <strong style={{ color: "#F5F0E8", fontWeight: 500 }}> Mauricio Caballero</strong> in Herndon, Virginia.
-                With over 20 years of combined field experience in structural construction and outdoor
-                living, we specialize in complex, multi-level projects that other contractors turn down.
+                Blue Lightning Decks &amp; Patios is a family-founded, family-operated design + build firm based in Herndon, Virginia.
+                Founded in 2011, we started with residential construction and structural framing before strategically
+                reconverting in 2019 into a full outdoor living company. With 850+ completed projects and 20+ years of
+                combined experience, we specialize in complex, multi-level projects that other contractors turn down.
               </p>
               <p>
                 We are a <strong style={{ color: "#F5F0E8", fontWeight: 500 }}>full Design + Build firm</strong> —
@@ -80,7 +80,7 @@ export default function About() {
             <div className="mt-10 space-y-3">
               {[
                 "3D design visualization before any work begins",
-                "Projects start at $100K — we specialize in complex builds",
+                "850+ projects completed — we specialize in complex builds",
                 "We've never left a project unfinished",
                 "Branded trucks and uniformed crews on every job site",
               ].map((item) => (

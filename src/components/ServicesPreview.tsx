@@ -48,11 +48,19 @@ const services = [
   },
   {
     number: "06",
-    title: "Full Outdoor Living",
-    description: "Our highest-margin service: complete backyard transformation from concept to installation. One team, one vision.",
+    title: "Driveways",
+    description: "Premium paver and stamped concrete driveways that make a statement from the moment you arrive. Built to last decades.",
+    href: "/patios",
+    image: "/images/IMG_0969.jpg",
+    tags: ["Techo-Bloc", "Unilock Pavers", "Concrete"],
+  },
+  {
+    number: "07",
+    title: "Backyard Transformations",
+    description: "The complete experience: deck + patio + pergola + kitchen + lighting. One team, one vision, one extraordinary result.",
     href: "/services",
     image: "/images/DJI_20241106165447_0068_D.JPG",
-    tags: ["Design + Build", "Permits Included", "3D Preview"],
+    tags: ["Design + Build", "Permits Handled", "Full Scope"],
   },
 ];
 

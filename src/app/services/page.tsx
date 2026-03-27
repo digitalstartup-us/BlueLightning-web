@@ -27,7 +27,6 @@ const services = [
       "IRC code compliant structural engineering",
     ],
     materials: ["AZEK PVC (preferred)", "Trex Composite", "TimberTech Composite", "Wood (by request only)"],
-    startingAt: "$100K",
   },
   {
     number: "02",
@@ -47,7 +46,6 @@ const services = [
       "Drainage engineering",
     ],
     materials: ["Techo-Bloc pavers", "Unilock pavers", "Natural stone", "Outdoor porcelain tile"],
-    startingAt: "$75K",
   },
   {
     number: "03",
@@ -67,7 +65,6 @@ const services = [
       "Custom fencing systems",
     ],
     materials: ["AZEK PVC", "Outdoor porcelain", "Natural stone", "TimberTech composite"],
-    startingAt: "$90K",
   },
   {
     number: "04",
@@ -87,7 +84,6 @@ const services = [
       "Integrated LED systems",
     ],
     materials: ["Aluminum framing", "Western red cedar", "Polycarbonate roofing", "Custom powder-coat finishes"],
-    startingAt: "$80K",
   },
   {
     number: "05",
@@ -107,7 +103,6 @@ const services = [
       "Pizza ovens & specialty appliances",
     ],
     materials: ["AZEK & masonry", "Granite & porcelain countertops", "JBL pro audio", "Stainless steel appliances"],
-    startingAt: "$120K",
   },
   {
     number: "06",
@@ -127,7 +122,6 @@ const services = [
       "Complete permit management",
     ],
     materials: ["Premium composite & PVC", "Techo-Bloc / Unilock hardscaping", "JBL & Jandy systems", "Custom stone & steel"],
-    startingAt: "$250K",
   },
 ];
 
@@ -242,7 +236,7 @@ function ServiceRow({ service, index }: { service: typeof services[0]; index: nu
               {service.number}
             </div>
             <div className="absolute bottom-4 right-4 px-3 py-1.5 rounded-lg" style={{ background: "rgba(13,13,13,0.85)", border: "1px solid rgba(201,168,76,0.2)" }}>
-              <span style={{ color: "#C9A84C", fontSize: "11px" }}>From {service.startingAt}</span>
+              <span style={{ color: "#C9A84C", fontSize: "11px" }}>Custom Quote Available</span>
             </div>
           </motion.div>
 

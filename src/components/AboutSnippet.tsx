@@ -34,13 +34,13 @@ export default function AboutSnippet() {
             </h2>
 
             <p style={{ color: "#8A8A8A", fontSize: "1rem", fontWeight: 300, lineHeight: 1.85, marginBottom: "1.5rem" }}>
-              Founded by <strong style={{ color: "#F5F0E8", fontWeight: 500 }}>Mauricio Caballero</strong> in Herndon, VA,
-              Blue Lightning Custom Decks is a true Design + Build firm with 20+ years of field experience.
-              We never subcontract the work that matters — one team, from concept to completion.
+              Blue Lightning Decks &amp; Patios is a family-owned Design + Build firm founded in 2011 in Herndon, VA.
+              With 20+ years of combined experience and 850+ projects completed, we are the Northern Virginia team trusted for complex, high-end outdoor transformations.
+              One team, from concept to completion — never subcontracted.
             </p>
 
             <p style={{ color: "#8A8A8A", fontSize: "0.95rem", fontWeight: 300, lineHeight: 1.85, marginBottom: "2rem" }}>
-              Bilingual (EN/ES) · Class A Licensed · Trex & TimberTech Certified · 100+ projects delivered across
+              Bilingual (EN/ES) · Class A Licensed · Trex & TimberTech Certified · 850+ projects delivered across
               Ashburn, McLean, Loudoun, Fairfax, and the entire Northern Virginia metro area.
             </p>
 
@@ -85,7 +85,7 @@ export default function AboutSnippet() {
             <div className="relative rounded-3xl overflow-hidden" style={{ aspectRatio: "4/3" }}>
               <img
                 src="/images/DJI_20241106165447_0068_D.JPG"
-                alt="Blue Lightning Custom Decks — Loudoun County VA project"
+                alt="Blue Lightning Decks & Patios — Loudoun County VA project"
                 className="w-full h-full object-cover"
               />
               <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, transparent 40%, rgba(13,13,13,0.85) 100%)" }} />
@@ -93,9 +93,9 @@ export default function AboutSnippet() {
               {/* Stats overlay */}
               <div className="absolute bottom-0 left-0 right-0 p-6 grid grid-cols-3 gap-4">
                 {[
-                  { value: "100+", label: "Projects" },
+                  { value: "850+", label: "Projects" },
                   { value: "20yr", label: "Experience" },
-                  { value: "$100K+", label: "Avg. Project" },
+                  { value: "14yr", label: "In Business" },
                 ].map((s) => (
                   <div key={s.label} className="text-center">
                     <div style={{ fontFamily: "var(--font-display)", fontSize: "1.6rem", color: "#C9A84C", fontWeight: 300 }}>

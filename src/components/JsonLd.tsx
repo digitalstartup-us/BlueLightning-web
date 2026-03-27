@@ -4,16 +4,16 @@ export default function JsonLd() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": ["LocalBusiness", "HomeAndConstructionBusiness"],
-    name: "Blue Lightning Custom Decks LLC",
+    name: "Blue Lightning Decks & Patios LLC",
     description:
-      "Blue Lightning Custom Decks is a Class A licensed, Trex and TimberTech certified design + build firm specializing in custom decks, patios, pergolas, and full outdoor living systems across Northern Virginia.",
+      "Blue Lightning Decks & Patios is a Class A licensed, Trex and TimberTech certified design + build firm specializing in custom decks, patios, pergolas, and full outdoor living systems across Northern Virginia.",
     url: siteUrl,
     logo: `${siteUrl}/logo.png`,
     image: `${siteUrl}/og-image.jpg`,
     telephone: "+17034239965",
     email: "info@bluelightning.us",
-    foundingDate: "2019",
-    legalName: "Blue Lightning Custom Decks LLC",
+    foundingDate: "2011",
+    legalName: "Blue Lightning Decks & Patios LLC",
     address: {
       "@type": "PostalAddress",
       streetAddress: "13800 Coppermine Road, 3rd Floor, Unit 351",

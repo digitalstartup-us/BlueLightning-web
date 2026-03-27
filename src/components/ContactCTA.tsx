@@ -27,7 +27,7 @@ export default function ContactCTA() {
       <div className="absolute inset-0">
         <img
           src="/images/DJI_20241106170106_0080_D.JPG"
-          alt="Blue Lightning Custom Decks — Ashburn VA project"
+          alt="Blue Lightning Decks & Patios — Ashburn VA project"
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0" style={{ background: "rgba(9,9,9,0.92)" }} />
@@ -50,7 +50,7 @@ export default function ContactCTA() {
             <div className="flex items-center gap-4 mb-8">
               <div className="h-px w-10" style={{ background: "#C9A84C" }} />
               <span className="tracking-[0.3em] uppercase" style={{ color: "#C9A84C", fontSize: "10px" }}>
-                Free · No Obligation · 3D Design Included
+                Free · No Obligation · See if you qualify for a free 3D design
               </span>
             </div>
 
@@ -100,7 +100,7 @@ export default function ContactCTA() {
                   {[...Array(5)].map((_, i) => <Star key={i} size={11} fill="#C9A84C" stroke="none" />)}
                 </div>
                 <div style={{ color: "#A0A0A0", fontSize: "12px", fontWeight: 300 }}>
-                  Trusted by 100+ Northern Virginia homeowners
+                  Trusted by 850+ Northern Virginia homeowners
                 </div>
               </div>
             </div>
@@ -249,7 +249,7 @@ export default function ContactCTA() {
                     {[
                       { label: "Call within", value: "24hrs" },
                       { label: "On-site visit", value: "Free" },
-                      { label: "3D Design", value: "Included" },
+                      { label: "3D Design", value: "May Qualify" },
                     ].map((s) => (
                       <div key={s.label} className="p-3 rounded-xl" style={{ background: "rgba(201,168,76,0.04)", border: "1px solid rgba(201,168,76,0.08)" }}>
                         <div style={{ color: "#C9A84C", fontSize: "1.1rem", fontFamily: "var(--font-display)", fontWeight: 300 }}>{s.value}</div>

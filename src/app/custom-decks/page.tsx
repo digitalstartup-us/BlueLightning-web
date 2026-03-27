@@ -379,7 +379,7 @@ function Scene6({ p }: { p: MotionValue<number> }) {
         </blockquote>
         <div className="mt-10 flex items-center justify-center flex-wrap gap-0">
           {[
-            { value: "100+", label: "Decks Built" },
+            { value: "850+", label: "Decks Built" },
             { value: "20yr", label: "Experience" },
             { value: "5★", label: "Client Rating" },
           ].map((s, i) => (
@@ -433,7 +433,7 @@ function PostScrollSection() {
       <section className="py-28 px-6 md:px-20 max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <motion.div initial={{ opacity: 0, x: -40 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.9 }}>
-            <span className="text-xs tracking-[0.3em] uppercase block mb-6" style={{ color: "#C9A84C", fontSize: "10px" }}>Why Blue Lightning Custom Decks</span>
+            <span className="text-xs tracking-[0.3em] uppercase block mb-6" style={{ color: "#C9A84C", fontSize: "10px" }}>Why Blue Lightning Decks & Patios</span>
             <h3 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(2.5rem, 5vw, 4.5rem)", fontWeight: 300, color: "#F5F0E8", lineHeight: 1.1, marginBottom: "2rem" }}>
               Built with
               <br />
@@ -487,7 +487,7 @@ function PostScrollSection() {
           onMouseLeave={(e) => (e.currentTarget.style.color = "#8A8A8A")}
         >
           <ArrowLeft size={12} />
-          Back to Blue Lightning Custom Decks
+          Back to Blue Lightning Decks & Patios
         </Link>
       </div>
     </div>

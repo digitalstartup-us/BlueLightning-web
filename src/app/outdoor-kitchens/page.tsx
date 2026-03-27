@@ -217,7 +217,7 @@ export default function OutdoorKitchensPage() {
                 Let&apos;s Design Your Outdoor Kitchen.
               </h2>
               <p className="mb-8" style={{ color: "#8A8A8A", fontSize: "1rem", fontWeight: 300, lineHeight: 1.8 }}>
-                Free on-site consultation. 3D design visualization included. Outdoor kitchens start at $120,000
+                Free on-site consultation. 3D design visualization included. Call today to see if your project qualifies for a free 3D design
                 for a fully equipped installation.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">

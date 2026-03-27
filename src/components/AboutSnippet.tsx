@@ -84,7 +84,7 @@ export default function AboutSnippet() {
           >
             <div className="relative rounded-3xl overflow-hidden" style={{ aspectRatio: "4/3" }}>
               <img
-                src="/images/DJI_20241106165447_0068_D.JPG"
+                src="/images/05 - Pool Decks Full Outdoor Living/pool-deck_aerial-pool-house-afternoon_03.jpg"
                 alt="Blue Lightning Decks & Patios — Loudoun County VA project"
                 className="w-full h-full object-cover"
               />

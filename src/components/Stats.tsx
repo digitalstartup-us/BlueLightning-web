@@ -48,7 +48,7 @@ export default function Stats() {
       {/* Full-bleed background image */}
       <div className="absolute inset-0">
         <img
-          src="/images/DJI_20241106170106_0080_D.JPG"
+          src="/images/05 - Pool Decks Full Outdoor Living/pool-deck_aerial-pool-night_03.jpg"
           alt="Blue Lightning Decks & Patios — Ashburn VA project aerial"
           className="w-full h-full object-cover"
         />

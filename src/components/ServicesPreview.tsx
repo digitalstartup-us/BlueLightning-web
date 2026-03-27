@@ -11,7 +11,7 @@ const services = [
     title: "Custom Decks",
     description: "Multi-level, pool, covered, and rooftop decks. Trex & TimberTech certified. Projects that last 25–50 years.",
     href: "/custom-decks",
-    image: "/images/DSC01228.jpg",
+    image: "/images/01 - Custom Decks/deck_composite-gray-black-railing-wide-view_01.jpg",
     tags: ["Trex", "TimberTech", "AZEK"],
   },
   {
@@ -19,7 +19,7 @@ const services = [
     title: "Patios & Hardscaping",
     description: "Premium paver patios, natural stone, stamped concrete, and retaining walls engineered for Northern Virginia.",
     href: "/patios",
-    image: "/images/IMG_0969.jpg",
+    image: "/images/02 - Patios & Hardscaping/patio_porcelain-gray-fire-table-outdoor-kitchen_01.jpg",
     tags: ["Techo-Bloc", "Unilock", "Natural Stone"],
   },
   {
@@ -27,7 +27,7 @@ const services = [
     title: "Pergolas & Structures",
     description: "Louvered pergolas, screened porches, pavilions, and sunrooms that extend your living space year-round.",
     href: "/pergolas",
-    image: "/images/IMG_1109.JPG",
+    image: "/images/03 - Pergolas & Structures/pergola_louvered-dark-gray-fire-table-sunset_01.jpg",
     tags: ["Louvered", "Screened", "Pavilions"],
   },
   {
@@ -35,7 +35,7 @@ const services = [
     title: "Outdoor Kitchens",
     description: "Professional-grade outdoor kitchens with JBL audio, Jandy pool systems, and custom lighting integration.",
     href: "/outdoor-kitchens",
-    image: "/images/DJI_20241106165447_0068_D.JPG",
+    image: "/images/04 - Outdoor Kitchens/outdoor-kitchen_white-cabinets-marble-island-grill_01.jpg",
     tags: ["JBL Audio", "Outdoor Kitchen", "LED Lighting"],
   },
   {
@@ -43,7 +43,7 @@ const services = [
     title: "Pool Decks",
     description: "Waterfront and pool surrounds designed for safety, beauty, and durability — fully integrated with your pool.",
     href: "/pool-decks",
-    image: "/images/DJI_20241106170106_0080_D.JPG",
+    image: "/images/05 - Pool Decks Full Outdoor Living/pool-deck_aerial-pool-house-afternoon_01.jpg",
     tags: ["Anti-Slip", "Integrated Drainage", "LED Perimeter"],
   },
   {
@@ -51,7 +51,7 @@ const services = [
     title: "Driveways",
     description: "Premium paver and stamped concrete driveways that make a statement from the moment you arrive. Built to last decades.",
     href: "/patios",
-    image: "/images/IMG_0969.jpg",
+    image: "/images/02 - Patios & Hardscaping/patio_porcelain-gray-home-exterior-gravel_01.jpg",
     tags: ["Techo-Bloc", "Unilock Pavers", "Concrete"],
   },
   {
@@ -59,7 +59,7 @@ const services = [
     title: "Backyard Transformations",
     description: "The complete experience: deck + patio + pergola + kitchen + lighting. One team, one vision, one extraordinary result.",
     href: "/services",
-    image: "/images/DJI_20241106165447_0068_D.JPG",
+    image: "/images/05 - Pool Decks Full Outdoor Living/pool-deck_aerial-pool-firepit-evening_01.jpg",
     tags: ["Design + Build", "Permits Handled", "Full Scope"],
   },
 ];

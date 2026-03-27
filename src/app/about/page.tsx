@@ -68,7 +68,7 @@ export default function AboutPage() {
         <section className="relative min-h-[60vh] flex items-end overflow-hidden" style={{ paddingTop: "120px" }}>
           <div className="absolute inset-0">
             <img
-              src="/images/DJI_20241106165447_0068_D.JPG"
+              src="/images/05 - Pool Decks Full Outdoor Living/pool-deck_aerial-pool-house-day_01.jpg"
               alt="Blue Lightning Decks & Patios — Loudoun County project"
               className="w-full h-full object-cover"
             />

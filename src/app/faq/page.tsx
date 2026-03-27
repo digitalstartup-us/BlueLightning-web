@@ -11,7 +11,7 @@ const faqCategories = [
     questions: [
       {
         q: "How much does a custom deck cost in Northern Virginia?",
-        a: "Our projects typically start at $100,000 and range up to $500,000+, with estate transformations reaching $1M+. Pricing depends on size, materials, complexity, and scope. We never give vague estimates — after our free consultation and 3D design session, you'll receive a detailed, transparent proposal with no hidden costs.",
+        a: "Every project is custom-quoted based on size, materials, complexity, and scope. We never give vague estimates — after your free consultation, you'll receive a detailed, transparent proposal with no hidden costs. Call us to discuss your vision and we'll give you an honest picture of what to expect.",
       },
       {
         q: "Is it worth investing in a high-end deck or patio?",
@@ -91,7 +91,7 @@ const faqCategories = [
     questions: [
       {
         q: "Are you licensed in Virginia?",
-        a: "Yes. Blue Lightning Custom Decks LLC holds a Class A Contractor license in Virginia — the highest classification available. We are registered with the Virginia Department of Professional and Occupational Regulation (DPOR).",
+        a: "Yes. Blue Lightning Decks & Patios LLC holds a Class A Contractor license in Virginia — the highest classification available. We are registered with the Virginia Department of Professional and Occupational Regulation (DPOR).",
       },
       {
         q: "Are you insured?",
@@ -142,7 +142,7 @@ export default function FAQPage() {
           onMouseLeave={(e) => (e.currentTarget.style.color = "#8A8A8A")}
         >
           <ArrowLeft size={13} />
-          Blue Lightning Custom Decks
+          Blue Lightning Decks & Patios
         </Link>
       </div>
 

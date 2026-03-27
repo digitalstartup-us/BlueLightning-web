@@ -8,34 +8,34 @@ import { ArrowRight } from "lucide-react";
 const projects = [
   {
     id: 1,
-    title: "Ashburn Pool Estate",
+    title: "Pool Estate — Aerial View",
     category: "Full Outdoor Living",
     location: "Ashburn, VA",
-    image: "/images/DJI_20241106170106_0080_D.JPG",
+    image: "/images/05 - Pool Decks Full Outdoor Living/pool-deck_aerial-pool-house-afternoon_01.jpg",
     span: "col-span-1 md:col-span-2",
   },
   {
     id: 2,
-    title: "Custom Deck + Hot Tub",
+    title: "Multi-Level Composite Deck",
     category: "Custom Deck",
     location: "Northern Virginia",
-    image: "/images/DSC01228.jpg",
+    image: "/images/01 - Custom Decks/deck_composite-gray-black-railing-wide-view_01.jpg",
     span: "col-span-1",
   },
   {
     id: 3,
-    title: "Porcelain Patio + Fire Pit",
+    title: "Porcelain Patio + Outdoor Kitchen",
     category: "Patio",
     location: "McLean, VA",
-    image: "/images/IMG_0969.jpg",
+    image: "/images/02 - Patios & Hardscaping/patio_porcelain-gray-fire-table-outdoor-kitchen_01.jpg",
     span: "col-span-1",
   },
   {
     id: 4,
-    title: "Pool House + Outdoor Kitchen",
-    category: "Full Outdoor",
+    title: "Pool at Dusk — Night Lighting",
+    category: "Pool Decks",
     location: "Loudoun County, VA",
-    image: "/images/DJI_20241106165447_0068_D.JPG",
+    image: "/images/05 - Pool Decks Full Outdoor Living/pool-deck_aerial-pool-firepit-evening_01.jpg",
     span: "col-span-1 md:col-span-2",
   },
 ];
@@ -132,7 +132,7 @@ export default function PortfolioPreview() {
               onMouseEnter={(e) => { e.currentTarget.style.background = "rgba(201,168,76,0.06)"; }}
               onMouseLeave={(e) => { e.currentTarget.style.background = "transparent"; }}
             >
-              View Full Portfolio — 100+ Projects
+              View Full Portfolio — 850+ Projects
               <ArrowRight size={14} />
             </motion.div>
           </Link>

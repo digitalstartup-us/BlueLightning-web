@@ -9,7 +9,7 @@ const credentials = [
   { icon: <Award size={14} />, text: "Trex Certified Installer" },
   { icon: <Award size={14} />, text: "TimberTech Certified Installer" },
   { icon: <CheckCircle size={14} />, text: "20+ Years Combined Experience" },
-  { icon: <CheckCircle size={14} />, text: "100+ Projects Completed" },
+  { icon: <CheckCircle size={14} />, text: "850+ Projects Completed" },
   { icon: <CheckCircle size={14} />, text: "Permits & HOA Handled" },
   { icon: <Users size={14} />, text: "Bilingual Team — EN / ES" },
 ];

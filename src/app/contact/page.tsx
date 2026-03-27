@@ -105,7 +105,7 @@ export default function ContactPage() {
               <div className="flex items-center gap-4 mb-6">
                 <div className="h-px w-10" style={{ background: "#C9A84C" }} />
                 <span className="tracking-[0.3em] uppercase" style={{ color: "#C9A84C", fontSize: "10px" }}>
-                  Free · No Obligation · 3D Design Included
+                  Free · No Obligation · See if you qualify for a free 3D design
                 </span>
               </div>
               <h1 className="font-light leading-none mb-6" style={{ fontFamily: "var(--font-display)", fontSize: "clamp(3.5rem, 7vw, 8rem)", color: "#F5F0E8" }}>
@@ -633,7 +633,7 @@ export default function ContactPage() {
             <div className="flex flex-wrap justify-center gap-8">
               {[
                 "Class A Contractor — Virginia Licensed",
-                "100+ Projects Completed",
+                "850+ Projects Completed",
                 "Trex & TimberTech Certified",
                 "Fully Insured — GL + Workers Comp",
                 "Free 3D Design — Every Project",

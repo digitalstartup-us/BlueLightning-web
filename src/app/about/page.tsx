@@ -41,7 +41,7 @@ const values = [
   },
   {
     title: "We Never Leave a Job Unfinished.",
-    description: "100+ projects. Not one left incomplete. Every job site is cleaned, every detail is checked, and every client gets a final walkthrough before we close.",
+    description: "850+ projects. Not one left incomplete. Every job site is cleaned, every detail is checked, and every client gets a final walkthrough before we close.",
   },
   {
     title: "Premium Materials Only.",
@@ -68,8 +68,8 @@ export default function AboutPage() {
         <section className="relative min-h-[60vh] flex items-end overflow-hidden" style={{ paddingTop: "120px" }}>
           <div className="absolute inset-0">
             <img
-              src="/images/DJI_20241106165447_0068_D.JPG"
-              alt="Blue Lightning Custom Decks — Loudoun County project"
+              src="/images/05 - Pool Decks Full Outdoor Living/pool-deck_aerial-pool-house-day_01.jpg"
+              alt="Blue Lightning Decks & Patios — Loudoun County project"
               className="w-full h-full object-cover"
             />
             <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, rgba(13,13,13,0.6) 0%, rgba(13,13,13,0.92) 100%)" }} />
@@ -94,8 +94,8 @@ export default function AboutPage() {
                 <em style={{ color: "#C9A84C" }}>Northern Virginia Built.</em>
               </h1>
               <p className="mt-6 max-w-xl" style={{ color: "#8A8A8A", fontSize: "1.1rem", fontWeight: 300, lineHeight: 1.8 }}>
-                A Class A licensed contractor serving high-income homeowners across the DMV with
-                premium custom outdoor living spaces since 2019.
+                A family-founded, Class A licensed contractor serving high-income homeowners across the DMV with
+                premium outdoor living spaces since 2011.
               </p>
             </motion.div>
           </div>
@@ -121,10 +121,15 @@ export default function AboutPage() {
                 </h2>
                 <div className="space-y-5" style={{ color: "#8A8A8A", fontWeight: 300, lineHeight: 1.9 }}>
                   <p>
-                    Blue Lightning Custom Decks was founded in 2019 by <strong style={{ color: "#F5F0E8", fontWeight: 500 }}>Mauricio Caballero</strong>,
-                    a hands-on builder with over two decades of structural construction and outdoor living experience.
-                    What started as a personal commitment to quality has grown into one of Northern Virginia&apos;s most trusted
-                    premium outdoor living contractors.
+                    <strong style={{ color: "#F5F0E8", fontWeight: 500 }}>Blue Lightning Decks &amp; Patios was founded by our family in 2011.</strong> In its early years,
+                    the company focused on residential construction and structural framing, building a deep foundation of
+                    technical expertise across Northern Virginia.
+                  </p>
+                  <p>
+                    In 2019, the brand was strategically reconverted and repositioned as a <strong style={{ color: "#F5F0E8", fontWeight: 500 }}>full-service outdoor living company</strong> —
+                    integrating design, construction, and project management under one roof.
+                    Today, Blue Lightning is one of the most trusted names in premium outdoor living across the DMV,
+                    with 850+ completed projects and a reputation built on execution, not promises.
                   </p>
                   <p>
                     Headquartered in Herndon, VA, we operate as a true <strong style={{ color: "#F5F0E8", fontWeight: 500 }}>Design + Build firm</strong> —
@@ -135,10 +140,6 @@ export default function AboutPage() {
                     Our clients are typically high-income homeowners who have been burned before by contractors who
                     disappeared mid-project or delivered below expectations. We built our entire process around their biggest fears:
                     surprise costs, poor communication, and unfinished work. We&apos;ve never left a project incomplete.
-                  </p>
-                  <p>
-                    Mauricio personally meets with every prospective client. He walks the property, listens to the vision,
-                    and gives an honest assessment of what&apos;s possible. Then we build it — exactly as we said we would.
                   </p>
                 </div>
               </motion.div>
@@ -207,16 +208,16 @@ export default function AboutPage() {
                 style={{ background: "#141414", border: "1px solid rgba(201,168,76,0.1)" }}
               >
                 <div className="w-20 h-20 rounded-full mb-5 overflow-hidden flex-shrink-0" style={{ border: "2px solid rgba(201,168,76,0.4)" }}>
-                  <img src="/mauricio.png" alt="Mauricio Caballero — Blue Lightning Custom Decks" className="w-full h-full object-cover object-top" />
+                  <img src="/mauricio.png" alt="Mauricio Caballero — Blue Lightning Decks & Patios" className="w-full h-full object-cover object-top" />
                 </div>
                 <h3 style={{ fontFamily: "var(--font-display)", fontSize: "1.5rem", color: "#F5F0E8", fontWeight: 300, marginBottom: "4px" }}>
-                  Mauricio Caballero
+                  Mauricio Caballero — CEO &amp; Operator
                 </h3>
                 <div className="text-xs tracking-widest uppercase mb-4" style={{ color: "#C9A84C", fontSize: "10px" }}>
-                  Owner · Sales Lead · Design Consultant
+                  CEO &amp; Operator · Design Consultant · Architecture &amp; Landscape
                 </div>
                 <p style={{ color: "#8A8A8A", fontSize: "0.875rem", lineHeight: 1.8, fontWeight: 300, marginBottom: "12px" }}>
-                  20+ years of hands-on construction and design experience. Mauricio personally meets every client, designs every project, and oversees every installation. He believes a premium experience begins before the first board is cut.
+                  Mauricio Caballero serves as Design Consultant and CEO, specializing in architecture, landscape design, and outdoor project development. With expertise spanning $20M+ in completed projects, he brings a rare combination of structural precision and aesthetic vision to every engagement. Mauricio personally meets with every client, designs every project, and oversees every installation — because he believes that a premium outdoor experience begins long before the first board is cut.
                 </p>
                 <a href="mailto:mc@bluelightning.us" style={{ color: "#C9A84C", fontSize: "12px" }}>mc@bluelightning.us</a>
               </motion.div>
@@ -258,7 +259,7 @@ export default function AboutPage() {
                 <div className="relative overflow-hidden rounded-2xl" style={{ aspectRatio: "4/3" }}>
                   <img
                     src="/images/IMG_1061.JPG"
-                    alt="Blue Lightning Custom Decks crew at work"
+                    alt="Blue Lightning Decks & Patios crew at work"
                     className="w-full h-full object-cover"
                   />
                   <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(9,9,9,0.7) 0%, transparent 50%)" }} />
@@ -296,7 +297,7 @@ export default function AboutPage() {
             >
               <div className="flex items-center justify-center gap-4 mb-6">
                 <div className="h-px w-12" style={{ background: "#C9A84C" }} />
-                <span className="text-xs tracking-[0.3em] uppercase" style={{ color: "#C9A84C", fontSize: "11px" }}>Meet the Owner</span>
+                <span className="text-xs tracking-[0.3em] uppercase" style={{ color: "#C9A84C", fontSize: "11px" }}>CEO &amp; Design Consultant</span>
                 <div className="h-px w-12" style={{ background: "#C9A84C" }} />
               </div>
               <h2 className="font-light" style={{ fontFamily: "var(--font-display)", fontSize: "clamp(2rem, 5vw, 4rem)", color: "#F5F0E8" }}>
@@ -328,7 +329,7 @@ export default function AboutPage() {
               <div className="p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4" style={{ background: "#0E0E0E", borderTop: "1px solid rgba(201,168,76,0.08)" }}>
                 <div>
                   <div style={{ color: "#F5F0E8", fontWeight: 500, fontSize: "0.95rem" }}>Mauricio Caballero</div>
-                  <div style={{ color: "#8A8A8A", fontSize: "0.8rem", fontWeight: 300, marginTop: "2px" }}>Owner & Lead Designer — Blue Lightning Custom Decks</div>
+                  <div style={{ color: "#8A8A8A", fontSize: "0.8rem", fontWeight: 300, marginTop: "2px" }}>CEO &amp; Operator · Design Consultant — Blue Lightning Decks &amp; Patios</div>
                 </div>
                 <a
                   href="/contact"

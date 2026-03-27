@@ -50,12 +50,12 @@ const T = {
 };
 
 const IMGS = {
-  pool:      "/images/DJI_20241106170106_0080_D.JPG",
-  wood:      "/images/DSC01228.jpg",
-  overhead:  "/images/DJI_20241106165447_0068_D.JPG",
-  details:   "/images/IMG_1102.JPG",
-  lifestyle: "/images/IMG_0969.jpg",
-  dark:      "/images/IMG_0988.JPG",
+  pool:      "/images/05 - Pool Decks Full Outdoor Living/pool-deck_aerial-pool-house-afternoon_01.jpg",
+  wood:      "/images/05 - Pool Decks Full Outdoor Living/pool-deck_porcelain-blue-pool-house_01.jpg",
+  overhead:  "/images/05 - Pool Decks Full Outdoor Living/pool-deck_aerial-pool-firepit-evening_01.jpg",
+  details:   "/images/05 - Pool Decks Full Outdoor Living/pool-deck_porcelain-pool-spa-modern_02.jpg",
+  lifestyle: "/images/05 - Pool Decks Full Outdoor Living/pool-deck_aerial-pool-night_01.jpg",
+  dark:      "/images/05 - Pool Decks Full Outdoor Living/pool-deck_aerial-pool-night_05.jpg",
 };
 
 /* ─────────────────────────────────────────
@@ -786,7 +786,7 @@ function PostScrollSection() {
           >
             <div className="relative rounded-3xl overflow-hidden" style={{ aspectRatio: "4/5" }}>
               <img
-                src="/images/DJI_20241106165447_0068_D.JPG"
+                src="/images/05 - Pool Decks Full Outdoor Living/pool-deck_aerial-pool-house-day_01.jpg"
                 alt="Pool deck craftsmanship"
                 className="w-full h-full object-cover"
               />

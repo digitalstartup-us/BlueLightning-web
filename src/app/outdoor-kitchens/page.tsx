@@ -31,7 +31,7 @@ export default function OutdoorKitchensPage() {
         {/* Hero */}
         <section className="relative h-screen flex items-end overflow-hidden">
           <motion.div className="absolute inset-0" style={{ y }}>
-            <img src="/images/DJI_20241106165447_0068_D.JPG" alt="Outdoor kitchen Northern Virginia — Blue Lightning" className="w-full h-full object-cover" />
+            <img src="/images/04 - Outdoor Kitchens/outdoor-kitchen_white-cabinets-marble-island-grill_01.jpg" alt="Outdoor kitchen Northern Virginia — Blue Lightning Decks & Patios" className="w-full h-full object-cover" />
             <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, rgba(13,13,13,0.3) 0%, rgba(13,13,13,0.88) 100%)" }} />
           </motion.div>
 
@@ -108,7 +108,7 @@ export default function OutdoorKitchensPage() {
                 className="overflow-hidden rounded-3xl"
                 style={{ aspectRatio: "4/3" }}
               >
-                <img src="/images/DJI_20241106170106_0080_D.JPG" alt="Outdoor kitchen design — Blue Lightning" className="w-full h-full object-cover" />
+                <img src="/images/04 - Outdoor Kitchens/outdoor-kitchen_dark-gray-pergola-grill-firepit_01.jpg" alt="Outdoor kitchen design — Blue Lightning Decks & Patios" className="w-full h-full object-cover" />
               </motion.div>
             </div>
           </div>
@@ -170,7 +170,7 @@ export default function OutdoorKitchensPage() {
                 className="overflow-hidden rounded-3xl order-2 lg:order-1"
                 style={{ aspectRatio: "4/3" }}
               >
-                <img src="/images/IMG_0969.jpg" alt="Outdoor living integration — Blue Lightning" className="w-full h-full object-cover" />
+                <img src="/images/04 - Outdoor Kitchens/outdoor-kitchen_covered-pool-room-fireplace_01.jpg" alt="Outdoor living integration — Blue Lightning Decks & Patios" className="w-full h-full object-cover" />
               </motion.div>
               <motion.div
                 initial={{ opacity: 0, x: -40 }}
@@ -217,7 +217,7 @@ export default function OutdoorKitchensPage() {
                 Let&apos;s Design Your Outdoor Kitchen.
               </h2>
               <p className="mb-8" style={{ color: "#8A8A8A", fontSize: "1rem", fontWeight: 300, lineHeight: 1.8 }}>
-                Free on-site consultation. 3D design visualization included. Outdoor kitchens start at $120,000
+                Free on-site consultation. 3D design visualization included. Call today to see if your project qualifies for a free 3D design
                 for a fully equipped installation.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">

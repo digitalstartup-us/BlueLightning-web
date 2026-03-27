@@ -32,12 +32,12 @@ const T = {
 };
 
 const IMGS = {
-  hero:     "/images/IMG_0969.jpg",
-  pavers:   "/images/DJI_20241106165447_0068_D.JPG",
-  firepit:  "/images/IMG_0969.jpg",
-  kitchen:  "/images/DJI_20241106170106_0080_D.JPG",
-  outdoor:  "/images/DSC01228.jpg",
-  evening:  "/images/IMG_1042.JPG",
+  hero:     "/images/02 - Patios & Hardscaping/patio_porcelain-gray-fire-table-outdoor-kitchen_01.jpg",
+  pavers:   "/images/02 - Patios & Hardscaping/patio_porcelain-gray-fire-table-backyard-view_02.jpg",
+  firepit:  "/images/02 - Patios & Hardscaping/patio_porcelain-gray-fire-table-evening_02.jpg",
+  kitchen:  "/images/02 - Patios & Hardscaping/patio_stone-hardscape-black-railing-gravel_01.jpg",
+  outdoor:  "/images/02 - Patios & Hardscaping/patio_porcelain-gray-covered-pergola_01.jpg",
+  evening:  "/images/02 - Patios & Hardscaping/patio_porcelain-gray-deck-transition_01.jpg",
 };
 
 function ScrollProgress({ p }: { p: MotionValue<number> }) {
@@ -352,7 +352,7 @@ function Scene6({ p }: { p: MotionValue<number> }) {
         </blockquote>
         <div className="mt-10 flex items-center justify-center flex-wrap">
           {[
-            { value: "100+", label: "Patios Built" },
+            { value: "850+", label: "Patios Built" },
             { value: "20yr", label: "Experience" },
             { value: "5★", label: "Client Rating" },
           ].map((s, i) => (
@@ -435,7 +435,7 @@ function PostScrollSection() {
 
           <motion.div initial={{ opacity: 0, x: 40 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.9, delay: 0.2 }}>
             <div className="relative rounded-3xl overflow-hidden" style={{ aspectRatio: "4/5" }}>
-              <img src="/images/IMG_0969.jpg" alt="Patio porcelain Northern Virginia" className="w-full h-full object-cover" />
+              <img src="/images/02 - Patios & Hardscaping/patio_porcelain-gray-fire-table-outdoor-kitchen_01.jpg" alt="Patio Northern Virginia — Blue Lightning Decks & Patios" className="w-full h-full object-cover" />
               <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(13,13,13,0.7) 0%, transparent 60%)" }} />
               <div className="absolute bottom-6 left-6 right-6 p-5 rounded-2xl" style={{ background: "rgba(13,13,13,0.85)", backdropFilter: "blur(16px)", border: "1px solid rgba(201,168,76,0.2)" }}>
                 <div style={{ color: "#C9A84C", fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: "6px" }}>Featured Project</div>
@@ -459,7 +459,7 @@ function PostScrollSection() {
           onMouseLeave={(e) => (e.currentTarget.style.color = "#8A8A8A")}
         >
           <ArrowLeft size={12} />
-          Back to Blue Lightning Custom Decks
+          Back to Blue Lightning Decks & Patios
         </Link>
       </div>
     </div>

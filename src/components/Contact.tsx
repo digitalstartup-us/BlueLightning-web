@@ -44,7 +44,7 @@ export default function Contact() {
       <div className="absolute inset-0">
         <img
           src="https://images.unsplash.com/photo-1600607687939-ce8a6c349ac1?w=1920&q=75&auto=format"
-          alt="Contact Blue Lightning Custom Decks Northern Virginia"
+          alt="Contact Blue Lightning Decks & Patios Northern Virginia"
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0" style={{ background: "rgba(13,13,13,0.92)" }} />

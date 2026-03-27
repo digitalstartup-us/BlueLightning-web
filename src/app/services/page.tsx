@@ -14,7 +14,7 @@ const services = [
     title: "Custom Decks",
     tagline: "Highest Revenue Driver — ~40% of Business",
     href: "/custom-decks",
-    image: "/images/DSC01228.jpg",
+    image: "/images/01 - Custom Decks/deck_composite-gray-black-railing-wide-view_01.jpg",
     description: "From multi-level masterpieces to intimate covered retreats — we engineer and build custom decks that become the centerpiece of your home's outdoor experience.",
     includes: [
       "Multi-level decks",
@@ -27,14 +27,13 @@ const services = [
       "IRC code compliant structural engineering",
     ],
     materials: ["AZEK PVC (preferred)", "Trex Composite", "TimberTech Composite", "Wood (by request only)"],
-    startingAt: "$100K",
   },
   {
     number: "02",
     title: "Patios & Hardscaping",
     tagline: "~30% of Business",
     href: "/patios",
-    image: "/images/IMG_0969.jpg",
+    image: "/images/02 - Patios & Hardscaping/patio_porcelain-gray-fire-table-outdoor-kitchen_01.jpg",
     description: "Ground-level transformation through precision hardscaping — pavers, natural stone, and engineered systems built for Northern Virginia's demanding climate.",
     includes: [
       "Paver patios",
@@ -47,14 +46,13 @@ const services = [
       "Drainage engineering",
     ],
     materials: ["Techo-Bloc pavers", "Unilock pavers", "Natural stone", "Outdoor porcelain tile"],
-    startingAt: "$75K",
   },
   {
     number: "03",
     title: "Pool Decks",
     tagline: "Specialty Service",
     href: "/pool-decks",
-    image: "/images/DJI_20241106170106_0080_D.JPG",
+    image: "/images/05 - Pool Decks Full Outdoor Living/pool-deck_aerial-pool-house-afternoon_01.jpg",
     description: "Waterfront precision. Pool decks require specialist knowledge of drainage, anti-slip treatment, and material compatibility with pool chemistry — we've built over 30.",
     includes: [
       "Pool surrounds & coping",
@@ -67,14 +65,13 @@ const services = [
       "Custom fencing systems",
     ],
     materials: ["AZEK PVC", "Outdoor porcelain", "Natural stone", "TimberTech composite"],
-    startingAt: "$90K",
   },
   {
     number: "04",
     title: "Pergolas & Structures",
     tagline: "High-Margin Add-On",
     href: "/pergolas",
-    image: "/images/IMG_1109.JPG",
+    image: "/images/03 - Pergolas & Structures/pergola_louvered-dark-gray-fire-table-sunset_01.jpg",
     description: "Extend your outdoor living season by months with a structure built to handle Virginia's winters, summers, and everything in between. Fully customizable and integrated.",
     includes: [
       "Motorized louvered pergolas",
@@ -87,14 +84,13 @@ const services = [
       "Integrated LED systems",
     ],
     materials: ["Aluminum framing", "Western red cedar", "Polycarbonate roofing", "Custom powder-coat finishes"],
-    startingAt: "$80K",
   },
   {
     number: "05",
     title: "Outdoor Kitchens",
     tagline: "Premium Bundled Service",
     href: "/outdoor-kitchens",
-    image: "/images/DJI_20241106165447_0068_D.JPG",
+    image: "/images/04 - Outdoor Kitchens/outdoor-kitchen_white-cabinets-marble-island-grill_01.jpg",
     description: "A complete outdoor kitchen is the ultimate ROI project — it anchors the entire outdoor living system and adds immediate measurable value to your property.",
     includes: [
       "Professional grill stations",
@@ -107,14 +103,13 @@ const services = [
       "Pizza ovens & specialty appliances",
     ],
     materials: ["AZEK & masonry", "Granite & porcelain countertops", "JBL pro audio", "Stainless steel appliances"],
-    startingAt: "$120K",
   },
   {
     number: "06",
     title: "Full Outdoor Living Systems",
     tagline: "Highest Margin — Bundled Projects",
     href: "/services",
-    image: "/images/DJI_20241106165447_0068_D.JPG",
+    image: "/images/04 - Outdoor Kitchens/outdoor-kitchen_white-cabinets-marble-island-grill_01.jpg",
     description: "The complete transformation: Deck + patio + pergola + kitchen + lighting = a backyard that becomes the most-used room in your home. These are our signature projects.",
     includes: [
       "Full scope design + build",
@@ -127,7 +122,6 @@ const services = [
       "Complete permit management",
     ],
     materials: ["Premium composite & PVC", "Techo-Bloc / Unilock hardscaping", "JBL & Jandy systems", "Custom stone & steel"],
-    startingAt: "$250K",
   },
 ];
 
@@ -242,7 +236,7 @@ function ServiceRow({ service, index }: { service: typeof services[0]; index: nu
               {service.number}
             </div>
             <div className="absolute bottom-4 right-4 px-3 py-1.5 rounded-lg" style={{ background: "rgba(13,13,13,0.85)", border: "1px solid rgba(201,168,76,0.2)" }}>
-              <span style={{ color: "#C9A84C", fontSize: "11px" }}>From {service.startingAt}</span>
+              <span style={{ color: "#C9A84C", fontSize: "11px" }}>Custom Quote Available</span>
             </div>
           </motion.div>
 

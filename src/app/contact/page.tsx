@@ -145,7 +145,7 @@ export default function ContactPage() {
                   <div>
                     <div className="font-medium mb-0.5" style={{ color: "#F5F0E8", fontSize: "0.95rem" }}>Mauricio Caballero</div>
                     <div style={{ color: "#C9A84C", fontSize: "10px", letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: "6px" }}>
-                      Owner & Design Consultant
+                      CEO &amp; Operator · Design Consultant
                     </div>
                     <p style={{ color: "#8A8A8A", fontSize: "0.8rem", fontWeight: 300, lineHeight: 1.7 }}>
                       I personally read every inquiry and respond within 24 hours.
@@ -636,7 +636,7 @@ export default function ContactPage() {
                 "850+ Projects Completed",
                 "Trex & TimberTech Certified",
                 "Fully Insured — GL + Workers Comp",
-                "Free 3D Design — Every Project",
+                "3D Design — Call to See if You Qualify",
                 "Response Guaranteed Within 24 Hours",
               ].map((item) => (
                 <div key={item} className="flex items-center gap-2">

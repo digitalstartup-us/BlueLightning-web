@@ -32,8 +32,8 @@ const scenes = [
   },
   {
     title: "See It First,\nThen Build It.",
-    subtitle: "3D Design Visualization",
-    body: "Before any work begins, you receive detailed 3D renderings of your pergola or covered structure — exact dimensions, materials, and integrations. You approve every detail. Nothing moves forward until you're completely satisfied.",
+    subtitle: "See If You Qualify for a Free 3D Design",
+    body: "Call today to find out if your project qualifies for a complimentary 3D rendering. You'll see exact dimensions, materials, and integrations before a single permit is filed. You approve every detail. Nothing moves forward until you're completely satisfied.",
     image: "/images/03 - Pergolas & Structures/structure_covered-deck-hot-tub-glass-railing_01.jpg",
     accent: "CALL TO QUALIFY FOR 3D DESIGN",
   },
@@ -189,7 +189,7 @@ export default function PergolasPage() {
               </h2>
               <p className="mb-8" style={{ color: "#8A8A8A", fontSize: "1rem", fontWeight: 300, lineHeight: 1.8 }}>
                 Schedule your free on-site consultation. Mauricio will walk your space and show you exactly what&apos;s possible.
-                3D design visualization included.
+                Call today to see if your project qualifies for a free 3D design.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link href="/contact">

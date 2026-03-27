@@ -337,7 +337,7 @@ export default function Contact() {
                   </motion.button>
 
                   <p className="text-center text-xs" style={{ color: "#8A8A8A", fontSize: "11px" }}>
-                    No obligation · Free 3D design included · Response within 24 hours
+                    No obligation · See if you qualify for a free 3D design · Response within 24 hours
                   </p>
                 </form>
               )}

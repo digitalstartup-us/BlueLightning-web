@@ -12,7 +12,7 @@ const services = [
   {
     number: "01",
     title: "Custom Decks",
-    tagline: "Highest Revenue Driver — ~40% of Business",
+    tagline: "Decks, Covered Decks & Pool Decks",
     href: "/custom-decks",
     image: "/images/01 - Custom Decks/deck_composite-gray-black-railing-wide-view_01.jpg",
     description: "From multi-level masterpieces to intimate covered retreats — we engineer and build custom decks that become the centerpiece of your home's outdoor experience.",
@@ -31,7 +31,7 @@ const services = [
   {
     number: "02",
     title: "Patios & Hardscaping",
-    tagline: "~30% of Business",
+    tagline: "Pavers, Natural Stone & Stamped Concrete",
     href: "/patios",
     image: "/images/02 - Patios & Hardscaping/patio_porcelain-gray-fire-table-outdoor-kitchen_01.jpg",
     description: "Ground-level transformation through precision hardscaping — pavers, natural stone, and engineered systems built for Northern Virginia's demanding climate.",
@@ -50,7 +50,7 @@ const services = [
   {
     number: "03",
     title: "Pool Decks",
-    tagline: "Specialty Service",
+    tagline: "Pool Surrounds, Coping & Spa Integration",
     href: "/pool-decks",
     image: "/images/05 - Pool Decks Full Outdoor Living/pool-deck_aerial-pool-house-afternoon_01.jpg",
     description: "Waterfront precision. Pool decks require specialist knowledge of drainage, anti-slip treatment, and material compatibility with pool chemistry — we've built over 30.",
@@ -69,7 +69,7 @@ const services = [
   {
     number: "04",
     title: "Pergolas & Structures",
-    tagline: "High-Margin Add-On",
+    tagline: "Louvered Pergolas, Pavilions & Covered Porches",
     href: "/pergolas",
     image: "/images/03 - Pergolas & Structures/pergola_louvered-dark-gray-fire-table-sunset_01.jpg",
     description: "Extend your outdoor living season by months with a structure built to handle Virginia's winters, summers, and everything in between. Fully customizable and integrated.",
@@ -88,7 +88,7 @@ const services = [
   {
     number: "05",
     title: "Outdoor Kitchens",
-    tagline: "Premium Bundled Service",
+    tagline: "Grills, Cabinetry & Integrated Audio",
     href: "/outdoor-kitchens",
     image: "/images/04 - Outdoor Kitchens/outdoor-kitchen_white-cabinets-marble-island-grill_01.jpg",
     description: "A complete outdoor kitchen is the ultimate ROI project — it anchors the entire outdoor living system and adds immediate measurable value to your property.",
@@ -107,7 +107,7 @@ const services = [
   {
     number: "06",
     title: "Full Outdoor Living Systems",
-    tagline: "Highest Margin — Bundled Projects",
+    tagline: "Complete Backyard Transformations",
     href: "/services",
     image: "/images/04 - Outdoor Kitchens/outdoor-kitchen_white-cabinets-marble-island-grill_01.jpg",
     description: "The complete transformation: Deck + patio + pergola + kitchen + lighting = a backyard that becomes the most-used room in your home. These are our signature projects.",
@@ -122,6 +122,25 @@ const services = [
       "Complete permit management",
     ],
     materials: ["Premium composite & PVC", "Techo-Bloc / Unilock hardscaping", "JBL & Jandy systems", "Custom stone & steel"],
+  },
+  {
+    number: "07",
+    title: "Driveways & Hardscaping",
+    tagline: "Premium Pavers, Stamped Concrete & Stone",
+    href: "/patios",
+    image: "/images/02 - Patios & Hardscaping/patio_porcelain-gray-home-exterior-gravel_01.jpg",
+    description: "Your driveway is the first impression of your home. We design and build premium driveway and hardscaping systems that complement your home's architecture and last for decades.",
+    includes: [
+      "Paver driveways",
+      "Stamped concrete driveways",
+      "Natural stone entryways",
+      "Retaining walls",
+      "Front walkways & steps",
+      "Border & edging systems",
+      "Drainage engineering",
+      "HOA approval managed",
+    ],
+    materials: ["Techo-Bloc pavers", "Unilock pavers", "Natural stone", "Stamped & brushed concrete"],
   },
 ];
 
@@ -182,8 +201,7 @@ export default function ServicesPage() {
                 <em style={{ color: "#C9A84C" }}>That&apos;s What We&apos;re Here For.</em>
               </h2>
               <p className="mb-8 max-w-lg mx-auto" style={{ color: "#8A8A8A", fontSize: "1rem", fontWeight: 300, lineHeight: 1.8 }}>
-                Mauricio will walk your property, listen to your vision, and help you design the right solution within your budget.
-                Free consultation, no obligation, 3D design included.
+                Mauricio will walk your property, listen to your vision, and help you design the right solution. Call today to see if your project qualifies for a free 3D design rendering.
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <Link href="/contact">

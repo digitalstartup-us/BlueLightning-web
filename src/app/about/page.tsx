@@ -197,7 +197,7 @@ export default function AboutPage() {
               </h2>
             </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
               {/* Mauricio */}
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
@@ -207,17 +207,17 @@ export default function AboutPage() {
                 className="p-8 rounded-2xl"
                 style={{ background: "#141414", border: "1px solid rgba(201,168,76,0.1)" }}
               >
-                <div className="w-20 h-20 rounded-full mb-5 overflow-hidden flex-shrink-0" style={{ border: "2px solid rgba(201,168,76,0.4)" }}>
-                  <img src="/mauricio.png" alt="Mauricio Caballero — Blue Lightning Decks & Patios" className="w-full h-full object-cover object-top" />
+                <div className="w-24 h-24 rounded-full mb-5 overflow-hidden flex-shrink-0" style={{ border: "2px solid rgba(201,168,76,0.4)" }}>
+                  <img src="/mauricio-new.jpg" alt="Mauricio Caballero — CEO & Operator" className="w-full h-full object-cover object-top" />
                 </div>
-                <h3 style={{ fontFamily: "var(--font-display)", fontSize: "1.5rem", color: "#F5F0E8", fontWeight: 300, marginBottom: "4px" }}>
-                  Mauricio Caballero — CEO &amp; Operator
+                <h3 style={{ fontFamily: "var(--font-display)", fontSize: "1.35rem", color: "#F5F0E8", fontWeight: 300, marginBottom: "4px" }}>
+                  Mauricio Caballero
                 </h3>
                 <div className="text-xs tracking-widest uppercase mb-4" style={{ color: "#C9A84C", fontSize: "10px" }}>
-                  CEO &amp; Operator · Design Consultant · Architecture &amp; Landscape
+                  CEO &amp; Operator · Design Consultant
                 </div>
-                <p style={{ color: "#8A8A8A", fontSize: "0.875rem", lineHeight: 1.8, fontWeight: 300, marginBottom: "12px" }}>
-                  Mauricio Caballero serves as Design Consultant and CEO, specializing in architecture, landscape design, and outdoor project development. With expertise spanning $20M+ in completed projects, he brings a rare combination of structural precision and aesthetic vision to every engagement. Mauricio personally meets with every client, designs every project, and oversees every installation — because he believes that a premium outdoor experience begins long before the first board is cut.
+                <p style={{ color: "#8A8A8A", fontSize: "0.85rem", lineHeight: 1.8, fontWeight: 300, marginBottom: "12px" }}>
+                  Mauricio Caballero serves as Design Consultant and CEO, specializing in architecture, landscape design, and outdoor project development. With expertise spanning $20M+ in completed projects, he brings a rare combination of structural precision and aesthetic vision to every engagement. He personally meets with every client and oversees every installation.
                 </p>
                 <a href="mailto:mc@bluelightning.us" style={{ color: "#C9A84C", fontSize: "12px" }}>mc@bluelightning.us</a>
               </motion.div>
@@ -227,23 +227,47 @@ export default function AboutPage() {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: 0.15, duration: 0.7 }}
+                transition={{ delay: 0.12, duration: 0.7 }}
                 className="p-8 rounded-2xl"
                 style={{ background: "#141414", border: "1px solid rgba(201,168,76,0.1)" }}
               >
-                <div className="w-20 h-20 rounded-full mb-5 flex items-center justify-center" style={{ background: "rgba(201,168,76,0.08)", border: "2px solid rgba(201,168,76,0.2)" }}>
-                  <span style={{ fontFamily: "var(--font-display)", fontSize: "2rem", color: "#C9A84C" }}>W</span>
+                <div className="w-24 h-24 rounded-full mb-5 overflow-hidden flex-shrink-0" style={{ border: "2px solid rgba(201,168,76,0.4)" }}>
+                  <img src="/walter-caballero.jpg" alt="Walter Caballero — Operations Director" className="w-full h-full object-cover object-top" />
                 </div>
-                <h3 style={{ fontFamily: "var(--font-display)", fontSize: "1.5rem", color: "#F5F0E8", fontWeight: 300, marginBottom: "4px" }}>
+                <h3 style={{ fontFamily: "var(--font-display)", fontSize: "1.35rem", color: "#F5F0E8", fontWeight: 300, marginBottom: "4px" }}>
                   Walter Caballero
                 </h3>
                 <div className="text-xs tracking-widest uppercase mb-4" style={{ color: "#C9A84C", fontSize: "10px" }}>
-                  Operations · Registered Agent
+                  Operations Director · Class A Licensed
                 </div>
-                <p style={{ color: "#8A8A8A", fontSize: "0.875rem", lineHeight: 1.8, fontWeight: 300, marginBottom: "12px" }}>
-                  Walter manages the operational backbone of every project — from permitting and scheduling to HOA coordination. His attention to process ensures projects finish on time and exactly as agreed.
+                <p style={{ color: "#8A8A8A", fontSize: "0.85rem", lineHeight: 1.8, fontWeight: 300, marginBottom: "12px" }}>
+                  Walter Caballero is the driving force behind operations, bringing over 26 years of hands-on experience in the construction industry. As a Class A licensed general contractor, he has successfully led projects across both commercial and residential sectors. Fully certified by OSHA and DPOR, Walter combines deep technical expertise with operational leadership, ensuring every project is built to the highest standards.
                 </p>
                 <a href="mailto:info@bluelightning.us" style={{ color: "#C9A84C", fontSize: "12px" }}>info@bluelightning.us</a>
+              </motion.div>
+
+              {/* Gary Anderson */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.24, duration: 0.7 }}
+                className="p-8 rounded-2xl"
+                style={{ background: "#141414", border: "1px solid rgba(201,168,76,0.1)" }}
+              >
+                <div className="w-24 h-24 rounded-full mb-5 flex items-center justify-center" style={{ background: "rgba(201,168,76,0.08)", border: "2px solid rgba(201,168,76,0.25)" }}>
+                  <span style={{ fontFamily: "var(--font-display)", fontSize: "2.2rem", color: "#C9A84C", fontWeight: 300 }}>G</span>
+                </div>
+                <h3 style={{ fontFamily: "var(--font-display)", fontSize: "1.35rem", color: "#F5F0E8", fontWeight: 300, marginBottom: "4px" }}>
+                  Gary Anderson
+                </h3>
+                <div className="text-xs tracking-widest uppercase mb-4" style={{ color: "#C9A84C", fontSize: "10px" }}>
+                  Senior Sales Consultant
+                </div>
+                <p style={{ color: "#8A8A8A", fontSize: "0.85rem", lineHeight: 1.8, fontWeight: 300, marginBottom: "12px" }}>
+                  After honorable service in the United States Marine Corps and 16 years safeguarding U.S. embassies abroad with the State Department, Gary transitioned into construction in 2012. His military precision and diplomatic poise ensure clients receive expertise, care, and integrity second to none — guiding every client through each step with absolute excellence.
+                </p>
+                <a href="tel:+17034239965" style={{ color: "#C9A84C", fontSize: "12px" }}>(703) 423-9965</a>
               </motion.div>
             </div>
 
@@ -318,7 +342,7 @@ export default function AboutPage() {
             >
               <video
                 controls
-                poster="/mauricio.png"
+                poster="/mauricio-new.jpg"
                 className="w-full"
                 style={{ maxHeight: "680px", background: "#000", display: "block" }}
                 preload="none"

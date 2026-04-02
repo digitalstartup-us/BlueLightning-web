@@ -1,9 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
-import { Resend } from "resend";
+import { sendBothEmails } from "@/lib/mailer";
 
 export async function POST(req: NextRequest) {
   try {
-    const resend = new Resend(process.env.RESEND_API_KEY);
     const body = await req.json();
     const { name, email, phone, city, projectType, budget, referral, description, callTime } = body;
 
@@ -38,57 +37,21 @@ export async function POST(req: NextRequest) {
       <p>A potential client just submitted a consultation request from your website.</p>
     </div>
     <div class="body">
-      <div class="field">
-        <div class="label">Full Name</div>
-        <div class="value">${name}</div>
-      </div>
-      <div class="field">
-        <div class="label">Email</div>
-        <div class="value"><a href="mailto:${email}">${email}</a></div>
-      </div>
-      <div class="field">
-        <div class="label">Phone</div>
-        <div class="value"><a href="tel:${phone}">${phone}</a></div>
-      </div>
-      <div class="field">
-        <div class="label">City / Location</div>
-        <div class="value">${city || "Not provided"}</div>
-      </div>
-      <div class="field">
-        <div class="label">Project Type</div>
-        <div class="value">${projectType || "Not specified"}</div>
-      </div>
-      <div class="field">
-        <div class="label">Budget Range</div>
-        <div class="value">${budget || "Not specified"}</div>
-      </div>
-      ${description ? `
-      <div class="field">
-        <div class="label">Project Description</div>
-        <div class="value">${description}</div>
-      </div>
-      ` : ""}
-      ${callTime ? `
-      <div class="field">
-        <div class="label">Best Time to Call</div>
-        <div class="value">${callTime}</div>
-      </div>
-      ` : ""}
-      ${referral ? `
-      <div class="field">
-        <div class="label">How they found you</div>
-        <div class="value">${referral}</div>
-      </div>
-      ` : ""}
+      <div class="field"><div class="label">Full Name</div><div class="value">${name}</div></div>
+      <div class="field"><div class="label">Email</div><div class="value"><a href="mailto:${email}">${email}</a></div></div>
+      <div class="field"><div class="label">Phone</div><div class="value"><a href="tel:${phone}">${phone}</a></div></div>
+      <div class="field"><div class="label">City / Location</div><div class="value">${city || "Not provided"}</div></div>
+      <div class="field"><div class="label">Project Type</div><div class="value">${projectType || "Not specified"}</div></div>
+      <div class="field"><div class="label">Budget Range</div><div class="value">${budget || "Not specified"}</div></div>
+      ${description ? `<div class="field"><div class="label">Project Description</div><div class="value">${description}</div></div>` : ""}
+      ${callTime ? `<div class="field"><div class="label">Best Time to Call</div><div class="value">${callTime}</div></div>` : ""}
+      ${referral ? `<div class="field"><div class="label">How they found you</div><div class="value">${referral}</div></div>` : ""}
       <a href="mailto:${email}" class="cta">Reply to ${name}</a>
     </div>
-    <div class="footer">
-      Sent automatically from bluelightning.us · Blue Lightning Decks &amp; Patios
-    </div>
+    <div class="footer">Sent automatically from bluelightning.us · Blue Lightning Decks &amp; Patios</div>
   </div>
 </body>
-</html>
-    `;
+</html>`;
 
     const confirmationEmailHtml = `
 <!DOCTYPE html>
@@ -103,10 +66,7 @@ export async function POST(req: NextRequest) {
     .header p { color: #8A8A8A; font-size: 13px; margin: 0; }
     .body { padding: 32px; }
     .body p { color: #444; font-size: 15px; line-height: 1.7; }
-    .body strong { color: #0D0D0D; }
     .next-steps { background: #f9f7f0; border-left: 3px solid #C9A84C; padding: 16px 20px; border-radius: 0 6px 6px 0; margin: 24px 0; }
-    .next-steps p { margin: 0 0 8px; }
-    .next-steps p:last-child { margin: 0; }
     .footer { background: #0D0D0D; padding: 20px 32px; text-align: center; }
     .footer p { color: #666; font-size: 12px; margin: 0; }
     .footer a { color: #C9A84C; text-decoration: none; }
@@ -129,43 +89,24 @@ export async function POST(req: NextRequest) {
         <p>✦ Detailed proposal with timeline and scope</p>
       </div>
       <p>In the meantime, you can reach us directly:</p>
-      <p>📞 <a href="tel:+17034239965" style="color: #C9A84C;">(703) 423-9965</a><br />
-      ✉ <a href="mailto:mc@bluelightning.us" style="color: #C9A84C;">mc@bluelightning.us</a></p>
+      <p>📞 <a href="tel:+17034239965" style="color:#C9A84C">(703) 423-9965</a><br />
+      ✉ <a href="mailto:gary@bluelightning.us" style="color:#C9A84C">gary@bluelightning.us</a></p>
     </div>
     <div class="footer">
       <p>Blue Lightning Decks &amp; Patios · Herndon, VA · <a href="https://bluelightning.us">bluelightning.us</a></p>
     </div>
   </div>
 </body>
-</html>
-    `;
+</html>`;
 
-    const fromDomain = process.env.EMAIL_FROM_DOMAIN || "onboarding@resend.dev";
-    const isTestMode = fromDomain.includes("resend.dev");
-    const fromAddr = isTestMode ? `Blue Lightning <${fromDomain}>` : `Blue Lightning Website <noreply@${fromDomain}>`;
-    const teamRecipients = isTestMode ? ["caballeromauricio766@gmail.com"] : ["mc@bluelightning.us", "info@bluelightning.us"];
-
-    const results = await Promise.allSettled([
-      resend.emails.send({
-        from: fromAddr,
-        to: teamRecipients,
-        subject: `🔔 New Lead: ${name} — ${projectType || "Consultation Request"}`,
-        html: leadEmailHtml,
-        replyTo: email,
-      }),
-      ...(!isTestMode ? [resend.emails.send({
-        from: `Blue Lightning Decks & Patios <noreply@${fromDomain}>`,
-        to: [email],
-        subject: "We received your request — Blue Lightning Decks & Patios",
-        html: confirmationEmailHtml,
-      })] : []),
-    ]);
-
-    const failed = results.find(r => r.status === "rejected");
-    if (failed) {
-      console.error("Resend error:", (failed as PromiseRejectedResult).reason);
-      return NextResponse.json({ error: "Email delivery failed." }, { status: 500 });
-    }
+    await sendBothEmails({
+      leadSubject: `🔔 New Lead: ${name} — ${projectType || "Consultation Request"}`,
+      leadHtml: leadEmailHtml,
+      replyTo: email,
+      clientEmail: email,
+      clientSubject: "We received your request — Blue Lightning Decks & Patios",
+      clientHtml: confirmationEmailHtml,
+    });
 
     return NextResponse.json({ success: true });
   } catch (err) {

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { Resend } from "resend";
+import { sendBothEmails } from "@/lib/mailer";
 
 export async function POST(req: NextRequest) {
   try {
@@ -19,7 +19,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .card{background:#141414;border:1px solid rgba(201,168,76,0.2);border-radius:12px;padding:20px;margin-bottom:16px}
 .label{color:#C9A84C;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:4px}
 .value{color:#F5F0E8;font-size:1rem}
-.transcript{background:#0D0D0D;border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:16px;font-size:12px;line-height:1.7;color:#8A8A8A;white-space:pre-wrap;max-height:400px;overflow-y:auto}
+.transcript{background:#0D0D0D;border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:16px;font-size:12px;line-height:1.7;color:#8A8A8A;white-space:pre-wrap}
 .cta{background:#C9A84C;color:#0D0D0D;text-decoration:none;padding:12px 24px;border-radius:8px;font-weight:700;font-size:13px;display:inline-block;margin-top:8px}
 .footer{text-align:center;margin-top:24px;color:#555;font-size:11px}
 </style></head>
@@ -33,8 +33,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <div class="label">Contact Info</div>
   <div class="value" style="font-size:1.2rem;font-weight:600">${name}</div>
   <div style="margin-top:8px"><a href="mailto:${email}" style="color:#C9A84C">${email}</a></div>
-  ${phone ? `<div style="margin-top:4px"><a href="tel:${phone.replace(/\D/g,'')}" style="color:#C9A84C">${phone}</a></div>` : ""}
-  <a href="mailto:${email}?subject=Following up from Blue Lightning AI Chat&body=Hi ${name}, thank you for chatting with our AI consultant today. I'd love to schedule a free consultation..." class="cta">Reply to ${name}</a>
+  ${phone ? `<div style="margin-top:4px"><a href="tel:${phone.replace(/\D/g, "")}" style="color:#C9A84C">${phone}</a></div>` : ""}
+  <a href="mailto:${email}?subject=Following up from Blue Lightning AI Chat&body=Hi ${name}, thank you for chatting with our AI consultant today. I%27d love to schedule a free consultation..." class="cta">Reply to ${name}</a>
 </div>
 
 <div class="card">
@@ -55,94 +55,52 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .header h1{font-size:1.6rem;font-weight:300;color:#F5F0E8;margin-bottom:8px}
 .gold{color:#C9A84C}
 .card{background:#141414;border:1px solid rgba(201,168,76,0.15);border-radius:12px;padding:24px;margin-bottom:16px}
-.team{display:flex;gap:16px;margin-top:16px}
-.person{flex:1;text-align:center}
-.person .name{color:#F5F0E8;font-size:0.9rem;font-weight:500}
-.person .role{color:#8A8A8A;font-size:11px;margin-top:2px}
-.person a{color:#C9A84C;font-size:11px}
-.cta-btn{background:#C9A84C;color:#0D0D0D;text-decoration:none;padding:14px 28px;border-radius:10px;font-weight:700;font-size:13px;display:inline-block;text-align:center}
+.cta-btn{background:#C9A84C;color:#0D0D0D;text-decoration:none;padding:14px 28px;border-radius:10px;font-weight:700;font-size:13px;display:inline-block}
 .footer{text-align:center;margin-top:32px;color:#555;font-size:11px}
 </style></head>
 <body><div class="container">
 <div class="header">
-  <img src="https://luxury-decks.vercel.app/blue-lightning-logo.png" alt="Blue Lightning" style="height:40px;margin-bottom:16px" onerror="this.style.display='none'">
   <h1>We received your request, <span class="gold">${name}.</span></h1>
   <p style="color:#8A8A8A;font-size:0.95rem;line-height:1.7">
-    Thank you for chatting with our AI design consultant. Our team has reviewed your conversation and will be in touch within 24 hours to discuss your project.
+    Thank you for chatting with our AI design consultant. Our team has reviewed your conversation and will be in touch within 24 hours.
   </p>
 </div>
-
 <div class="card" style="text-align:center">
   <div style="color:#C9A84C;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:12px">Your Next Step</div>
   <p style="color:#F5F0E8;font-size:1rem;margin-bottom:16px;line-height:1.6">
-    Call Gary or Mauricio directly for the fastest response — or reply to this email and we'll schedule your free consultation.
+    Call Gary or Mauricio directly — or reply to this email to schedule your free consultation.
   </p>
   <a href="tel:+17034239965" class="cta-btn">📞 Call (703) 423-9965</a>
 </div>
-
 <div class="card">
   <div style="color:#C9A84C;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:12px">Your Team</div>
-  <div class="team">
-    <div class="person">
-      <div class="name">Gary Anderson</div>
-      <div class="role">Senior Sales Consultant</div>
-      <a href="mailto:gary@bluelightning.us">gary@bluelightning.us</a>
-    </div>
-    <div class="person">
-      <div class="name">Mauricio Caballero</div>
-      <div class="role">CEO & Design Consultant</div>
-      <a href="mailto:mc@bluelightning.us">mc@bluelightning.us</a>
-    </div>
-  </div>
+  <table width="100%"><tr>
+    <td style="text-align:center;padding:8px">
+      <div style="color:#F5F0E8;font-weight:500">Gary Anderson</div>
+      <div style="color:#8A8A8A;font-size:11px">Senior Sales Consultant</div>
+      <a href="mailto:gary@bluelightning.us" style="color:#C9A84C;font-size:11px">gary@bluelightning.us</a>
+    </td>
+    <td style="text-align:center;padding:8px">
+      <div style="color:#F5F0E8;font-weight:500">Mauricio Caballero</div>
+      <div style="color:#8A8A8A;font-size:11px">CEO &amp; Design Consultant</div>
+      <a href="mailto:mc@bluelightning.us" style="color:#C9A84C;font-size:11px">mc@bluelightning.us</a>
+    </td>
+  </tr></table>
 </div>
-
 <div class="footer">
-  Blue Lightning Decks &amp; Patios · Northern Virginia's Premier Outdoor Living Firm<br>
-  850+ Projects Completed · Class A Licensed · Fully Insured
+  Blue Lightning Decks &amp; Patios · Northern Virginia<br>
+  850+ Projects · Class A Licensed · Fully Insured
 </div>
 </div></body></html>`;
 
-    // Send both emails in parallel
-    if (process.env.RESEND_API_KEY) {
-      const resend = new Resend(process.env.RESEND_API_KEY);
-      // Use verified domain if set, otherwise fall back to Resend's shared domain (test mode)
-      const fromDomain = process.env.EMAIL_FROM_DOMAIN || "onboarding@resend.dev";
-      const fromTeam = fromDomain.includes("resend.dev")
-        ? `Blue Lightning AI <${fromDomain}>`
-        : `Blue Lightning AI <noreply@${fromDomain}>`;
-      const fromClient = fromDomain.includes("resend.dev")
-        ? `Blue Lightning Decks & Patios <${fromDomain}>`
-        : `Blue Lightning Decks & Patios <noreply@${fromDomain}>`;
-      // In test mode (resend.dev), only send team email to the account owner Gmail
-      const teamRecipients = fromDomain.includes("resend.dev")
-        ? ["caballeromauricio766@gmail.com"]
-        : ["mc@bluelightning.us", "gary@bluelightning.us"];
-
-      const results = await Promise.allSettled([
-        resend.emails.send({
-          from: fromTeam,
-          to: teamRecipients,
-          subject: `🔥 AI Chat Lead: ${name} — Ready to Talk`,
-          html: teamHtml,
-          replyTo: email,
-        }),
-        // Only send client confirmation if domain is verified (not test mode)
-        ...(!fromDomain.includes("resend.dev") ? [resend.emails.send({
-          from: fromClient,
-          to: [email],
-          subject: `We received your request — Blue Lightning Decks & Patios`,
-          html: clientHtml,
-        })] : []),
-      ]);
-      results.forEach((r, i) => {
-        if (r.status === "rejected") console.error(`Email ${i} failed:`, r.reason);
-      });
-    } else {
-      // Log to console if Resend not configured (dev mode)
-      console.log("=== CHAT LEAD (Resend not configured) ===");
-      console.log("Name:", name, "| Email:", email, "| Phone:", phone);
-      console.log("Transcript preview:", transcript.slice(0, 200));
-    }
+    await sendBothEmails({
+      leadSubject: `🔥 AI Chat Lead: ${name} — Ready to Talk`,
+      leadHtml: teamHtml,
+      replyTo: email,
+      clientEmail: email,
+      clientSubject: "We received your request — Blue Lightning Decks & Patios",
+      clientHtml,
+    });
 
     return NextResponse.json({ success: true });
   } catch (err) {

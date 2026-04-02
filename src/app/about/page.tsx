@@ -255,8 +255,8 @@ export default function AboutPage() {
                 className="p-8 rounded-2xl"
                 style={{ background: "#141414", border: "1px solid rgba(201,168,76,0.1)" }}
               >
-                <div className="w-24 h-24 rounded-full mb-5 flex items-center justify-center" style={{ background: "rgba(201,168,76,0.08)", border: "2px solid rgba(201,168,76,0.25)" }}>
-                  <span style={{ fontFamily: "var(--font-display)", fontSize: "2.2rem", color: "#C9A84C", fontWeight: 300 }}>G</span>
+                <div className="w-24 h-24 rounded-full mb-5 overflow-hidden flex-shrink-0" style={{ border: "2px solid rgba(201,168,76,0.4)" }}>
+                  <img src="/gary-anderson.jpg" alt="Gary Anderson — Senior Sales Consultant" className="w-full h-full object-cover object-top" />
                 </div>
                 <h3 style={{ fontFamily: "var(--font-display)", fontSize: "1.35rem", color: "#F5F0E8", fontWeight: 300, marginBottom: "4px" }}>
                   Gary Anderson
@@ -267,7 +267,7 @@ export default function AboutPage() {
                 <p style={{ color: "#8A8A8A", fontSize: "0.85rem", lineHeight: 1.8, fontWeight: 300, marginBottom: "12px" }}>
                   After honorable service in the United States Marine Corps and 16 years safeguarding U.S. embassies abroad with the State Department, Gary transitioned into construction in 2012. His military precision and diplomatic poise ensure clients receive expertise, care, and integrity second to none — guiding every client through each step with absolute excellence.
                 </p>
-                <a href="tel:+17034239965" style={{ color: "#C9A84C", fontSize: "12px" }}>(703) 423-9965</a>
+                <a href="mailto:gary@bluelightning.us" style={{ color: "#C9A84C", fontSize: "12px" }}>gary@bluelightning.us</a>
               </motion.div>
             </div>
 

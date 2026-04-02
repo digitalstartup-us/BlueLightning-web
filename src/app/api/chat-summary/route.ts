@@ -3,7 +3,6 @@ import { Resend } from "resend";
 
 export async function POST(req: NextRequest) {
   try {
-    const resend = new Resend(process.env.RESEND_API_KEY);
     const { name, email, phone, transcript } = await req.json();
 
     const now = new Date().toLocaleString("en-US", { timeZone: "America/New_York", dateStyle: "full", timeStyle: "short" });
@@ -105,6 +104,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 
     // Send both emails in parallel
     if (process.env.RESEND_API_KEY) {
+      const resend = new Resend(process.env.RESEND_API_KEY);
       await Promise.allSettled([
         resend.emails.send({
           from: "Blue Lightning AI <noreply@bluelightning.us>",

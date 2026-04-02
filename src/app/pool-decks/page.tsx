@@ -51,10 +51,10 @@ const T = {
 
 const IMGS = {
   pool:      "/images/05 - Pool Decks Full Outdoor Living/pool-deck_aerial-pool-house-afternoon_01.jpg",
-  wood:      "/images/05 - Pool Decks Full Outdoor Living/pool-deck_porcelain-blue-pool-house_01.jpg",
+  wood:      "/images/05 - Pool Decks Full Outdoor Living/facebook_pool-porcelain-spa-evening_01.jpg",
   overhead:  "/images/05 - Pool Decks Full Outdoor Living/pool-deck_aerial-pool-firepit-evening_01.jpg",
-  details:   "/images/05 - Pool Decks Full Outdoor Living/pool-deck_porcelain-pool-spa-modern_02.jpg",
-  lifestyle: "/images/05 - Pool Decks Full Outdoor Living/pool-deck_aerial-pool-night_01.jpg",
+  details:   "/images/05 - Pool Decks Full Outdoor Living/facebook_pool-sunken-firepit-led-night_01.jpg",
+  lifestyle: "/images/05 - Pool Decks Full Outdoor Living/facebook_pool-travertine-pool-house_01.jpg",
   dark:      "/images/05 - Pool Decks Full Outdoor Living/pool-deck_aerial-pool-night_05.jpg",
 };
 

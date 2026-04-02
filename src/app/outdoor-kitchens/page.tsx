@@ -108,7 +108,7 @@ export default function OutdoorKitchensPage() {
                 className="overflow-hidden rounded-3xl"
                 style={{ aspectRatio: "4/3" }}
               >
-                <img src="/images/04 - Outdoor Kitchens/outdoor-kitchen_dark-gray-pergola-grill-firepit_01.jpg" alt="Outdoor kitchen design — Blue Lightning Decks & Patios" className="w-full h-full object-cover" />
+                <img src="/images/04 - Outdoor Kitchens/outdoor-kitchen_real-project-phone_01.jpg" alt="Outdoor kitchen real project — Blue Lightning Decks & Patios" className="w-full h-full object-cover" />
               </motion.div>
             </div>
           </div>
@@ -170,7 +170,7 @@ export default function OutdoorKitchensPage() {
                 className="overflow-hidden rounded-3xl order-2 lg:order-1"
                 style={{ aspectRatio: "4/3" }}
               >
-                <img src="/images/04 - Outdoor Kitchens/outdoor-kitchen_covered-pool-room-fireplace_01.jpg" alt="Outdoor living integration — Blue Lightning Decks & Patios" className="w-full h-full object-cover" />
+                <img src="/images/04 - Outdoor Kitchens/facebook_outdoor-kitchen-stone-island-patio_01.jpg" alt="Outdoor kitchen stone island — Blue Lightning Decks & Patios" className="w-full h-full object-cover" />
               </motion.div>
               <motion.div
                 initial={{ opacity: 0, x: -40 }}

@@ -128,7 +128,7 @@ const services = [
     title: "Driveways & Hardscaping",
     tagline: "Premium Pavers, Stamped Concrete & Stone",
     href: "/patios",
-    image: "/images/02 - Patios & Hardscaping/patio_porcelain-gray-home-exterior-gravel_01.jpg",
+    image: "/images/07 - Driveways/driveway_circular-colonial-estate_01.jpg",
     description: "Your driveway is the first impression of your home. We design and build premium driveway and hardscaping systems that complement your home's architecture and last for decades.",
     includes: [
       "Paver driveways",

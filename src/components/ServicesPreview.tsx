@@ -51,7 +51,7 @@ const services = [
     title: "Driveways",
     description: "Premium paver and stamped concrete driveways that make a statement from the moment you arrive. Built to last decades.",
     href: "/patios",
-    image: "/images/02 - Patios & Hardscaping/patio_porcelain-gray-home-exterior-gravel_01.jpg",
+    image: "/images/07 - Driveways/driveway_paver-circular-luxury-landscaping_01.jpg",
     tags: ["Techo-Bloc", "Unilock Pavers", "Concrete"],
   },
   {

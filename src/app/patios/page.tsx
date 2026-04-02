@@ -34,11 +34,20 @@ const T = {
 const IMGS = {
   hero:     "/images/02 - Patios & Hardscaping/patio_porcelain-gray-fire-table-outdoor-kitchen_01.jpg",
   pavers:   "/images/02 - Patios & Hardscaping/patio_porcelain-gray-fire-table-backyard-view_02.jpg",
-  firepit:  "/images/02 - Patios & Hardscaping/patio_porcelain-gray-fire-table-evening_02.jpg",
+  firepit:  "/images/02 - Patios & Hardscaping/patio_real-project-phone_04.jpg",
   kitchen:  "/images/02 - Patios & Hardscaping/patio_stone-hardscape-black-railing-gravel_01.jpg",
   outdoor:  "/images/02 - Patios & Hardscaping/patio_porcelain-gray-covered-pergola_01.jpg",
   evening:  "/images/02 - Patios & Hardscaping/patio_porcelain-gray-deck-transition_01.jpg",
 };
+
+const STAMPED_GALLERY = [
+  { src: "/images/02 - Patios & Hardscaping/patio_real-project-phone_04.jpg", caption: "Compass Rose Medallion · Ashburn, VA", tag: "Real Project" },
+  { src: "/images/02 - Patios & Hardscaping/patio_real-project-phone_05.jpg", caption: "Stone-Pattern Night Lighting · Sterling, VA", tag: "Real Project" },
+  { src: "/images/02 - Patios & Hardscaping/patio_real-project-phone_06.jpg", caption: "Curved Stamped Under Deck · Loudoun County", tag: "Real Project" },
+  { src: "/images/02 - Patios & Hardscaping/patio_real-project-phone_07.jpg", caption: "Multi-Level Stamped Concrete · Herndon, VA", tag: "Real Project" },
+  { src: "/images/08 - Stamped Concrete/stamped_diamond-iron-railing-premium_01.jpg", caption: "Diamond Medallion with Iron Railing", tag: "Premium Design" },
+  { src: "/images/08 - Stamped Concrete/stamped_curved-path-dark-brick_01.jpg", caption: "Curved Brick-Pattern Pathway", tag: "Artisan Finish" },
+];
 
 function ScrollProgress({ p }: { p: MotionValue<number> }) {
   const smooth = useSpring(p, { stiffness: 120, damping: 25 });
@@ -445,6 +454,70 @@ function PostScrollSection() {
             </div>
           </motion.div>
         </div>
+      </section>
+
+      <div className="h-px mx-6 md:mx-20" style={{ background: "linear-gradient(to right, transparent, rgba(201,168,76,0.2), transparent)" }} />
+
+      {/* Stamped Concrete Gallery Section */}
+      <section className="py-28 px-6 md:px-20 max-w-7xl mx-auto">
+        <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="text-center mb-16">
+          <div className="flex items-center justify-center gap-4 mb-6">
+            <div className="h-px w-12" style={{ background: "#C9A84C" }} />
+            <span className="text-xs tracking-[0.3em] uppercase" style={{ color: "#C9A84C", fontSize: "10px" }}>Signature Specialty</span>
+            <div className="h-px w-12" style={{ background: "#C9A84C" }} />
+          </div>
+          <h3 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(2.8rem, 6vw, 6rem)", fontWeight: 300, color: "#F5F0E8", lineHeight: 1.05, letterSpacing: "-0.02em" }}>
+            Stamped Concrete.
+            <br />
+            <em style={{ color: "#C9A84C" }}>Artistry in Every Pour.</em>
+          </h3>
+          <p className="mt-6 max-w-2xl mx-auto" style={{ color: "#8A8A8A", fontSize: "1.05rem", fontWeight: 300, lineHeight: 1.8 }}>
+            Customizable patterns, natural stone textures, and integrated medallions — stamped concrete delivers the look of premium stone at a fraction of the cost. Durable, weather-resistant, and unmistakably custom.
+          </p>
+        </motion.div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
+          {STAMPED_GALLERY.map((item, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: i * 0.08 }}
+              className="group relative overflow-hidden rounded-2xl"
+              style={{ aspectRatio: i === 0 || i === 3 ? "4/3" : "4/3", border: "1px solid rgba(201,168,76,0.1)" }}
+            >
+              <img
+                src={item.src}
+                alt={item.caption}
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+              <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(9,9,9,0.85) 0%, rgba(9,9,9,0.1) 55%)" }} />
+              <div className="absolute bottom-4 left-4 right-4">
+                <span className="inline-block text-xs px-2 py-0.5 rounded-full mb-2"
+                  style={{ background: "rgba(201,168,76,0.15)", border: "1px solid rgba(201,168,76,0.3)", color: "#C9A84C", fontSize: "9px", letterSpacing: "0.12em" }}>
+                  {item.tag}
+                </span>
+                <p style={{ color: "#F5F0E8", fontSize: "12px", fontWeight: 300, letterSpacing: "0.03em" }}>{item.caption}</p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}
+          className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-8" style={{ borderTop: "1px solid rgba(201,168,76,0.1)" }}>
+          {[
+            { label: "Patterns", value: "50+" },
+            { label: "Color Options", value: "30+" },
+            { label: "Concrete Projects", value: "200+" },
+            { label: "Year Warranty", value: "10yr" },
+          ].map((stat) => (
+            <div key={stat.label} className="text-center">
+              <div style={{ fontFamily: "var(--font-display)", fontSize: "2.5rem", color: "#C9A84C", fontWeight: 300 }}>{stat.value}</div>
+              <div style={{ color: "#8A8A8A", fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase", marginTop: "4px" }}>{stat.label}</div>
+            </div>
+          ))}
+        </motion.div>
       </section>
 
       <div className="h-px mx-6 md:mx-20" style={{ background: "linear-gradient(to right, transparent, rgba(201,168,76,0.2), transparent)" }} />

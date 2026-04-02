@@ -62,6 +62,8 @@ const STEPS = ["Your Info", "Your Project", "Final Details"];
 export default function ContactPage() {
   const [step, setStep] = useState(0);
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
   const [direction, setDirection] = useState(1);
 
   const [form, setForm] = useState({
@@ -75,6 +77,25 @@ export default function ContactPage() {
 
   const advance = () => { setDirection(1); setStep((s) => s + 1); };
   const back = () => { setDirection(-1); setStep((s) => s - 1); };
+
+  const handleSubmit = async () => {
+    setSubmitting(true);
+    setSubmitError("");
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "Submission failed");
+      setSubmitted(true);
+    } catch (err) {
+      setSubmitError(err instanceof Error ? err.message : "Something went wrong. Please call (703) 423-9965 directly.");
+    } finally {
+      setSubmitting(false);
+    }
+  };
 
   const step1Valid = form.name && form.email && form.phone && form.city;
   const step2Valid = form.projectType && form.budget;
@@ -523,16 +544,22 @@ export default function ContactPage() {
                             Continue <ArrowRight size={14} />
                           </motion.button>
                         ) : (
-                          <motion.button
-                            whileHover={{ scale: 1.03 }}
-                            whileTap={{ scale: 0.97 }}
-                            onClick={() => setSubmitted(true)}
-                            className="btn-gold px-8 py-3.5 rounded-xl flex items-center gap-3 cursor-pointer"
-                            style={{ fontSize: "12px", letterSpacing: "0.15em" }}
-                          >
-                            Send to Mauricio
-                            <ArrowRight size={14} />
-                          </motion.button>
+                          <div className="flex flex-col items-start gap-3">
+                            <motion.button
+                              whileHover={{ scale: submitting ? 1 : 1.03 }}
+                              whileTap={{ scale: submitting ? 1 : 0.97 }}
+                              onClick={handleSubmit}
+                              disabled={submitting}
+                              className="btn-gold px-8 py-3.5 rounded-xl flex items-center gap-3 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
+                              style={{ fontSize: "12px", letterSpacing: "0.15em" }}
+                            >
+                              {submitting ? "Sending…" : "Send to Mauricio"}
+                              {!submitting && <ArrowRight size={14} />}
+                            </motion.button>
+                            {submitError && (
+                              <p style={{ color: "#E57373", fontSize: "12px", maxWidth: "340px" }}>{submitError}</p>
+                            )}
+                          </div>
                         )}
                       </div>
                     </div>

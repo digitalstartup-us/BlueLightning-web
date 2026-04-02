@@ -44,7 +44,10 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# large media files (host via CDN or Vercel Blob for production)
-/public/video/*.mp4
-/public/video/*.mov
-/public/video/*.webm
+# large media files — ignore only files over 100MB
+/public/video/Blue Lightning 4K.mp4
+/public/video/Mauricio - Outdoor Living Designer (4K High Quality).mp4
+/public/video/BLUE LIGHTNING Final video copy.mp4
+
+# to_review staging folder — not for production
+/public/to_review/

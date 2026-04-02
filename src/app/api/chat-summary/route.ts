@@ -105,21 +105,38 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     // Send both emails in parallel
     if (process.env.RESEND_API_KEY) {
       const resend = new Resend(process.env.RESEND_API_KEY);
-      await Promise.allSettled([
+      // Use verified domain if set, otherwise fall back to Resend's shared domain (test mode)
+      const fromDomain = process.env.EMAIL_FROM_DOMAIN || "onboarding@resend.dev";
+      const fromTeam = fromDomain.includes("resend.dev")
+        ? `Blue Lightning AI <${fromDomain}>`
+        : `Blue Lightning AI <noreply@${fromDomain}>`;
+      const fromClient = fromDomain.includes("resend.dev")
+        ? `Blue Lightning Decks & Patios <${fromDomain}>`
+        : `Blue Lightning Decks & Patios <noreply@${fromDomain}>`;
+      // In test mode (resend.dev), only send team email to the account owner Gmail
+      const teamRecipients = fromDomain.includes("resend.dev")
+        ? ["caballeromauricio766@gmail.com"]
+        : ["mc@bluelightning.us", "gary@bluelightning.us"];
+
+      const results = await Promise.allSettled([
         resend.emails.send({
-          from: "Blue Lightning AI <noreply@bluelightning.us>",
-          to: ["mc@bluelightning.us", "gary@bluelightning.us"],
+          from: fromTeam,
+          to: teamRecipients,
           subject: `🔥 AI Chat Lead: ${name} — Ready to Talk`,
           html: teamHtml,
           replyTo: email,
         }),
-        resend.emails.send({
-          from: "Blue Lightning Decks & Patios <noreply@bluelightning.us>",
+        // Only send client confirmation if domain is verified (not test mode)
+        ...(!fromDomain.includes("resend.dev") ? [resend.emails.send({
+          from: fromClient,
           to: [email],
           subject: `We received your request — Blue Lightning Decks & Patios`,
           html: clientHtml,
-        }),
+        })] : []),
       ]);
+      results.forEach((r, i) => {
+        if (r.status === "rejected") console.error(`Email ${i} failed:`, r.reason);
+      });
     } else {
       // Log to console if Resend not configured (dev mode)
       console.log("=== CHAT LEAD (Resend not configured) ===");

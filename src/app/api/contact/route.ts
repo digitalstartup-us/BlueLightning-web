@@ -2,8 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 
 export async function POST(req: NextRequest) {
-  const resend = new Resend(process.env.RESEND_API_KEY);
   try {
+    const resend = new Resend(process.env.RESEND_API_KEY);
     const body = await req.json();
     const { name, email, phone, city, projectType, budget, referral, description, callTime } = body;
 
@@ -140,24 +140,30 @@ export async function POST(req: NextRequest) {
 </html>
     `;
 
-    const [leadEmail, confirmEmail] = await Promise.all([
+    const fromDomain = process.env.EMAIL_FROM_DOMAIN || "onboarding@resend.dev";
+    const isTestMode = fromDomain.includes("resend.dev");
+    const fromAddr = isTestMode ? `Blue Lightning <${fromDomain}>` : `Blue Lightning Website <noreply@${fromDomain}>`;
+    const teamRecipients = isTestMode ? ["caballeromauricio766@gmail.com"] : ["mc@bluelightning.us", "info@bluelightning.us"];
+
+    const results = await Promise.allSettled([
       resend.emails.send({
-        from: "Blue Lightning Website <noreply@bluelightning.us>",
-        to: ["mc@bluelightning.us", "info@bluelightning.us"],
+        from: fromAddr,
+        to: teamRecipients,
         subject: `🔔 New Lead: ${name} — ${projectType || "Consultation Request"}`,
         html: leadEmailHtml,
         replyTo: email,
       }),
-      resend.emails.send({
-        from: "Blue Lightning Decks & Patios <noreply@bluelightning.us>",
+      ...(!isTestMode ? [resend.emails.send({
+        from: `Blue Lightning Decks & Patios <noreply@${fromDomain}>`,
         to: [email],
         subject: "We received your request — Blue Lightning Decks & Patios",
         html: confirmationEmailHtml,
-      }),
+      })] : []),
     ]);
 
-    if (leadEmail.error || confirmEmail.error) {
-      console.error("Resend error:", leadEmail.error || confirmEmail.error);
+    const failed = results.find(r => r.status === "rejected");
+    if (failed) {
+      console.error("Resend error:", (failed as PromiseRejectedResult).reason);
       return NextResponse.json({ error: "Email delivery failed." }, { status: 500 });
     }
 

@@ -3,6 +3,7 @@ import { Cormorant_Garamond, Montserrat } from "next/font/google";
 import "./globals.css";
 import GoogleTagManager from "@/components/GoogleTagManager";
 import JsonLd from "@/components/JsonLd";
+import AIChat from "@/components/AIChat";
 
 const cormorant = Cormorant_Garamond({
   variable: "--font-display",
@@ -111,6 +112,7 @@ export default function RootLayout({
         <JsonLd />
         {gtmId && <GoogleTagManager gtmId={gtmId} />}
         {children}
+        <AIChat />
       </body>
     </html>
   );

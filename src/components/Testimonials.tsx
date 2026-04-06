@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect, useCallback } from "react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
-import { Star, ChevronLeft, ChevronRight, Play, Phone, X, Volume2, Maximize2 } from "lucide-react";
+import { Star, ChevronLeft, ChevronRight, Play, Phone, X, Volume2, VolumeX, Maximize2, Loader2 } from "lucide-react";
 import Link from "next/link";
 
 const testimonials = [
@@ -90,21 +90,43 @@ function VideoModal({
   onClose: () => void;
 }) {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [muted, setMuted] = useState(true);
+  const [loading, setLoading] = useState(true);
+  const [playing, setPlaying] = useState(false);
 
+  // Lock body scroll
   useEffect(() => {
     document.body.style.overflow = "hidden";
-    const t = setTimeout(() => videoRef.current?.play(), 200);
-    return () => {
-      clearTimeout(t);
-      document.body.style.overflow = "";
-    };
+    return () => { document.body.style.overflow = ""; };
   }, []);
 
+  // ESC to close
   useEffect(() => {
     const handler = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
     window.addEventListener("keydown", handler);
     return () => window.removeEventListener("keydown", handler);
   }, [onClose]);
+
+  // Start muted autoplay — works on ALL browsers and mobile
+  useEffect(() => {
+    const vid = videoRef.current;
+    if (!vid) return;
+    vid.muted = true;
+    vid.play().then(() => {
+      setPlaying(true);
+    }).catch(() => {
+      // Autoplay blocked — user will tap play manually
+    });
+  }, []);
+
+  const toggleMute = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (!videoRef.current) return;
+    videoRef.current.muted = !muted;
+    setMuted(!muted);
+  };
+
+  const handleCanPlay = () => setLoading(false);
 
   return (
     <motion.div
@@ -113,7 +135,7 @@ function VideoModal({
       exit={{ opacity: 0 }}
       transition={{ duration: 0.3 }}
       className="fixed inset-0 z-[300] flex flex-col items-center justify-center"
-      style={{ background: "rgba(0,0,0,0.96)", backdropFilter: "blur(20px)" }}
+      style={{ background: "rgba(0,0,0,0.97)", backdropFilter: "blur(20px)" }}
       onClick={onClose}
     >
       {/* Close */}
@@ -124,8 +146,8 @@ function VideoModal({
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
         onClick={onClose}
-        className="absolute top-5 right-5 z-10 w-11 h-11 rounded-full flex items-center justify-center"
-        style={{ background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.12)", color: "#F5F0E8" }}
+        className="absolute top-5 right-5 z-20 w-11 h-11 rounded-full flex items-center justify-center"
+        style={{ background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.15)", color: "#F5F0E8" }}
       >
         <X size={18} />
       </motion.button>
@@ -140,48 +162,76 @@ function VideoModal({
         style={{ maxWidth: "1000px", padding: "0 16px" }}
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Video */}
+        {/* Video wrapper */}
         <div className="relative overflow-hidden rounded-2xl shadow-2xl" style={{ aspectRatio: "16/9", background: "#000" }}>
+
+          {/* Loading spinner */}
+          {loading && (
+            <div className="absolute inset-0 flex items-center justify-center z-10">
+              <Loader2 size={40} className="animate-spin" style={{ color: "rgba(201,168,76,0.7)" }} />
+            </div>
+          )}
+
           <video
             ref={videoRef}
             src={item.video}
             poster={item.poster}
             controls
             playsInline
+            preload="auto"
+            muted
+            onCanPlay={handleCanPlay}
+            onPlay={() => setPlaying(true)}
+            onPause={() => setPlaying(false)}
             className="w-full h-full object-contain"
-            style={{ background: "#000" }}
+            style={{ background: "#000", display: "block" }}
           />
+
+          {/* Mute/Unmute button overlay — top-left corner */}
+          {playing && (
+            <motion.button
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5 }}
+              onClick={toggleMute}
+              className="absolute top-3 left-3 z-20 flex items-center gap-2 px-3 py-1.5 rounded-full"
+              style={{ background: "rgba(0,0,0,0.7)", border: "1px solid rgba(201,168,76,0.3)", color: "#C9A84C", backdropFilter: "blur(8px)" }}
+            >
+              {muted
+                ? <><VolumeX size={13} /><span style={{ fontSize: "10px", letterSpacing: "0.1em" }}>TAP TO UNMUTE</span></>
+                : <><Volume2 size={13} /><span style={{ fontSize: "10px", letterSpacing: "0.1em" }}>SOUND ON</span></>
+              }
+            </motion.button>
+          )}
         </div>
 
         {/* Info bar below video */}
-        <div className="flex items-start justify-between mt-5 px-1">
+        <div className="flex items-start justify-between mt-4 px-1">
           <div>
-            <div className="flex items-center gap-3 mb-1">
-              <span className="text-xs px-2.5 py-0.5 rounded-full"
-                style={{ background: "rgba(201,168,76,0.15)", border: "1px solid rgba(201,168,76,0.3)", color: "#C9A84C", fontSize: "9px", letterSpacing: "0.12em", textTransform: "uppercase" }}>
-                {item.label}
-              </span>
-            </div>
-            <h3 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.1rem, 2.5vw, 1.5rem)", color: "#F5F0E8", fontWeight: 300 }}>
+            <span className="text-xs px-2.5 py-0.5 rounded-full inline-block mb-2"
+              style={{ background: "rgba(201,168,76,0.15)", border: "1px solid rgba(201,168,76,0.3)", color: "#C9A84C", fontSize: "9px", letterSpacing: "0.12em", textTransform: "uppercase" }}>
+              {item.label}
+            </span>
+            <h3 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1rem, 2.5vw, 1.4rem)", color: "#F5F0E8", fontWeight: 300 }}>
               {item.name}
             </h3>
-            <p style={{ color: "#8A8A8A", fontSize: "13px", marginTop: "4px" }}>{item.role}</p>
+            <p style={{ color: "#8A8A8A", fontSize: "12px", marginTop: "3px" }}>{item.role}</p>
           </div>
-          <div className="hidden sm:block max-w-xs">
-            <p style={{ color: "#666", fontSize: "12px", lineHeight: 1.65, textAlign: "right" }}>{item.description}</p>
+          <div className="hidden sm:block max-w-xs text-right">
+            <p style={{ color: "#555", fontSize: "12px", lineHeight: 1.6 }}>{item.description}</p>
           </div>
         </div>
       </motion.div>
 
-      {/* Escape hint */}
+      {/* ESC hint */}
       <motion.p
         initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.5 }}
-        className="absolute bottom-5"
-        style={{ color: "rgba(255,255,255,0.2)", fontSize: "11px", letterSpacing: "0.12em" }}
+        animate={{ opacity: 0.3 }}
+        transition={{ delay: 1 }}
+        className="absolute bottom-4"
+        style={{ color: "rgba(255,255,255,0.4)", fontSize: "10px", letterSpacing: "0.15em" }}
       >
-        Press ESC to close
+        ESC TO CLOSE
       </motion.p>
     </motion.div>
   );
@@ -196,14 +246,14 @@ function FeaturedVideoCard({ item, onOpen }: { item: typeof videoTestimonials[0]
       viewport={{ once: true }}
       transition={{ duration: 0.8 }}
       className="group relative overflow-hidden rounded-2xl cursor-pointer"
-      style={{ aspectRatio: "16/9", border: "1px solid rgba(201,168,76,0.15)" }}
+      style={{ aspectRatio: "16/9", border: "1px solid rgba(201,168,76,0.15)", background: "#111" }}
       onClick={onOpen}
     >
       <img
         src={item.poster}
         alt={item.name}
-        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-103"
-        style={{ transform: "scale(1.01)" }}
+        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700"
+        style={{ transform: "scale(1.02)" }}
       />
       {/* Cinematic overlay */}
       <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.7) 100%)" }} />

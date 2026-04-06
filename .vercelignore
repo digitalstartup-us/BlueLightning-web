@@ -1,5 +1,3 @@
-# Exclude large video files — host via CDN for production
-public/video
-*.mp4
-*.mov
-*.webm
+# Large 4K source files are already excluded via .gitignore
+# (never pushed to git so Vercel never sees them)
+# The committed videos in public/video/ are all under 50MB — safe to deploy

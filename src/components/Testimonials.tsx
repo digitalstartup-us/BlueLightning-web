@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect, useCallback } from "react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
-import { Star, ChevronLeft, ChevronRight, Play, Phone, X, Volume2, VolumeX, Maximize2, Loader2 } from "lucide-react";
+import { Star, ChevronLeft, ChevronRight, Play, Phone, X, Volume2, VolumeX, Maximize2 } from "lucide-react";
 import Link from "next/link";
 
 const testimonials = [
@@ -91,8 +91,8 @@ function VideoModal({
 }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [muted, setMuted] = useState(true);
-  const [loading, setLoading] = useState(true);
   const [playing, setPlaying] = useState(false);
+  const [videoError, setVideoError] = useState(false);
 
   // Lock body scroll
   useEffect(() => {
@@ -125,8 +125,6 @@ function VideoModal({
     videoRef.current.muted = !muted;
     setMuted(!muted);
   };
-
-  const handleCanPlay = () => setLoading(false);
 
   return (
     <motion.div
@@ -165,27 +163,29 @@ function VideoModal({
         {/* Video wrapper */}
         <div className="relative overflow-hidden rounded-2xl shadow-2xl" style={{ aspectRatio: "16/9", background: "#000" }}>
 
-          {/* Loading spinner */}
-          {loading && (
-            <div className="absolute inset-0 flex items-center justify-center z-10">
-              <Loader2 size={40} className="animate-spin" style={{ color: "rgba(201,168,76,0.7)" }} />
+          {videoError ? (
+            <div className="absolute inset-0 flex flex-col items-center justify-center gap-3">
+              <span style={{ fontSize: "32px" }}>🎬</span>
+              <p style={{ color: "#8A8A8A", fontSize: "13px", textAlign: "center", padding: "0 20px" }}>
+                Video unavailable — call us at (703) 423-9965
+              </p>
             </div>
+          ) : (
+            <video
+              ref={videoRef}
+              src={item.video}
+              poster={item.poster}
+              controls
+              playsInline
+              preload="metadata"
+              muted
+              onPlay={() => setPlaying(true)}
+              onPause={() => setPlaying(false)}
+              onError={() => setVideoError(true)}
+              className="w-full h-full object-contain"
+              style={{ background: "#000", display: "block" }}
+            />
           )}
-
-          <video
-            ref={videoRef}
-            src={item.video}
-            poster={item.poster}
-            controls
-            playsInline
-            preload="auto"
-            muted
-            onCanPlay={handleCanPlay}
-            onPlay={() => setPlaying(true)}
-            onPause={() => setPlaying(false)}
-            className="w-full h-full object-contain"
-            style={{ background: "#000", display: "block" }}
-          />
 
           {/* Mute/Unmute button overlay — top-left corner */}
           {playing && (

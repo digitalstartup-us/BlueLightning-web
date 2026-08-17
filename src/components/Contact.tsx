@@ -19,6 +19,8 @@ export default function Contact() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const [formData, setFormData] = useState<FormData>({
     name: "",
     email: "",
@@ -30,9 +32,46 @@ export default function Contact() {
     message: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    setLoading(true);
+    setError(null);
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          city: formData.city,
+          projectType: formData.project,
+          budget: formData.budget,
+          referral: formData.source,
+          description: formData.message,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "Failed to submit form");
+      }
+
+      setSubmitted(true);
+    } catch (err) {
+      console.error("Form submission error:", err);
+      setError(
+        err instanceof Error
+          ? err.message
+          : "Unable to submit form. Please call us at (703) 423-9965."
+      );
+    } finally {
+      setLoading(false);
+    }
   };
 
   const set = (field: keyof FormData) => (v: string) =>
@@ -266,14 +305,27 @@ export default function Contact() {
                     Free Consultation Request
                   </h3>
 
+                  {error && (
+                    <div
+                      className="p-4 rounded-xl mb-4"
+                      style={{
+                        background: "rgba(220, 38, 38, 0.1)",
+                        border: "1px solid rgba(220, 38, 38, 0.3)",
+                        color: "#FCA5A5",
+                      }}
+                    >
+                      <p className="text-sm">{error}</p>
+                    </div>
+                  )}
+
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <InputField label="Full Name *" placeholder="Your full name" value={formData.name} onChange={set("name")} required />
-                    <InputField label="Email Address *" type="email" placeholder="your@email.com" value={formData.email} onChange={set("email")} required />
+                    <InputField label="Full Name *" placeholder="Your full name" value={formData.name} onChange={set("name")} required disabled={loading} />
+                    <InputField label="Email Address *" type="email" placeholder="your@email.com" value={formData.email} onChange={set("email")} required disabled={loading} />
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <InputField label="Phone Number *" type="tel" placeholder="(703) 000-0000" value={formData.phone} onChange={set("phone")} required />
-                    <InputField label="City / Zip Code" placeholder="Ashburn, VA 20147" value={formData.city} onChange={set("city")} />
+                    <InputField label="Phone Number *" type="tel" placeholder="(703) 000-0000" value={formData.phone} onChange={set("phone")} required disabled={loading} />
+                    <InputField label="City / Zip Code" placeholder="Ashburn, VA 20147" value={formData.city} onChange={set("city")} disabled={loading} />
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -289,6 +341,7 @@ export default function Contact() {
                         "Full Outdoor Living System",
                         "Other",
                       ]}
+                      disabled={loading}
                     />
                     <SelectField
                       label="Estimated Budget *"
@@ -301,6 +354,7 @@ export default function Contact() {
                         "$250,000+",
                         "Not sure yet",
                       ]}
+                      disabled={loading}
                     />
                   </div>
 
@@ -316,6 +370,7 @@ export default function Contact() {
                       "Nextdoor",
                       "Other",
                     ]}
+                    disabled={loading}
                   />
 
                   <TextareaField
@@ -323,17 +378,39 @@ export default function Contact() {
                     placeholder="Describe your vision, property size, current situation, ideal timeline..."
                     value={formData.message}
                     onChange={set("message")}
+                    disabled={loading}
                   />
 
                   <motion.button
                     type="submit"
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
+                    disabled={loading}
+                    whileHover={{ scale: loading ? 1 : 1.02 }}
+                    whileTap={{ scale: loading ? 1 : 0.98 }}
                     className="btn-gold w-full py-4 rounded-xl flex items-center justify-center gap-3 text-sm mt-2"
-                    style={{ fontSize: "12px", letterSpacing: "0.18em" }}
+                    style={{
+                      fontSize: "12px",
+                      letterSpacing: "0.18em",
+                      opacity: loading ? 0.6 : 1,
+                      cursor: loading ? "not-allowed" : "pointer",
+                    }}
                   >
-                    <Send size={15} />
-                    Schedule My Free Consultation
+                    {loading ? (
+                      <>
+                        <motion.div
+                          animate={{ rotate: 360 }}
+                          transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                          style={{ display: "inline-block" }}
+                        >
+                          ⏳
+                        </motion.div>
+                        Sending...
+                      </>
+                    ) : (
+                      <>
+                        <Send size={15} />
+                        Schedule My Free Consultation
+                      </>
+                    )}
                   </motion.button>
 
                   <p className="text-center text-xs" style={{ color: "#8A8A8A", fontSize: "11px" }}>
@@ -350,10 +427,10 @@ export default function Contact() {
 }
 
 function InputField({
-  label, placeholder, value, onChange, type = "text", required = false,
+  label, placeholder, value, onChange, type = "text", required = false, disabled = false,
 }: {
   label: string; placeholder: string; value: string;
-  onChange: (v: string) => void; type?: string; required?: boolean;
+  onChange: (v: string) => void; type?: string; required?: boolean; disabled?: boolean;
 }) {
   return (
     <div>
@@ -365,6 +442,7 @@ function InputField({
         placeholder={placeholder}
         value={value}
         required={required}
+        disabled={disabled}
         onChange={(e) => onChange(e.target.value)}
         className="w-full px-4 py-3 rounded-xl text-sm outline-none transition-all duration-300"
         style={{
@@ -372,10 +450,14 @@ function InputField({
           border: "1px solid rgba(201,168,76,0.15)",
           color: "#F5F0E8",
           fontSize: "0.875rem",
+          opacity: disabled ? 0.5 : 1,
+          cursor: disabled ? "not-allowed" : "text",
         }}
         onFocus={(e) => {
-          e.currentTarget.style.borderColor = "rgba(201,168,76,0.5)";
-          e.currentTarget.style.background = "rgba(201,168,76,0.04)";
+          if (!disabled) {
+            e.currentTarget.style.borderColor = "rgba(201,168,76,0.5)";
+            e.currentTarget.style.background = "rgba(201,168,76,0.04)";
+          }
         }}
         onBlur={(e) => {
           e.currentTarget.style.borderColor = "rgba(201,168,76,0.15)";
@@ -387,10 +469,10 @@ function InputField({
 }
 
 function SelectField({
-  label, value, onChange, options,
+  label, value, onChange, options, disabled = false,
 }: {
   label: string; value: string;
-  onChange: (v: string) => void; options: string[];
+  onChange: (v: string) => void; options: string[]; disabled?: boolean;
 }) {
   return (
     <div>
@@ -400,6 +482,7 @@ function SelectField({
       <select
         value={value}
         onChange={(e) => onChange(e.target.value)}
+        disabled={disabled}
         className="w-full px-4 py-3 rounded-xl text-sm outline-none transition-all duration-300"
         style={{
           background: "rgba(255,255,255,0.03)",
@@ -407,8 +490,10 @@ function SelectField({
           color: value ? "#F5F0E8" : "#8A8A8A",
           fontSize: "0.875rem",
           appearance: "none",
+          opacity: disabled ? 0.5 : 1,
+          cursor: disabled ? "not-allowed" : "pointer",
         }}
-        onFocus={(e) => { e.currentTarget.style.borderColor = "rgba(201,168,76,0.5)"; }}
+        onFocus={(e) => { if (!disabled) e.currentTarget.style.borderColor = "rgba(201,168,76,0.5)"; }}
         onBlur={(e) => { e.currentTarget.style.borderColor = "rgba(201,168,76,0.15)"; }}
       >
         <option value="" disabled style={{ background: "#141414" }}>Select...</option>
@@ -421,9 +506,9 @@ function SelectField({
 }
 
 function TextareaField({
-  label, placeholder, value, onChange,
+  label, placeholder, value, onChange, disabled = false,
 }: {
-  label: string; placeholder: string; value: string; onChange: (v: string) => void;
+  label: string; placeholder: string; value: string; onChange: (v: string) => void; disabled?: boolean;
 }) {
   return (
     <div>
@@ -434,6 +519,7 @@ function TextareaField({
         placeholder={placeholder}
         value={value}
         onChange={(e) => onChange(e.target.value)}
+        disabled={disabled}
         rows={4}
         className="w-full px-4 py-3 rounded-xl text-sm outline-none transition-all duration-300 resize-none"
         style={{
@@ -441,10 +527,14 @@ function TextareaField({
           border: "1px solid rgba(201,168,76,0.15)",
           color: "#F5F0E8",
           fontSize: "0.875rem",
+          opacity: disabled ? 0.5 : 1,
+          cursor: disabled ? "not-allowed" : "text",
         }}
         onFocus={(e) => {
-          e.currentTarget.style.borderColor = "rgba(201,168,76,0.5)";
-          e.currentTarget.style.background = "rgba(201,168,76,0.04)";
+          if (!disabled) {
+            e.currentTarget.style.borderColor = "rgba(201,168,76,0.5)";
+            e.currentTarget.style.background = "rgba(201,168,76,0.04)";
+          }
         }}
         onBlur={(e) => {
           e.currentTarget.style.borderColor = "rgba(201,168,76,0.15)";

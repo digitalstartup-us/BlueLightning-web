@@ -19,7 +19,13 @@ export default function Hero() {
     <section
       ref={ref}
       id="hero"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      className="relative flex items-center justify-center overflow-hidden"
+      style={{
+        // svh tracks the visible viewport, so mobile browser chrome can't crop the hero.
+        minHeight: "100svh",
+        paddingTop: "calc(var(--nav-h) + 1.25rem)",
+        paddingBottom: "clamp(5rem, 14vh, 8rem)",
+      }}
     >
       {/* Video Background */}
       <div className="absolute inset-0 z-0">
@@ -28,6 +34,7 @@ export default function Hero() {
           muted
           loop
           playsInline
+          aria-hidden
           poster="/images/DJI_20241106170106_0080_D.JPG"
           className="w-full h-full object-cover"
           style={{ height: "100%", width: "100%" }}
@@ -66,19 +73,26 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.3 }}
-          className="inline-flex items-center gap-2 mb-8 px-5 py-2.5 rounded-full"
+          className="inline-flex items-center gap-2 mb-6 md:mb-8 max-w-full px-4 py-2 md:px-5 md:py-2.5 rounded-full"
           style={{
             border: "1px solid rgba(201,168,76,0.3)",
             background: "rgba(201,168,76,0.06)",
             backdropFilter: "blur(10px)",
           }}
         >
-          <Shield size={11} style={{ color: "#C9A84C" }} />
+          <Shield size={11} style={{ color: "#C9A84C", flexShrink: 0 }} />
           <span
-            className="text-xs tracking-widest uppercase"
-            style={{ color: "#C9A84C", letterSpacing: "0.2em" }}
+            className="uppercase whitespace-nowrap"
+            style={{
+              color: "#C9A84C",
+              fontSize: "clamp(8.5px, 2.5vw, 11px)",
+              letterSpacing: "0.16em",
+            }}
           >
-            Class A Contractor · Est. 2011 · 850+ Projects · Northern Virginia
+            <span className="sm:hidden">Class A Contractor · 850+ Projects</span>
+            <span className="hidden sm:inline">
+              Class A Contractor · Est. 2011 · 850+ Projects · Northern Virginia
+            </span>
           </span>
         </motion.div>
 
@@ -92,7 +106,7 @@ export default function Hero() {
             className="font-light leading-none mb-2"
             style={{
               fontFamily: "var(--font-display)",
-              fontSize: "clamp(3rem, 9vw, 8rem)",
+              fontSize: "clamp(2rem, 10vw, 8rem)",
               color: "#F5F0E8",
               letterSpacing: "-0.02em",
             }}
@@ -103,7 +117,7 @@ export default function Hero() {
             className="leading-none mb-2"
             style={{
               fontFamily: "var(--font-display)",
-              fontSize: "clamp(3rem, 9vw, 8rem)",
+              fontSize: "clamp(2rem, 10vw, 8rem)",
               letterSpacing: "-0.02em",
               fontStyle: "italic",
               fontWeight: 300,
@@ -115,7 +129,7 @@ export default function Hero() {
             className="font-light leading-none"
             style={{
               fontFamily: "var(--font-display)",
-              fontSize: "clamp(3rem, 9vw, 8rem)",
+              fontSize: "clamp(2rem, 10vw, 8rem)",
               color: "#F5F0E8",
               letterSpacing: "-0.02em",
             }}
@@ -158,20 +172,20 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 1.25 }}
           className="mb-4"
         >
-          <a href="tel:+17034239965" className="inline-block">
+          <a href="tel:+17034239965" className="block w-full max-w-[320px] mx-auto">
             <motion.div
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.97 }}
               animate={{ boxShadow: ["0 0 0 0 rgba(201,168,76,0.4)", "0 0 0 14px rgba(201,168,76,0)", "0 0 0 0 rgba(201,168,76,0)"] }}
               transition={{ boxShadow: { duration: 2.2, repeat: Infinity, ease: "easeInOut" }, scale: { duration: 0.2 } }}
-              className="flex items-center justify-center gap-3 px-10 py-5 rounded-2xl cursor-pointer"
+              className="flex items-center justify-center gap-3 px-6 sm:px-10 py-4 sm:py-5 rounded-2xl cursor-pointer"
               style={{
                 background: "#C9A84C",
                 color: "#0D0D0D",
-                fontSize: "15px",
+                fontSize: "clamp(13px, 3.6vw, 15px)",
                 fontWeight: 700,
-                letterSpacing: "0.08em",
-                minWidth: "320px",
+                letterSpacing: "0.06em",
+                whiteSpace: "nowrap",
               }}
             >
               <Phone size={18} strokeWidth={2.5} />
@@ -188,7 +202,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.4 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-14"
+          className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-10 md:mb-14"
         >
           <Link href="/contact">
             <motion.div
@@ -217,7 +231,7 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 1.6 }}
-          className="flex items-center justify-center gap-8 flex-wrap"
+          className="flex items-center justify-center gap-6 sm:gap-10 flex-wrap"
         >
           {[
             { value: "850+", label: "Projects Completed", icon: <Award size={14} /> },
@@ -244,7 +258,7 @@ export default function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 2 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 cursor-pointer"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden sm:flex flex-col items-center gap-2 cursor-pointer"
         onClick={() => window.scrollBy({ top: window.innerHeight, behavior: "smooth" })}
       >
         <span className="text-xs tracking-[0.3em] uppercase" style={{ color: "rgba(245,240,232,0.4)", fontSize: "9px" }}>

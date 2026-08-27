@@ -1,9 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
 import { sendBothEmails } from "@/lib/mailer";
+import { saveLead, markEmailStatus } from "@/lib/leads";
 
 export async function POST(req: NextRequest) {
   try {
     const { name, email, phone, transcript } = await req.json();
+
+    if (!name || !phone) {
+      return NextResponse.json({ error: "Name and phone are required." }, { status: 400 });
+    }
 
     const now = new Date().toLocaleString("en-US", { timeZone: "America/New_York", dateStyle: "full", timeStyle: "short" });
 
@@ -68,7 +73,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 <div class="card" style="text-align:center">
   <div style="color:#C9A84C;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:12px">Your Next Step</div>
   <p style="color:#F5F0E8;font-size:1rem;margin-bottom:16px;line-height:1.6">
-    Call Gary or Mauricio directly — or reply to this email to schedule your free consultation.
+    Call Mauricio or Walter directly — or reply to this email to schedule your free consultation.
   </p>
   <a href="tel:+17034239965" class="cta-btn">📞 Call (703) 423-9965</a>
 </div>
@@ -76,14 +81,14 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <div style="color:#C9A84C;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:12px">Your Team</div>
   <table width="100%"><tr>
     <td style="text-align:center;padding:8px">
-      <div style="color:#F5F0E8;font-weight:500">Gary Anderson</div>
-      <div style="color:#8A8A8A;font-size:11px">Senior Sales Consultant</div>
-      <a href="mailto:gary@bluelightning.us" style="color:#C9A84C;font-size:11px">gary@bluelightning.us</a>
-    </td>
-    <td style="text-align:center;padding:8px">
       <div style="color:#F5F0E8;font-weight:500">Mauricio Caballero</div>
       <div style="color:#8A8A8A;font-size:11px">CEO &amp; Design Consultant</div>
       <a href="mailto:mc@bluelightning.us" style="color:#C9A84C;font-size:11px">mc@bluelightning.us</a>
+    </td>
+    <td style="text-align:center;padding:8px">
+      <div style="color:#F5F0E8;font-weight:500">Walter Caballero</div>
+      <div style="color:#8A8A8A;font-size:11px">Operations Director</div>
+      <a href="mailto:info@bluelightning.us" style="color:#C9A84C;font-size:11px">info@bluelightning.us</a>
     </td>
   </tr></table>
 </div>
@@ -93,14 +98,35 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 </div>
 </div></body></html>`;
 
-    await sendBothEmails({
-      leadSubject: `🔥 AI Chat Lead: ${name} — Ready to Talk`,
-      leadHtml: teamHtml,
-      replyTo: email,
-      clientEmail: email,
-      clientSubject: "We received your request — Blue Lightning Decks & Patios",
-      clientHtml,
+    // Store before sending: the transcript is the most valuable part of an AI
+    // chat lead and must not depend on the email provider being up.
+    const leadId = await saveLead({
+      name,
+      phone,
+      email,
+      transcript,
+      formSource: "AI Chat widget",
     });
+
+    let emailSent = false;
+    try {
+      await sendBothEmails({
+        leadSubject: `🔥 AI Chat Lead: ${name} — Ready to Talk`,
+        leadHtml: teamHtml,
+        replyTo: email,
+        clientEmail: email,
+        clientSubject: "We received your request — Blue Lightning Decks & Patios",
+        clientHtml,
+      });
+      emailSent = true;
+    } catch (err) {
+      console.error("Chat summary — email delivery failed:", err);
+      if (!leadId) {
+        return NextResponse.json({ error: "Summary failed" }, { status: 500 });
+      }
+    }
+
+    if (leadId) await markEmailStatus(leadId, emailSent);
 
     return NextResponse.json({ success: true });
   } catch (err) {

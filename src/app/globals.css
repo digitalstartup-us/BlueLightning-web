@@ -2,6 +2,9 @@
 
 @layer base {
   :root {
+    /* Height reserved by the fixed navigation. Pages offset their first
+       section by this so content never slides under the header. */
+    --nav-h: 76px;
     --gold: #C9A84C;
     --gold-light: #E8C96A;
     --gold-dark: #9E7A2E;
@@ -20,8 +23,15 @@
     padding: 0;
   }
 
+  @media (min-width: 768px) {
+    :root {
+      --nav-h: 96px;
+    }
+  }
+
   html {
     scroll-behavior: smooth;
+    scroll-padding-top: var(--nav-h);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -31,6 +41,20 @@
     color: var(--cream);
     font-family: var(--font-body);
     overflow-x: hidden;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 
   ::selection {
@@ -109,6 +133,13 @@
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border: 1px solid rgba(201, 168, 76, 0.15);
+  }
+
+  /* Floating chat/CTA widgets outrank the mobile menu in stacking order, so
+     the menu hides them instead of competing for a higher z-index.
+     display beats framer-motion, which writes opacity/transform inline. */
+  body.menu-open .floating-widget {
+    display: none !important;
   }
 
   .glass-dark {

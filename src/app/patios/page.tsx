@@ -1,9 +1,9 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import Link from "next/link";
 import { motion, useScroll, useTransform, MotionValue, useSpring } from "framer-motion";
-import { ArrowLeft, ArrowRight, CheckCircle2 } from "lucide-react";
+import { ArrowLeft, ArrowRight, CheckCircle2, Loader2, AlertCircle } from "lucide-react";
 
 function useVisible(p: MotionValue<number>, a: number, b: number, c: number, d: number) {
   return useTransform(p, [a, b, c, d], [0, 1, 1, 0]);
@@ -539,7 +539,85 @@ function PostScrollSection() {
   );
 }
 
+const PATIO_FIELDS = [
+  { key: "name", label: "Full Name", placeholder: "Your full name", type: "text", required: true },
+  { key: "email", label: "Email Address", placeholder: "your@email.com", type: "email", required: false },
+  { key: "phone", label: "Phone Number", placeholder: "(703) 000-0000", type: "tel", required: true },
+  { key: "city", label: "City / Zip Code", placeholder: "Ashburn, VA 20147", type: "text", required: false },
+] as const;
+
 function ContactForm() {
+  const [form, setForm] = useState({ name: "", email: "", phone: "", city: "", budget: "", description: "" });
+  const [sending, setSending] = useState(false);
+  const [sent, setSent] = useState(false);
+  const [error, setError] = useState("");
+
+  const canSubmit = Boolean(form.name.trim() && form.phone.trim()) && !sending;
+
+  const set = (key: string) => (value: string) => setForm((f) => ({ ...f, [key]: value }));
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!canSubmit) return;
+    setSending(true);
+    setError("");
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ...form,
+          email: form.email.trim() || undefined,
+          projectType: "Patio / Hardscaping",
+          formSource: "Patios page",
+        }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "Submission failed");
+      setSent(true);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Something went wrong.");
+    } finally {
+      setSending(false);
+    }
+  };
+
+  if (sent) {
+    return (
+      <section className="py-28 px-6 md:px-20 max-w-4xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.96 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5 }}
+          className="rounded-3xl p-10 md:p-14 text-center"
+          style={{ background: "#111111", border: "1px solid rgba(201,168,76,0.2)" }}
+        >
+          <div
+            className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6"
+            style={{ background: "rgba(201,168,76,0.1)", border: "2px solid rgba(201,168,76,0.4)" }}
+          >
+            <CheckCircle2 size={30} style={{ color: "#C9A84C" }} />
+          </div>
+          <h3
+            style={{
+              fontFamily: "var(--font-display)",
+              fontSize: "clamp(1.8rem, 4vw, 2.6rem)",
+              color: "#F5F0E8",
+              fontWeight: 300,
+              marginBottom: "12px",
+            }}
+          >
+            Thank you, {form.name.split(" ")[0]}.
+          </h3>
+          <p style={{ color: "#8A8A8A", fontSize: "0.95rem", fontWeight: 300, lineHeight: 1.8 }}>
+            We received your patio project details. Mauricio will reach out within 24 hours
+            {form.email.trim() ? " — and a confirmation is on its way to your inbox." : "."}
+          </p>
+        </motion.div>
+      </section>
+    );
+  }
+
   return (
     <section className="py-28 px-6 md:px-20 max-w-4xl mx-auto">
       <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="text-center mb-14">
@@ -553,18 +631,21 @@ function ContactForm() {
 
       <motion.form
         initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.2 }}
-        onSubmit={(e) => e.preventDefault()} className="space-y-5"
+        onSubmit={handleSubmit} className="space-y-5"
       >
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-          {[
-            { label: "Full Name", placeholder: "Your full name" },
-            { label: "Email Address", placeholder: "your@email.com", type: "email" },
-            { label: "Phone Number", placeholder: "(703) 000-0000", type: "tel" },
-            { label: "City / Zip Code", placeholder: "Ashburn, VA 20147" },
-          ].map(({ label, placeholder, type = "text" }) => (
-            <div key={label}>
-              <label className="block text-xs mb-2 tracking-widest uppercase" style={{ color: "#8A8A8A", fontSize: "10px" }}>{label}</label>
-              <input type={type} placeholder={placeholder} className="w-full px-4 py-3.5 rounded-xl text-sm outline-none"
+          {PATIO_FIELDS.map(({ key, label, placeholder, type, required }) => (
+            <div key={key}>
+              <label className="block text-xs mb-2 tracking-widest uppercase" style={{ color: "#8A8A8A", fontSize: "10px" }}>
+                {label}{required ? " *" : ""}
+              </label>
+              <input
+                type={type}
+                placeholder={placeholder}
+                required={required}
+                value={form[key]}
+                onChange={(e) => set(key)(e.target.value)}
+                className="w-full px-4 py-3.5 rounded-xl text-sm outline-none"
                 style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(201,168,76,0.15)", color: "#F5F0E8", fontSize: "14px" }}
                 onFocus={(e) => { e.currentTarget.style.borderColor = "rgba(201,168,76,0.5)"; }}
                 onBlur={(e)  => { e.currentTarget.style.borderColor = "rgba(201,168,76,0.15)"; }}
@@ -574,8 +655,10 @@ function ContactForm() {
         </div>
         <div>
           <label className="block text-xs mb-2 tracking-widest uppercase" style={{ color: "#8A8A8A", fontSize: "10px" }}>Estimated Budget</label>
-          <select className="w-full px-4 py-3.5 rounded-xl text-sm outline-none" defaultValue=""
-            style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(201,168,76,0.15)", color: "#8A8A8A", fontSize: "14px", appearance: "none" }}
+          <select className="w-full px-4 py-3.5 rounded-xl text-sm outline-none"
+            value={form.budget}
+            onChange={(e) => set("budget")(e.target.value)}
+            style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(201,168,76,0.15)", color: form.budget ? "#F5F0E8" : "#8A8A8A", fontSize: "14px", appearance: "none" }}
             onFocus={(e) => { e.currentTarget.style.borderColor = "rgba(201,168,76,0.5)"; }}
             onBlur={(e)  => { e.currentTarget.style.borderColor = "rgba(201,168,76,0.15)"; }}
           >
@@ -588,18 +671,42 @@ function ContactForm() {
         <div>
           <label className="block text-xs mb-2 tracking-widest uppercase" style={{ color: "#8A8A8A", fontSize: "10px" }}>Tell us about your project</label>
           <textarea rows={4} placeholder="Patio size, material preference, fire pit, kitchen, timeline..."
+            value={form.description}
+            onChange={(e) => set("description")(e.target.value)}
             className="w-full px-4 py-3.5 rounded-xl text-sm outline-none resize-none"
             style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(201,168,76,0.15)", color: "#F5F0E8", fontSize: "14px" }}
             onFocus={(e) => { e.currentTarget.style.borderColor = "rgba(201,168,76,0.5)"; }}
             onBlur={(e)  => { e.currentTarget.style.borderColor = "rgba(201,168,76,0.15)"; }}
           />
         </div>
-        <div className="flex flex-col sm:flex-row gap-4 items-center pt-2">
-          <motion.button type="submit" whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}
-            className="btn-gold px-12 py-4 rounded-xl flex items-center gap-3 w-full sm:w-auto justify-center"
-            style={{ fontSize: "12px", letterSpacing: "0.18em" }}
+
+        {error && (
+          <div className="flex items-start gap-2.5 p-3.5 rounded-xl"
+            style={{ background: "rgba(229,115,115,0.08)", border: "1px solid rgba(229,115,115,0.3)" }}
           >
-            Request Free Consultation <ArrowRight size={14} />
+            <AlertCircle size={15} style={{ color: "#E57373", flexShrink: 0, marginTop: "1px" }} />
+            <p style={{ color: "#E57373", fontSize: "12.5px", lineHeight: 1.5 }}>
+              {error} You can also call{" "}
+              <a href="tel:+17034239965" style={{ color: "#E8C96A", textDecoration: "underline" }}>(703) 423-9965</a>.
+            </p>
+          </div>
+        )}
+
+        <div className="flex flex-col sm:flex-row gap-4 items-center pt-2">
+          <motion.button type="submit" disabled={!canSubmit}
+            whileHover={canSubmit ? { scale: 1.03 } : {}} whileTap={canSubmit ? { scale: 0.97 } : {}}
+            className="btn-gold px-12 py-4 rounded-xl flex items-center gap-3 w-full sm:w-auto justify-center"
+            style={{ fontSize: "12px", letterSpacing: "0.18em", opacity: canSubmit ? 1 : 0.5, cursor: canSubmit ? "pointer" : "not-allowed" }}
+          >
+            {sending ? (
+              <>
+                <Loader2 size={14} className="animate-spin" /> Sending...
+              </>
+            ) : (
+              <>
+                Request Free Consultation <ArrowRight size={14} />
+              </>
+            )}
           </motion.button>
           <p style={{ color: "#8A8A8A", fontSize: "11px" }}>Responds within 24 hours · (703) 423-9965</p>
         </div>

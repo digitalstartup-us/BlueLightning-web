@@ -51,3 +51,6 @@ next-env.d.ts
 
 # to_review staging folder — not for production
 /public/to_review/
+
+# local responsive QA screenshots
+/.shots/

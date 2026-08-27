@@ -24,7 +24,7 @@ const FOLLOW_UP_CHIPS = [
   "Do you handle permits & HOA?",
   "Can I get a 3D design?",
   "What's the process like?",
-  "Talk to Gary about pricing",
+  "Talk to Mauricio about pricing",
 ];
 
 const WELCOME =
@@ -102,7 +102,7 @@ function LeadForm({ onSubmit }: { onSubmit: (data: LeadData) => void }) {
           {loading ? "Sending…" : "Send My Details to the Team"}
         </motion.button>
         <p style={{ color: "#555", fontSize: "10px", textAlign: "center" }}>
-          Gary or Mauricio will reach out within 24 hours.
+          Mauricio or Walter will reach out within 24 hours.
         </p>
       </div>
     </motion.form>
@@ -257,7 +257,7 @@ export default function AIChat() {
         if (err instanceof Error && err.name === "AbortError") return;
         const errMsg: Message = {
           role: "assistant",
-          content: "I'm having a brief connection issue. Please call us directly at (703) 423-9965 — Gary will be happy to help!",
+          content: "I'm having a brief connection issue. Please call us directly at (703) 423-9965 — our team will be happy to help!",
           id: uid(),
         };
         setMessages((prev) => [...prev, errMsg]);
@@ -292,7 +292,7 @@ export default function AIChat() {
 
     const confirm: Message = {
       role: "assistant",
-      content: `Perfect, ${data.name}! I've sent your details and our full conversation to Gary and Mauricio. Expect a call or email within 24 hours.\n\nIn the meantime, feel free to explore our portfolio or call directly at (703) 423-9965. We're excited to help bring your outdoor vision to life!`,
+      content: `Perfect, ${data.name}! I've sent your details and our full conversation to Mauricio and Walter. Expect a call or email within 24 hours.\n\nIn the meantime, feel free to explore our portfolio or call directly at (703) 423-9965. We're excited to help bring your outdoor vision to life!`,
       id: uid(),
     };
     setMessages((prev) => [...prev, confirm]);
@@ -313,7 +313,7 @@ export default function AIChat() {
             whileHover={{ scale: 1.07 }}
             whileTap={{ scale: 0.93 }}
             onClick={open}
-            className="fixed z-[150] flex items-center gap-2.5 pl-3 pr-4 py-3 rounded-full shadow-2xl cursor-pointer"
+            className="floating-widget fixed z-[150] flex items-center gap-2.5 pl-3 pr-4 py-3 rounded-full shadow-2xl cursor-pointer"
             style={{
               bottom: "100px",
               right: "24px",
@@ -351,7 +351,7 @@ export default function AIChat() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 16 }}
             transition={{ type: "spring", stiffness: 320, damping: 28 }}
-            className="fixed z-[150] flex flex-col overflow-hidden rounded-2xl shadow-2xl"
+            className="floating-widget fixed z-[150] flex flex-col overflow-hidden rounded-2xl shadow-2xl"
             style={{
               bottom: "24px",
               right: "24px",

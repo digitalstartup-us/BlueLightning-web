@@ -106,7 +106,7 @@ export default function ContactPage() {
       <main style={{ background: "#090909" }}>
 
         {/* ── Cinematic top ── */}
-        <section className="relative overflow-hidden" style={{ paddingTop: "100px" }}>
+        <section className="relative overflow-hidden" style={{ paddingTop: "calc(var(--nav-h) + 1.5rem)" }}>
           <div className="absolute inset-0">
             <img
               src="/images/DJI_20241106170106_0080_D.JPG"

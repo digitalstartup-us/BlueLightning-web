@@ -1,28 +1,25 @@
 /**
- * Email utility — Gmail SMTP via nodemailer.
+ * Email utility — Resend API.
  *
  * Required env vars:
- *   GMAIL_USER  — Gmail address used as SMTP sender
- *                 e.g. caballeromauricio766@gmail.com
- *   GMAIL_PASS  — Gmail App Password (16 chars, no spaces)
- *                 How to get it:
- *                 1. Go to myaccount.google.com with GMAIL_USER
- *                 2. Security → 2-Step Verification (enable if needed)
- *                 3. Security → App Passwords → Create → copy 16-char password
- *                 4. Paste here WITHOUT spaces (e.g. abcdabcdabcdabcd)
+ *   RESEND_API_KEY — API key from resend.com/api-keys
+ *   RESEND_FROM    — sender address on a domain verified at resend.com/domains
+ *                    Defaults to noreply@bluelightning.us
+ *                    Until the domain is verified, Resend only accepts
+ *                    recipients equal to the account owner's own address.
  */
-import nodemailer from "nodemailer";
+import { Resend } from "resend";
 
-const TEAM_EMAILS = ["mc@bluelightning.us", "gary@bluelightning.us"];
+const TEAM_EMAILS = ["mc@bluelightning.us", "info@bluelightning.us"];
 
-function createTransport() {
-  const user = process.env.GMAIL_USER;
-  const pass = process.env.GMAIL_PASS;
-  if (!user || !pass) throw new Error("GMAIL_USER or GMAIL_PASS not configured");
-  return nodemailer.createTransport({
-    service: "gmail",
-    auth: { user, pass },
-  });
+const SENDER = process.env.RESEND_FROM || "noreply@bluelightning.us";
+const LEAD_FROM = `Blue Lightning Leads <${SENDER}>`;
+const CLIENT_FROM = `Blue Lightning Decks & Patios <${SENDER}>`;
+
+function createClient() {
+  const key = process.env.RESEND_API_KEY;
+  if (!key) throw new Error("RESEND_API_KEY not configured");
+  return new Resend(key);
 }
 
 /* ─── Send lead notification to the team ──────────────────── */
@@ -35,16 +32,16 @@ export async function sendLeadToTeam({
   html: string;
   replyTo?: string;
 }) {
-  const transport = createTransport();
-  const info = await transport.sendMail({
-    from: `"Blue Lightning Leads" <${process.env.GMAIL_USER}>`,
+  const { data, error } = await createClient().emails.send({
+    from: LEAD_FROM,
     to: TEAM_EMAILS,
     subject,
     html,
     replyTo,
   });
-  console.log(`[mailer] Lead email sent: ${info.messageId}`);
-  return info;
+  if (error) throw new Error(`Resend rejected the lead email: ${error.message}`);
+  console.log(`[mailer] Lead email sent: ${data?.id}`);
+  return data;
 }
 
 /* ─── Send confirmation to homeowner ──────────────────────── */
@@ -57,15 +54,15 @@ export async function sendConfirmationToClient({
   subject: string;
   html: string;
 }) {
-  const transport = createTransport();
-  const info = await transport.sendMail({
-    from: `"Blue Lightning Decks & Patios" <${process.env.GMAIL_USER}>`,
+  const { data, error } = await createClient().emails.send({
+    from: CLIENT_FROM,
     to,
     subject,
     html,
   });
-  console.log(`[mailer] Client confirmation sent: ${info.messageId}`);
-  return info;
+  if (error) throw new Error(`Resend rejected the client email: ${error.message}`);
+  console.log(`[mailer] Client confirmation sent: ${data?.id}`);
+  return data;
 }
 
 /* ─── Send both at once ────────────────────────────────────── */
@@ -84,37 +81,24 @@ export async function sendBothEmails({
   clientSubject?: string;
   clientHtml?: string;
 }) {
-  const transport = createTransport();
+  const sendClient =
+    clientEmail && clientSubject && clientHtml
+      ? sendConfirmationToClient({ to: clientEmail, subject: clientSubject, html: clientHtml })
+      : Promise.resolve(null);
 
-  const jobs = [
-    transport.sendMail({
-      from: `"Blue Lightning Leads" <${process.env.GMAIL_USER}>`,
-      to: TEAM_EMAILS,
-      subject: leadSubject,
-      html: leadHtml,
-      replyTo,
-    }),
-  ];
+  const [lead, client] = await Promise.allSettled([
+    sendLeadToTeam({ subject: leadSubject, html: leadHtml, replyTo }),
+    sendClient,
+  ]);
 
-  if (clientEmail && clientSubject && clientHtml) {
-    jobs.push(
-      transport.sendMail({
-        from: `"Blue Lightning Decks & Patios" <${process.env.GMAIL_USER}>`,
-        to: clientEmail,
-        subject: clientSubject,
-        html: clientHtml,
-      })
-    );
+  // Losing the courtesy email is tolerable, losing the lead itself is not.
+  if (client.status === "rejected") {
+    console.error("[mailer] Client confirmation failed:", client.reason);
   }
+  if (lead.status === "rejected") throw lead.reason;
 
-  const results = await Promise.allSettled(jobs);
-  results.forEach((r, i) => {
-    if (r.status === "rejected") {
-      console.error(`[mailer] Email job ${i} failed:`, r.reason);
-    } else {
-      console.log(`[mailer] Email job ${i} sent OK`);
-    }
-  });
-
-  return results;
+  return {
+    lead: lead.value,
+    client: client.status === "fulfilled" ? client.value : null,
+  };
 }

@@ -65,7 +65,7 @@ export default function AboutPage() {
       <Navigation />
       <main>
         {/* Hero */}
-        <section className="relative min-h-[60vh] flex items-end overflow-hidden" style={{ paddingTop: "120px" }}>
+        <section className="relative min-h-[60vh] flex items-end overflow-hidden" style={{ paddingTop: "calc(var(--nav-h) + 2rem)" }}>
           <div className="absolute inset-0">
             <img
               src="/images/05 - Pool Decks Full Outdoor Living/pool-deck_aerial-pool-house-day_01.jpg"
@@ -197,7 +197,7 @@ export default function AboutPage() {
               </h2>
             </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
               {/* Mauricio */}
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
@@ -246,29 +246,6 @@ export default function AboutPage() {
                 <a href="mailto:info@bluelightning.us" style={{ color: "#C9A84C", fontSize: "12px" }}>info@bluelightning.us</a>
               </motion.div>
 
-              {/* Gary Anderson */}
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.24, duration: 0.7 }}
-                className="p-8 rounded-2xl"
-                style={{ background: "#141414", border: "1px solid rgba(201,168,76,0.1)" }}
-              >
-                <div className="w-24 h-24 rounded-full mb-5 overflow-hidden flex-shrink-0" style={{ border: "2px solid rgba(201,168,76,0.4)" }}>
-                  <img src="/gary-anderson.jpg" alt="Gary Anderson — Senior Sales Consultant" className="w-full h-full object-cover object-top" />
-                </div>
-                <h3 style={{ fontFamily: "var(--font-display)", fontSize: "1.35rem", color: "#F5F0E8", fontWeight: 300, marginBottom: "4px" }}>
-                  Gary Anderson
-                </h3>
-                <div className="text-xs tracking-widest uppercase mb-4" style={{ color: "#C9A84C", fontSize: "10px" }}>
-                  Senior Sales Consultant
-                </div>
-                <p style={{ color: "#8A8A8A", fontSize: "0.85rem", lineHeight: 1.8, fontWeight: 300, marginBottom: "12px" }}>
-                  After honorable service in the United States Marine Corps and 16 years safeguarding U.S. embassies abroad with the State Department, Gary transitioned into construction in 2012. His military precision and diplomatic poise ensure clients receive expertise, care, and integrity second to none — guiding every client through each step with absolute excellence.
-                </p>
-                <a href="mailto:gary@bluelightning.us" style={{ color: "#C9A84C", fontSize: "12px" }}>gary@bluelightning.us</a>
-              </motion.div>
             </div>
 
             {/* Crew note */}

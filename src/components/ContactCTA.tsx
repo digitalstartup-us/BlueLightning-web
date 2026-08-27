@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { Phone, ArrowRight, CheckCircle, Star } from "lucide-react";
+import { Phone, ArrowRight, CheckCircle, Star, Loader2, AlertCircle } from "lucide-react";
 
 const inputCls = "w-full px-4 py-3.5 rounded-xl outline-none transition-all duration-300 text-sm";
 const inputStyle = {
@@ -15,11 +15,46 @@ const inputStyle = {
 
 export default function ContactCTA() {
   const [sent, setSent] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState("");
+  const [confirmed, setConfirmed] = useState(false);
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
   const [project, setProject] = useState("");
 
-  const canSubmit = name.trim() && phone.trim() && project;
+  const canSubmit = Boolean(name.trim() && phone.trim() && project) && !sending;
+
+  const handleSubmit = async () => {
+    if (!canSubmit) return;
+    setSending(true);
+    setError("");
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name,
+          phone,
+          email: email.trim() || undefined,
+          projectType: project,
+          formSource: "Homepage — Quick Form",
+        }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "Submission failed");
+      setConfirmed(Boolean(data.confirmationSent));
+      setSent(true);
+    } catch (err) {
+      setError(
+        err instanceof Error
+          ? err.message
+          : "Something went wrong. Please call (703) 423-9965 directly."
+      );
+    } finally {
+      setSending(false);
+    }
+  };
 
   return (
     <section className="relative py-28 md:py-36 overflow-hidden">
@@ -160,6 +195,21 @@ export default function ContactCTA() {
                       />
                     </div>
                     <div>
+                      <label className="block mb-1.5 tracking-widest uppercase" style={{ color: "#8A8A8A", fontSize: "9px" }}>
+                        Email <span style={{ textTransform: "none", letterSpacing: 0 }}>(optional — to get a written confirmation)</span>
+                      </label>
+                      <input
+                        type="email"
+                        placeholder="john@gmail.com"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        className={inputCls}
+                        style={inputStyle}
+                        onFocus={(e) => { e.target.style.borderColor = "rgba(201,168,76,0.5)"; e.target.style.background = "rgba(201,168,76,0.05)"; }}
+                        onBlur={(e) => { e.target.style.borderColor = "rgba(201,168,76,0.2)"; e.target.style.background = "rgba(255,255,255,0.05)"; }}
+                      />
+                    </div>
+                    <div>
                       <label className="block mb-1.5 tracking-widest uppercase" style={{ color: "#8A8A8A", fontSize: "9px" }}>I&apos;m looking to build... *</label>
                       <select
                         value={project}
@@ -183,9 +233,9 @@ export default function ContactCTA() {
                     <motion.button
                       whileHover={canSubmit ? { scale: 1.03 } : {}}
                       whileTap={canSubmit ? { scale: 0.97 } : {}}
-                      onClick={() => { if (canSubmit) setSent(true); }}
+                      onClick={handleSubmit}
                       disabled={!canSubmit}
-                      className="w-full py-4 rounded-xl flex items-center justify-center gap-3 transition-all duration-300 cursor-pointer"
+                      className="w-full py-4 rounded-xl flex items-center justify-center gap-3 transition-all duration-300"
                       style={{
                         background: canSubmit ? "linear-gradient(135deg, #9E7A2E, #C9A84C)" : "rgba(201,168,76,0.15)",
                         color: canSubmit ? "#0D0D0D" : "#8A8A8A",
@@ -196,9 +246,34 @@ export default function ContactCTA() {
                         cursor: canSubmit ? "pointer" : "not-allowed",
                       }}
                     >
-                      Request My Free Consultation
-                      <ArrowRight size={14} />
+                      {sending ? (
+                        <>
+                          <Loader2 size={14} className="animate-spin" />
+                          Sending...
+                        </>
+                      ) : (
+                        <>
+                          Request My Free Consultation
+                          <ArrowRight size={14} />
+                        </>
+                      )}
                     </motion.button>
+
+                    {error && (
+                      <div
+                        className="flex items-start gap-2.5 p-3 rounded-xl"
+                        style={{ background: "rgba(229,115,115,0.08)", border: "1px solid rgba(229,115,115,0.3)" }}
+                      >
+                        <AlertCircle size={14} style={{ color: "#E57373", flexShrink: 0, marginTop: "2px" }} />
+                        <p style={{ color: "#E57373", fontSize: "12px", lineHeight: 1.5 }}>
+                          {error} You can also call{" "}
+                          <a href="tel:+17034239965" style={{ color: "#E8C96A", textDecoration: "underline" }}>
+                            (703) 423-9965
+                          </a>
+                          .
+                        </p>
+                      </div>
+                    )}
 
                     <p className="text-center" style={{ color: "#666", fontSize: "11px", fontWeight: 300 }}>
                       No spam. No sales team. Just Mauricio.
@@ -243,6 +318,12 @@ export default function ContactCTA() {
                   <p style={{ color: "#8A8A8A", fontSize: "0.9rem", fontWeight: 300, lineHeight: 1.85, marginBottom: "24px" }}>
                     Mauricio will call you at <strong style={{ color: "#F5F0E8" }}>{phone}</strong> within
                     24 hours to schedule your free on-site visit.
+                    {confirmed && (
+                      <>
+                        {" "}We just sent a confirmation to{" "}
+                        <strong style={{ color: "#F5F0E8" }}>{email}</strong>.
+                      </>
+                    )}
                   </p>
 
                   <div className="grid grid-cols-3 gap-3 mb-7">

@@ -23,7 +23,8 @@ export default function FloatingCTA() {
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.5 }}
           transition={{ type: "spring", stiffness: 200, damping: 20 }}
-          className="fixed bottom-6 right-6 z-50"
+          className="floating-widget fixed right-6 z-50"
+          style={{ bottom: "max(1.5rem, env(safe-area-inset-bottom))" }}
         >
           <AnimatePresence>
             {open && (
@@ -86,7 +87,7 @@ export default function FloatingCTA() {
               <motion.div
                 initial={{ opacity: 0, x: 10 }}
                 animate={{ opacity: 1, x: 0 }}
-                className="px-4 py-2 rounded-full text-xs font-medium shadow-lg"
+                className="hidden sm:block px-4 py-2 rounded-full text-xs font-medium shadow-lg"
                 style={{
                   background: "#141414",
                   border: "1px solid rgba(201,168,76,0.3)",

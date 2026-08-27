@@ -1,13 +1,16 @@
 import { NextRequest, NextResponse } from "next/server";
 import { sendBothEmails } from "@/lib/mailer";
+import { saveLead, markEmailStatus } from "@/lib/leads";
 
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { name, email, phone, city, projectType, budget, referral, description, callTime } = body;
+    const { name, email, phone, city, projectType, budget, referral, description, callTime, formSource } = body;
 
-    if (!name || !email || !phone) {
-      return NextResponse.json({ error: "Missing required fields." }, { status: 400 });
+    // The quick form on the homepage only asks for name and phone, so email is
+    // optional: without it we notify the team but skip the client confirmation.
+    if (!name || !phone) {
+      return NextResponse.json({ error: "Name and phone are required." }, { status: 400 });
     }
 
     const leadEmailHtml = `
@@ -38,7 +41,7 @@ export async function POST(req: NextRequest) {
     </div>
     <div class="body">
       <div class="field"><div class="label">Full Name</div><div class="value">${name}</div></div>
-      <div class="field"><div class="label">Email</div><div class="value"><a href="mailto:${email}">${email}</a></div></div>
+      <div class="field"><div class="label">Email</div><div class="value">${email ? `<a href="mailto:${email}">${email}</a>` : "Not provided"}</div></div>
       <div class="field"><div class="label">Phone</div><div class="value"><a href="tel:${phone}">${phone}</a></div></div>
       <div class="field"><div class="label">City / Location</div><div class="value">${city || "Not provided"}</div></div>
       <div class="field"><div class="label">Project Type</div><div class="value">${projectType || "Not specified"}</div></div>
@@ -46,7 +49,8 @@ export async function POST(req: NextRequest) {
       ${description ? `<div class="field"><div class="label">Project Description</div><div class="value">${description}</div></div>` : ""}
       ${callTime ? `<div class="field"><div class="label">Best Time to Call</div><div class="value">${callTime}</div></div>` : ""}
       ${referral ? `<div class="field"><div class="label">How they found you</div><div class="value">${referral}</div></div>` : ""}
-      <a href="mailto:${email}" class="cta">Reply to ${name}</a>
+      <div class="field"><div class="label">Submitted from</div><div class="value">${formSource || "Contact page"}</div></div>
+      <a href="${email ? `mailto:${email}` : `tel:${phone}`}" class="cta">${email ? `Reply to ${name}` : `Call ${name}`}</a>
     </div>
     <div class="footer">Sent automatically from bluelightning.us · Blue Lightning Decks &amp; Patios</div>
   </div>
@@ -90,7 +94,7 @@ export async function POST(req: NextRequest) {
       </div>
       <p>In the meantime, you can reach us directly:</p>
       <p>📞 <a href="tel:+17034239965" style="color:#C9A84C">(703) 423-9965</a><br />
-      ✉ <a href="mailto:gary@bluelightning.us" style="color:#C9A84C">gary@bluelightning.us</a></p>
+      ✉ <a href="mailto:mc@bluelightning.us" style="color:#C9A84C">mc@bluelightning.us</a></p>
     </div>
     <div class="footer">
       <p>Blue Lightning Decks &amp; Patios · Herndon, VA · <a href="https://bluelightning.us">bluelightning.us</a></p>
@@ -99,16 +103,50 @@ export async function POST(req: NextRequest) {
 </body>
 </html>`;
 
-    await sendBothEmails({
-      leadSubject: `🔔 New Lead: ${name} — ${projectType || "Consultation Request"}`,
-      leadHtml: leadEmailHtml,
-      replyTo: email,
-      clientEmail: email,
-      clientSubject: "We received your request — Blue Lightning Decks & Patios",
-      clientHtml: confirmationEmailHtml,
+    // Store before sending: if Resend is down, the lead still survives.
+    const leadId = await saveLead({
+      name,
+      phone,
+      email,
+      city,
+      projectType,
+      budget,
+      referral,
+      description,
+      callTime,
+      formSource,
     });
 
-    return NextResponse.json({ success: true });
+    let emailSent = false;
+    try {
+      await sendBothEmails({
+        leadSubject: `🔔 New Lead: ${name} — ${projectType || "Consultation Request"}`,
+        leadHtml: leadEmailHtml,
+        replyTo: email,
+        clientEmail: email,
+        clientSubject: "We received your request — Blue Lightning Decks & Patios",
+        clientHtml: confirmationEmailHtml,
+      });
+      emailSent = true;
+    } catch (err) {
+      console.error("Contact API — email delivery failed:", err);
+      // A stored lead is not a lost lead. Only show the visitor an error when
+      // both the database and the email failed, otherwise we would push them to
+      // resubmit a request we already have.
+      if (!leadId) {
+        return NextResponse.json(
+          { error: "Server error. Please call (703) 423-9965 directly." },
+          { status: 500 }
+        );
+      }
+    }
+
+    if (leadId) await markEmailStatus(leadId, emailSent);
+
+    return NextResponse.json({
+      success: true,
+      confirmationSent: emailSent && Boolean(email),
+    });
   } catch (err) {
     console.error("Contact API error:", err);
     return NextResponse.json({ error: "Server error. Please call (703) 423-9965 directly." }, { status: 500 });

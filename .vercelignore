@@ -1,3 +1,10 @@
 # Large 4K source files are already excluded via .gitignore
 # (never pushed to git so Vercel never sees them)
 # The committed videos in public/video/ are all under 50MB — safe to deploy
+
+# Repeated here because .vercelignore does not inherit .gitignore. Deploys from
+# GitHub never see these files, but `vercel --prod` from a local machine would
+# try to upload 1.2GB and fail on Vercel's 100MB per-file limit.
+/public/video/Blue Lightning 4K.mp4
+/public/video/Mauricio - Outdoor Living Designer (4K High Quality).mp4
+/public/video/BLUE LIGHTNING Final video copy.mp4

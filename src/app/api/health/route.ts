@@ -8,7 +8,9 @@ export async function GET() {
       ? `SET (${process.env.RESEND_API_KEY.length} chars)`
       : "MISSING",
     resend_from: process.env.RESEND_FROM || "noreply@bluelightning.us (default)",
-    supabase_url: process.env.SUPABASE_URL || "MISSING",
+    // This endpoint is public, so it reports only whether a value exists.
+    // Printing the project URL or key would hand an attacker a free target.
+    supabase_url: process.env.SUPABASE_URL ? "SET" : "MISSING",
     supabase_service_key: process.env.SUPABASE_SERVICE_ROLE_KEY ? "SET" : "MISSING",
     supabase_leads_table: await checkLeadsConnection(),
   });
